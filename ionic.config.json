@@ -1,0 +1,11 @@
+{
+  "name": "moodlemobile",
+  "integrations": {
+    "cordova": {},
+    "gulp": {}
+  },
+  "type": "ionic-angular",
+  "watchPatterns": [],
+  "pro_id": "com.moodle.moodlemobile",
+  "id": "com.moodle.moodlemobile"
+}

@@ -20,9 +20,7 @@ import { Platform } from 'ionic-angular';
 import { CoreConfigProvider } from './config';
 import { CoreConfigConstants } from '../configconstants';
 
-/*
- * Service to handle language features, like changing the current language.
-*/
+// Service to handle language features, like changing the current language.
 @Injectable()
 export class CoreLangProvider {
     protected fallbackLanguage = 'en'; // Always use English as fallback language since it contains all strings.
@@ -35,6 +33,8 @@ export class CoreLangProvider {
     constructor(private translate: TranslateService, private configProvider: CoreConfigProvider, platform: Platform,
             private globalization: Globalization) {
         // Set fallback language and language to use until the app determines the right language to use.
+        // , private sitesProvider: CoreSitesProvider
+
         translate.setDefaultLang(this.fallbackLanguage);
         translate.use(this.defaultLanguage);
 

@@ -1628,7 +1628,6 @@
     "core.settings.networkstatus": "Internet connection status",
     "core.settings.privacypolicy": "Privacy policy",
     "core.settings.reportinbackground": "Report errors automatically",
-    "core.settings.servenotreponse": "The server is not response, please try again later.",
     "core.settings.settings": "Settings",
     "core.settings.showdownloadoptions": "Show download options",
     "core.settings.sites": "Sites",

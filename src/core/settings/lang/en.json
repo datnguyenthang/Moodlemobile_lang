@@ -51,5 +51,6 @@
     "total": "Total",
     "versioncode": "Version code",
     "versionname": "Version name",
-    "wificonnection": "Wi-Fi connection"
+    "wificonnection": "Wi-Fi connection",
+    "servenotreponse": "The server is not response, please try again later."
 }

@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Component, } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, AlertController } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
 import { CoreAppProvider } from '@providers/app';
 import { CoreConstants } from '@core/constants';
 import { CoreConfigProvider } from '@providers/config';
@@ -23,6 +24,8 @@ import { CoreLangProvider } from '@providers/lang';
 import { CoreDomUtilsProvider } from '@providers/utils/dom';
 import { CoreLocalNotificationsProvider } from '@providers/local-notifications';
 import { CoreConfigConstants } from '../../../../configconstants';
+import { CoreSitesProvider } from '@providers/sites';
+import { Network } from '@ionic-native/network';
 
 /**
  * Page that displays the general settings.
@@ -34,9 +37,12 @@ import { CoreConfigConstants } from '../../../../configconstants';
 })
 export class CoreSettingsGeneralPage {
 
+    protected onlineObserver;
+
     languages = {};
     languageCodes = [];
     selectedLanguage: string;
+    baseLanguage: string;
     rteSupported: boolean;
     richTextEditor: boolean;
     debugDisplay: boolean;
@@ -44,12 +50,13 @@ export class CoreSettingsGeneralPage {
     constructor(appProvider: CoreAppProvider, private configProvider: CoreConfigProvider, fileProvider: CoreFileProvider,
             private eventsProvider: CoreEventsProvider, private langProvider: CoreLangProvider,
             private domUtils: CoreDomUtilsProvider,
-            localNotificationsProvider: CoreLocalNotificationsProvider) {
+            localNotificationsProvider: CoreLocalNotificationsProvider, private sitesProvider: CoreSitesProvider,
+            private alertCtrl: AlertController, private translate: TranslateService, private network: Network) {
 
         this.languages = CoreConfigConstants.languages;
         this.languageCodes = Object.keys(this.languages);
         langProvider.getCurrentLanguage().then((currentLanguage) => {
-            this.selectedLanguage = currentLanguage;
+            this.baseLanguage = this.selectedLanguage = currentLanguage;
         });
 
         this.rteSupported = this.domUtils.isRichTextEditorSupported();
@@ -68,8 +75,56 @@ export class CoreSettingsGeneralPage {
      * Called when a new language is selected.
      */
     languageChanged(): void {
-        this.langProvider.changeCurrentLanguage(this.selectedLanguage).finally(() => {
-            this.eventsProvider.trigger(CoreEventsProvider.LANGUAGE_CHANGED);
+
+        this.changeUserLang(this.selectedLanguage).then((data) => {
+            this.changeLocalLang(data);
+        }).catch((error) => {
+            this.onlineObserver = this.network.onConnect().subscribe(() => {
+                this.languageChanged();
+                this.onlineObserver.unsubscribe();
+            });
+        });
+    }
+
+    /**
+     * Called when change User Lang success.
+     */
+    changeLocalLang(data: any): void {
+        const alert = this.alertCtrl.create({
+                message: this.translate.instant('core.settings.servenotreponse'),
+                buttons: [this.translate.instant('core.ok')]
+        });
+        let obj: any = {
+                message: '',
+                result: false
+        };
+        obj = data;
+        if (obj.result) {
+            this.baseLanguage = this.selectedLanguage;
+            this.langProvider.changeCurrentLanguage(this.selectedLanguage).finally(() => {
+                this.eventsProvider.trigger(CoreEventsProvider.LANGUAGE_CHANGED);
+            });
+        } else {
+            this.selectedLanguage = this.baseLanguage;
+            alert.present();
+        }
+    }
+
+    /**
+     * Update language for user
+     */
+    changeUserLang(language: string, siteId?: string): Promise<any[]> {
+        return this.sitesProvider.getSite(siteId).then((site) => {
+            // The get_site_info WS call won't be cached.
+            const preSets = {
+                getFromCache: false,
+                saveToCache: false
+            },
+                  data = {
+                    lang: language
+            };
+
+            return site.read('core_language_update_lang_user', data, preSets);
         });
     }
 

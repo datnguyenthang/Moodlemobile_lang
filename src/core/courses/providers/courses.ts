@@ -675,7 +675,8 @@ export class CoreCoursesProvider {
 
             const userId = site.getUserId(),
                 data = {
-                    userid: userId
+                    userid: userId,
+                    type: 1
                 },
                 preSets = {
                     cacheKey: this.getUserCoursesCacheKey(),

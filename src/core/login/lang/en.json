@@ -90,5 +90,8 @@
     "usernamerequired": "Username required",
     "usernotaddederror": "User not added - error",
     "visitchangepassword": "Do you want to visit the site to change the password?",
-    "webservicesnotenabled": "Web services are not enabled in your site. Please contact your site administrator if you think they should be enabled."
+    "webservicesnotenabled": "Web services are not enabled in your site. Please contact your site administrator if you think they should be enabled.",
+    "introone": "The more read the more you know, the more you learn the more you grow.",
+    "introtwo": "Develop a passion for learning. If you do, you will never cease to grow.",
+    "introthree": "If you are not willing to learn no one can help you.if you are determined to learn no one can stop you."
 }

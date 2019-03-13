@@ -22,12 +22,16 @@ import { CorePipesModule } from '@pipes/pipes.module';
 import { CoreCoursesCourseProgressComponent } from '../components/course-progress/course-progress';
 import { CoreCoursesCourseListItemComponent } from '../components/course-list-item/course-list-item';
 import { CoreCoursesCourseOptionsMenuComponent } from '../components/course-options-menu/course-options-menu';
+import { CoreCoursesCourseListSlideComponent } from '../components/course-list-slide/course-list-slide';
+import { CoreCoursesCourseListGroupComponent } from '../components/course-list-group/course-list-group';
 
 @NgModule({
     declarations: [
         CoreCoursesCourseProgressComponent,
         CoreCoursesCourseListItemComponent,
-        CoreCoursesCourseOptionsMenuComponent
+        CoreCoursesCourseOptionsMenuComponent,
+        CoreCoursesCourseListSlideComponent,
+        CoreCoursesCourseListGroupComponent
     ],
     imports: [
         CommonModule,
@@ -42,7 +46,9 @@ import { CoreCoursesCourseOptionsMenuComponent } from '../components/course-opti
     exports: [
         CoreCoursesCourseProgressComponent,
         CoreCoursesCourseListItemComponent,
-        CoreCoursesCourseOptionsMenuComponent
+        CoreCoursesCourseOptionsMenuComponent,
+        CoreCoursesCourseListSlideComponent,
+        CoreCoursesCourseListGroupComponent
     ],
     entryComponents: [
         CoreCoursesCourseOptionsMenuComponent

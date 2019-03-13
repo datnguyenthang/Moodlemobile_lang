@@ -123,6 +123,10 @@ import { AddonNotificationsModule } from '@addon/notifications/notifications.mod
 import { AddonRemoteThemesModule } from '@addon/remotethemes/remotethemes.module';
 import { AddonQbehaviourModule } from '@addon/qbehaviour/qbehaviour.module';
 import { AddonQtypeModule } from '@addon/qtype/qtype.module';
+//danglongfe
+import { AddonMandatoryModule } from '@addon/mandatory/mandatory.module';
+import { AddonResourceModule } from '@addon/resource/resource.module';
+import { AddonEvaluateModule } from '@addon/evaluate/evaluate.module';
 
 // For translate loader. AoT requires an exported function for factories.
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
@@ -239,7 +243,10 @@ export const CORE_PROVIDERS: any[] = [
         AddonPushNotificationsModule,
         AddonRemoteThemesModule,
         AddonQbehaviourModule,
-        AddonQtypeModule
+        AddonQtypeModule,
+        AddonMandatoryModule,
+        AddonResourceModule,
+        AddonEvaluateModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

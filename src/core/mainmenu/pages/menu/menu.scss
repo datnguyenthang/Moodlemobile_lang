@@ -9,7 +9,9 @@ ion-app.app-root page-core-mainmenu {
         font-size: 21px;
         height: 21px;
     }
-
+    .tab-button-text {
+        display: contents !important;
+    }
     .ion-ios-fa-graduation-cap-outline {
         color: transparent;
         -webkit-text-stroke-width: 0.8px;

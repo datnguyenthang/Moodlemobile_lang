@@ -1,0 +1,18 @@
+<div *ngFor="let category of categories; index as i" class="item-group-category">
+    <div [ngStyle]="{'height.px': ( deviceHeight/categories.length )}" class="card-category-title category-group-title-background-{{i%8}}" >
+        <div class="wrap-tag" [ngStyle]="{'height.px': ( deviceHeight/categories.length )}">
+        	<img class="thumb-category" src="assets/img/thumbs/img-my-course.png"/>
+            <div class="title-category">
+            	<h6 text-uppercase >{{ category.name }}</h6>	
+            </div>
+            <ion-icon class="ion ion-ios-arrow-forward" (click)="showContent(i)" ></ion-icon>
+        </div>
+        <div  *ngIf="category.selected" class="check-element animate-show-hide" >
+        	<div *ngFor="let course of category.courses" class="list-course" >
+            	<core-courses-course-progress [course]="course" class="core-courseoverview"></core-courses-course-progress>
+        	</div>	
+        </div>
+        
+    </div>
+    
+</div>

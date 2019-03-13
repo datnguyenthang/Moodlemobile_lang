@@ -74,5 +74,8 @@
     "usernamerequired": "Yêu cầu ký danh",
     "usernotaddederror": "Người dùng không được thêm vào - lỗi",
     "visitchangepassword": "Bạn có muốn truy cập vào trang web để thay đổi mật khẩu?",
-    "webservicesnotenabled": "Dịch vụ Web không được bật trong trang web của bạn. Vui lòng liên hệ với quản trị viên trang web của Moodle nếu bạn cho rằng phải bật tính năng truy cập di động."
+    "webservicesnotenabled": "Dịch vụ Web không được bật trong trang web của bạn. Vui lòng liên hệ với quản trị viên trang web của Moodle nếu bạn cho rằng phải bật tính năng truy cập di động.",
+    "introone": "Càng đọc nhiều bạn càng biết nhiều, bạn càng học nhiều bạn càng phát triển.",
+    "introtwo": "Phát triển niềm đam mê học tập. Nếu bạn làm như vậy, bạn sẽ không bao giờ ngừng phát triển.",
+    "introthree": "Nếu bạn không sẵn lòng học thì không ai có thể giúp bạn. Nếu bạn quyết tâm học thì không ai có thể ngăn cản bạn."
 }

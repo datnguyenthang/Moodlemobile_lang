@@ -116,7 +116,8 @@ export class CoreLoginSitePage {
                     this.loginHelper.confirmAndOpenBrowserForSSOLogin(
                         result.siteUrl, result.code, result.service, result.config && result.config.launchurl);
                 } else {
-                    this.navCtrl.push('CoreLoginCredentialsPage', { siteUrl: result.siteUrl, siteConfig: result.config });
+                    // CoreLoginIntroductionPage CoreLoginCredentialsPage
+                    this.navCtrl.push('CoreLoginIntroductionPage', { siteUrl: result.siteUrl, siteConfig: result.config });
                 }
             }, (error) => {
                 this.showLoginIssue(url, error);

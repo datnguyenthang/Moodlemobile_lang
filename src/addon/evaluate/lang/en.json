@@ -1,0 +1,19 @@
+{
+    "evaluate" : "Evaluate course",
+    "courseinfo" : "Course info",
+    "evaluatequestion" : "Evaluate content",
+    "coursecode" : "Course code",
+    "coursename" : "Course name",
+    "coursestartdate" : "Start date",
+    "fullname" : "Fullname",
+    "email": "Email",
+    "cmnd" : "CMND",
+    "placeholdercomment" : "Comment ...",
+    "alerttitle" : "Alert",
+    "messagecoursecodeinvalid" : "Course code invalid",
+    "messagesubmitsuccess" : "Evaluate success",
+    "messagesubmitfailed" : "Evaluate failed",
+    "btnnext" : "Next",
+    "btnsubmit" : "Finish",
+    "btnok" : "Ok"
+}

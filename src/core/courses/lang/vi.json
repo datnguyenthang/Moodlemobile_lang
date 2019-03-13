@@ -46,5 +46,6 @@
 	"sortbycourses": "Sắp xếp bởi khóa học",
 	"sortbydates": "Sắp xếp bởi thời gian",
 	"timeline": "Mốc thời gian",
-	"totalcoursesearchresults": "Tổng công các khóa học: {{$a}}"
+	"totalcoursesearchresults": "Tổng công các khóa học: {{$a}}",
+	"courseoverview": "Của bạn"
 }

@@ -28,7 +28,9 @@ $green:           #5e8100; // Accent.
 $red:             #cb3d4d;
 $orange:          #f98012; // Accent (never text).
 $yellow:          #fbad1a; // Accent (never text).
-$core-color:      $orange;
+$fegreen:         #008446; // color off company fecredit.
+$felightgreen:    #00E379;
+$core-color:      $fegreen;
 
 // Branded apps customization
 // --------------------------------------------------
@@ -47,7 +49,8 @@ $green-dark:      darken($green, 10%) !default;
 $red-light:       mix($red, white, 20%) !default;
 $red-dark:        darken($red, 10%) !default;
 
-$orange-light:    lighten($orange, 10%) !default;
+/* $orange-light:    lighten($orange, 10%) !default; */
+$fegreen-light:    lighten($fegreen, 10%) !default;
 
 $yellow-light:    mix($yellow, white, 20%) !default;
 $yellow-dark:     mix($yellow, black, 40%) !default;
@@ -56,6 +59,7 @@ $core-color-light:    lighten($core-color, 10%) !default;
 $core-color-dark:     darken($core-color, 10%) !default;
 
 $core-course-image-background: #81ecec, #74b9ff, #a29bfe, #dfe6e9, #00b894, #0984e3, #b2bec3, #fdcb6e, #fd79a8, #6c5ce7 !default;
+$color-list: (linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%), #CDDC39, #bb3847, #1470d6, #9C27B0, #FF5722, #2bb530 ,#3F51B5 ,#E91E63 ,#FFC107);
 
 // Shared Variables
 // --------------------------------------------------
@@ -103,10 +107,10 @@ $core-error-color: colors($colors, alert) !default; // Red.
 
 $list-background-color:      $white !default;
 
-$tabs-background:            $gray-darker !default;
+$tabs-background:            $white !default;
 $tabs-border-color:          #b2b2b2 !default;
 $tabs-tab-color-active:      $core-color !default;
-$tabs-tab-color-inactive:    $white !default;
+$tabs-tab-color-inactive:    $black !default;
 $ion-tabs-badge-color:       $tabs-tab-color-active !default;
 
 $text-input-highlight-color-valid: $green !default;
@@ -131,8 +135,8 @@ $item-divider-color: $black !default;
 // --------------------------------------------------
 
 // Init screen.
-$core-color-init-screen:          #ff5c00 !default;
-$core-color-init-screen-alt:      #ff7600 !default;
+$core-color-init-screen:          $fegreen !default;
+$core-color-init-screen-alt:      $felightgreen !default;
 $core-init-screen-spinner-color:  $white !default;
 $core-init-screen-logo-width:     60% !default;
 $core-init-screen-logo-max-width: 300px !default;
@@ -475,3 +479,10 @@ $fa-font-path: $font-path;
 
 // Format text styles.
 @import "format-text";
+
+//fecrediter
+@for $i from 0 to length($color-list){
+  .category-title-background-#{$i} {
+    background: nth($color-list, $i+1);
+  }
+}

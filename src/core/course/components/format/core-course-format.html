@@ -9,7 +9,7 @@
 <core-dynamic-component [component]="courseFormatComponent" [data]="data">
     <core-loading [hideUntil]="loaded">
         <!-- Section selector. -->
-        <core-dynamic-component [component]="sectionSelectorComponent" [data]="data">
+        <core-dynamic-component [component]="sectionSelectorComponent" [data]="data" style="display:none">
             <div text-wrap *ngIf="displaySectionSelector && sections && sections.length" padding class="clearfix" ion-row justify-content-between class="safe-padding-horizontal">
                 <button float-start ion-button icon-start icon-end (click)="showSectionSelector($event)" color="light" class="core-button-select button-no-uppercase" ion-col>
                     <core-icon name="fa-folder"></core-icon>
@@ -69,7 +69,8 @@
 
 <!-- Template to render a section. -->
 <ng-template #sectionTemplate let-section="section">
-    <section ion-list *ngIf="!section.hiddenbynumsections && section.id != allSectionsId && section.id != stealthModulesSectionId">
+    <section ion-list *ngIf="!section.hiddenbynumsections && section.id != allSectionsId && section.id != stealthModulesSectionId && section.name != 'General' ">
+     <!-- danglong -->
         <!-- Title is only displayed when viewing all sections. -->
         <ion-item-divider text-wrap color="light" *ngIf="selectedSection.id == allSectionsId && section.name">
             <core-format-text [text]="section.name"></core-format-text>

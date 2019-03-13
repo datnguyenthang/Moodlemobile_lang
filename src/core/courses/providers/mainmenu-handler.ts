@@ -68,10 +68,10 @@ export class CoreDashboardMainMenuHandler implements CoreMainMenuHandler {
      */
     getDisplayData(): CoreMainMenuHandlerData {
         return {
-            icon: 'home',
-            title: 'core.courses.mymoodle',
-            page: 'CoreCoursesDashboardPage',
-            class: 'core-dashboard-handler'
+            icon: 'compass',
+            title: 'core.courses.courseoverview',
+            page: 'CoreCoursesMyOverviewPage',
+            class: 'core-courseoverview-handler'
         };
     }
 }

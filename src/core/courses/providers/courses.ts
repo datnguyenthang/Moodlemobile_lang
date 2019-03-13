@@ -670,13 +670,13 @@ export class CoreCoursesProvider {
      * @param {string} [siteId] Site to get the courses from. If not defined, use current site.
      * @return {Promise<any[]>} Promise resolved with the courses.
      */
-    getUserCourses(preferCache?: boolean, siteId?: string): Promise<any[]> {
+    getUserCourses(preferCache?: boolean, siteId?: string, typeNum?: number): Promise<any[]> {
         return this.sitesProvider.getSite(siteId).then((site) => {
 
             const userId = site.getUserId(),
                 data = {
                     userid: userId,
-                    type: 1
+                    type: typeNum ? typeNum : null
                 },
                 preSets = {
                     cacheKey: this.getUserCoursesCacheKey(),

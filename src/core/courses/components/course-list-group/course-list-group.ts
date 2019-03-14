@@ -32,18 +32,33 @@ export class CoreCoursesCourseListGroupComponent implements OnInit, OnDestroy {
     protected courseStatusObserver;
     protected siteUpdatedObserver;
     protected deviceHeight;
+    protected classString = { forward : 'ion ion-ios-arrow-forward', arrow_down : 'ion ion-ios-arrow-down'};
    
+    icon_class_string: string;
+
     constructor(platform: Platform){
         platform.ready().then((readySource) => {
           this.deviceHeight = platform.height();
         })
-        
+        this.icon_class_string = this.classString.forward;
     }
     /**
      * Show content of element selected
      */
     showContent(index: number): void{
-        this.categories[index].selected = !this.categories[index].selected;
+      this.categories.forEach( (el, i) => {
+        if (index !== i) {
+          el.selected = false;  
+        }
+      });
+      this.categories[index].selected = !this.categories[index].selected;
+      //this.icon_class_string = this.categories[index].selected ? this.classString.arrow_down : this.classString.forward;
+      if ( this.categories[index].selected ){
+        this.categories[index].icon_class_string = this.classString.arrow_down;  
+      } else {
+        this.categories[index].icon_class_string = this.classString.forward;
+      }
+        
     }
     /**
      * Component being initialized.

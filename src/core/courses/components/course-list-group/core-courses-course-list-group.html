@@ -1,5 +1,5 @@
 <div *ngFor="let category of categories; index as i" class="item-group-category">
-    <div [ngStyle]="{'height.px': ( deviceHeight/categories.length )}" class="card-category-title category-group-title-background-{{i%8}}" >
+    <div [@openCloseGroup]="category.selected ? 'open' : 'closed'" class="card-category-title category-group-title-background-{{i%8}}" >
         <div class="wrap-tag" [ngStyle]="{'height.px': ( deviceHeight/categories.length )}">
         	<img class="thumb-category" src="assets/img/thumbs/img-my-course.png"/>
             <div class="title-category">
@@ -7,7 +7,7 @@
             </div>
             <ion-icon [ngClass]="category.icon_class_string ? category.icon_class_string : classString.forward" (click)="showContent(i)" ></ion-icon>
         </div>
-        <div  *ngIf="category.selected" class="check-element animate-show-hide" >
+        <div [@openCloseCourse]="category.selected ? 'open' : 'closed'" id="wrap-course">
         	<div *ngFor="let course of category.courses" class="list-course" >
             	<core-courses-course-progress [course]="course" class="core-courseoverview"></core-courses-course-progress>
         	</div>	

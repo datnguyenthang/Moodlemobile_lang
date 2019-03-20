@@ -14,6 +14,7 @@
 
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Platform } from 'ionic-angular';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 /**
  * This component is meant to display a course for a list of courses with progress.
  *
@@ -24,7 +25,40 @@ import { Platform } from 'ionic-angular';
  */
 @Component({
     selector: 'core-courses-course-list-group',
+    animations: [
+        trigger('openCloseGroup', [
+            state('open', style({
+                'min-height': '177px'
+            })),
+            state('closed', style({
+                height: '82px'
+            })),
+            transition('open => closed', [
+                animate('0.2s')
+            ]),
+            transition('closed => open', [
+                animate('0.2s')
+            ]),
+        ]),
+        trigger('openCloseCourse', [
+            state('open', style({
+                
+                display: 'block'
+            })),
+            state('closed', style({
+                
+                display: 'none'
+            })),
+            transition('open => closed', [
+                animate('0.1s')
+            ]),
+            transition('closed => open', [
+                animate('0.1s')
+            ]),
+        ])
+    ],
     templateUrl: 'core-courses-course-list-group.html'
+    
 })
 export class CoreCoursesCourseListGroupComponent implements OnInit, OnDestroy {
     @Input() categories: any; // The category to render.
@@ -32,6 +66,7 @@ export class CoreCoursesCourseListGroupComponent implements OnInit, OnDestroy {
     protected courseStatusObserver;
     protected siteUpdatedObserver;
     protected deviceHeight;
+    protected deviceHeight1 = 0;
     protected classString = { forward : 'ion ion-ios-arrow-forward', arrow_down : 'ion ion-ios-arrow-down'};
    
     icon_class_string: string;
@@ -48,6 +83,7 @@ export class CoreCoursesCourseListGroupComponent implements OnInit, OnDestroy {
     showContent(index: number): void{
       this.categories.forEach( (el, i) => {
         if (index !== i) {
+          el.icon_class_string = this.classString.forward;
           el.selected = false;  
         }
       });

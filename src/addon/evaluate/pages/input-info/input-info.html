@@ -9,18 +9,16 @@
     </ion-navbar>
 </ion-header>
 <ion-content class="core-center-view">
-    <core-loading [hideUntil]="pageLoaded">
-        <div class="box">
-            
-            <div text-wrap text-center margin-bottom>
-                <h3>{{ 'addon.evaluate.evaluate' | translate }}</h3>
-                <br>
-            </div>
-
+    <core-loading [hideUntil]="pageLoaded" class="core-loading-center">
             <form ion-list [formGroup]="credForm" (ngSubmit)="checkcode()">
-                <ion-item>
-                    <ion-input type="text" name="coursecode" placeholder="{{ 'addon.evaluate.coursecode' | translate }}" formControlName="coursecode" autocapitalize="none" autocorrect="off"></ion-input>
-                </ion-item>
+                <div text-wrap text-center margin-bottom>
+                    <h3>{{ 'addon.evaluate.evaluate' | translate }}</h3>
+                    <ion-icon name="qr-scanner" (click)="scanQR()" ></ion-icon>
+                </div>
+                <div class="inputs-control">
+                    <ion-item>
+                        <ion-input type="text" name="coursecode" placeholder="{{ 'addon.evaluate.coursecode' | translate }}" formControlName="coursecode" autocapitalize="none" autocorrect="off"></ion-input>
+                    </ion-item>
                 <ion-item>
                     <ion-input type="text" name="fullname" placeholder="{{ 'addon.evaluate.fullname' | translate }}" formControlName="fullname" autocapitalize="none" autocorrect="off"></ion-input>
                 </ion-item>
@@ -29,9 +27,11 @@
                 </ion-item>
                 <ion-item margin-bottom>
                     <ion-input type="text" name="cmnd" placeholder="{{ 'addon.evaluate.cmnd' | translate }}" formControlName="cmnd" autocapitalize="none" autocorrect="off"></ion-input>
-                </ion-item>
-                <button ion-button block [disabled]="!credForm.valid">{{ 'addon.evaluate.btnnext' | translate }}</button>
+                </ion-item>    
+                </div>
+                <div class="submit-control">
+                    <button ion-button block [disabled]="!credForm.valid">{{ 'addon.evaluate.btnnext' | translate }}</button>    
+                </div>
             </form>
-        </div>
     </core-loading>
 </ion-content>

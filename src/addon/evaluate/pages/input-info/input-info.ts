@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import { Component, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ViewChild, OnDestroy, OnInit } from '@angular/core';
 import { IonicPage, Searchbar, NavController } from 'ionic-angular';
 import { CoreCoursesProvider } from '@core/courses/providers/courses';
 import { CoreDomUtilsProvider } from '@providers/utils/dom';
@@ -27,6 +27,8 @@ import { CoreTabsComponent } from '@components/tabs/tabs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddonEvaluateProvider } from '../../providers/evaluate';
 import { TranslateService } from '@ngx-translate/core';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
+
 
 /**
  * Page that displays the list of calendar events.
@@ -36,7 +38,7 @@ import { TranslateService } from '@ngx-translate/core';
     selector: 'page-addon-evaluate-input-info',
     templateUrl: 'input-info.html',
 })
-export class AddonEvaluateInputInfoPage implements OnDestroy {
+export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
     @ViewChild(CoreTabsComponent) tabsComponent: CoreTabsComponent;
     @ViewChild('searchbar') searchbar: Searchbar;
     credForm: FormGroup;
@@ -55,7 +57,8 @@ export class AddonEvaluateInputInfoPage implements OnDestroy {
             private myOverviewProvider: AddonBlockTimelineProvider, private sitesProvider: CoreSitesProvider,
             private courseHelper: CoreCourseHelperProvider, private courseOptionsDelegate: CoreCourseOptionsDelegate,
             private eventsProvider: CoreEventsProvider, private navCtrl: NavController, appProvider: CoreAppProvider, 
-            evaluateProvider: AddonEvaluateProvider,fb: FormBuilder,private translate: TranslateService) {
+            evaluateProvider: AddonEvaluateProvider,fb: FormBuilder,private translate: TranslateService,
+            private qrScanner: QRScanner) {
         
         this.evaluateProvider = evaluateProvider;
         this.loadSiteInfo();
@@ -102,7 +105,29 @@ export class AddonEvaluateInputInfoPage implements OnDestroy {
         return;
     }
     
+    protected scanQR(): void {
+            this.qrScanner.prepare().then((status: QRScannerStatus) => {
+         if (status.authorized) {
+           // camera permission was granted
 
+
+           // start scanning
+           let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+             console.log('Scanned something', text);
+
+             this.qrScanner.hide(); // hide camera preview
+             scanSub.unsubscribe(); // stop scanning
+           });
+
+         } else if (status.denied) {
+           // camera permission was permanently denied
+           // you must use QRScanner.openSettings() method to guide the user to the settings page
+           // then they can grant the permission from there
+         } else {
+           // permission was denied, but not permanently. You can ask for permission again at a later time.
+         }
+      }).catch((e: any) => console.log('Error is', e));
+    }
     /**
      * Load the site info.
      */
@@ -110,6 +135,10 @@ export class AddonEvaluateInputInfoPage implements OnDestroy {
         this.siteName = this.sitesProvider.getCurrentSite().getInfo().sitename;
         this.siteUrl = this.sitesProvider.getCurrentSite().getInfo().siteurl;
     }
+    /**
+     * Component being initialized.
+     */
+    ngOnInit(): void {}
     /**
      * Page destroyed.
      */

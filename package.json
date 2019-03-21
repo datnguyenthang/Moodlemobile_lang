@@ -63,6 +63,7 @@
     "@ionic-native/media-capture": "4.17.0",
     "@ionic-native/network": "4.17.0",
     "@ionic-native/push": "4.17.0",
+    "@ionic-native/qr-scanner": "^5.3.0",
     "@ionic-native/screen-orientation": "4.17.0",
     "@ionic-native/splash-screen": "4.17.0",
     "@ionic-native/sqlite": "4.17.0",
@@ -77,19 +78,20 @@
     "@types/cordova-plugin-network-information": "0.0.3",
     "@types/node": "8.10.19",
     "@types/promise.prototype.finally": "2.0.2",
+    "c": "^0.1.0",
     "chart.js": "2.7.2",
-    "com-darryncampbell-cordova-plugin-intent": "1.1.1",
+    "com-darryncampbell-cordova-plugin-intent": "^1.1.1",
     "cordova-android": "7.1.2",
-    "cordova-android-support-gradle-release": "2.0.1",
-    "cordova-clipboard": "1.2.1",
+    "cordova-android-support-gradle-release": "^2.0.1",
+    "cordova-clipboard": "^1.2.1",
     "cordova-ios": "4.5.5",
     "cordova-plugin-app-event": "1.2.1",
-    "cordova-plugin-badge": "0.8.8",
-    "cordova-plugin-camera": "4.0.3",
-    "cordova-plugin-customurlscheme": "4.3.0",
-    "cordova-plugin-device": "2.0.2",
-    "cordova-plugin-file": "6.0.1",
-    "cordova-plugin-file-opener2": "2.0.19",
+    "cordova-plugin-badge": "^0.8.8",
+    "cordova-plugin-camera": "^4.0.3",
+    "cordova-plugin-customurlscheme": "^4.3.0",
+    "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-file": "^6.0.1",
+    "cordova-plugin-file-opener2": "^2.0.19",
     "cordova-plugin-file-transfer": "1.7.1",
     "cordova-plugin-globalization": "1.11.0",
     "cordova-plugin-inappbrowser": "3.0.0",
@@ -97,6 +99,7 @@
     "cordova-plugin-local-notifications-mm": "1.0.13",
     "cordova-plugin-media-capture": "3.0.2",
     "cordova-plugin-network-information": "2.0.1",
+    "cordova-plugin-qrscanner": "^2.6.0",
     "cordova-plugin-screen-orientation": "3.0.1",
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "2.4.2",
@@ -151,7 +154,10 @@
       "cordova-plugin-badge": {},
       "cordova-plugin-camera": {},
       "cordova-plugin-customurlscheme": {
-        "URL_SCHEME": "moodlemobile"
+        "URL_SCHEME": "moodlemobile",
+        "ANDROID_SCHEME": " ",
+        "ANDROID_HOST": " ",
+        "ANDROID_PATHPREFIX": "/"
       },
       "cordova-plugin-device": {},
       "cordova-plugin-file": {},
@@ -172,7 +178,8 @@
       "nl.kingsquare.cordova.background-audio": {},
       "phonegap-plugin-push": {
         "SENDER_ID": "694767596569"
-      }
+      },
+      "cordova-plugin-qrscanner": {}
     }
   },
   "main": "desktop/electron.js",

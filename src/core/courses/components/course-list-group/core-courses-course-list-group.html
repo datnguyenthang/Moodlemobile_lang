@@ -5,7 +5,7 @@
             <div class="title-category">
             	<h6 text-uppercase >{{ category.name }}</h6>	
             </div>
-            <ion-icon [ngClass]="category.icon_class_string ? category.icon_class_string : classString.forward" (click)="showContent(i)" ></ion-icon>
+            <ion-icon [ngClass]="category.iconClassString ? category.iconClassString : classString.forward" (click)="showContent(i)" ></ion-icon>
         </div>
         <div [@openCloseCourse]="category.selected ? 'open' : 'closed'" id="wrap-course">
         	<div *ngFor="let course of category.courses" class="list-course" >

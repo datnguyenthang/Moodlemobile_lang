@@ -1,10 +1,56 @@
 page-addon-evaluate-input-info {
-    .box {
-        padding: 16px;
-        margin: 8px;
-        background: #ffffff;
+	.scroll-content{
+		background: #008543;
+        background-image: url('../assets/img/evaluate.svg');
+        background-position: bottom;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	overflow-y: hidden;
+    	color: #e1ede3;
+	}
+   /* .box {
+        padding: 8px;
+        margin: 0px;
+        background: #008543;
+        background-image: url('../assets/img/evaluate.svg');
         border: 1px solid #dddddd;
-        color: #3a3a3a;
+        color: #e1ede3;
+        height: 100%;
+    	background-position: bottom;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	position: relative;*/
+    	form {
+    		display: flex;
+		    flex-direction: column;
+		    height: 100%;
+		    padding: 10px;
+    	}
+    
+    .inputs-control{
+    	/*height: 74%;*/
+    	ion-item {
+    		background-color: unset;
+    		margin-bottom: 10px !important;
+    		padding-left: unset !important;
+    	}
+    	input {
+    		color: #e1ede3;
+    	}
+    	input::placeholder {
+    		color: #e1ede3;
+    	}
     }
-
+    .submit-control{
+    	position: fixed;
+        bottom: 16px;
+        left: 10px;
+        right: 10px;
+    }
+    @media (min-width: 576px) {
+        core-loading {
+            max-width: unset !important;
+            height: 100%;
+      }
+    }
 }

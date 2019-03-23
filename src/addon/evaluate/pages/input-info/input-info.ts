@@ -105,8 +105,10 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
         return;
     }
     
-    protected scanQR(): void {
-            this.qrScanner.prepare().then((status: QRScannerStatus) => {
+    scanQR(): void {
+
+       
+        this.qrScanner.prepare().then((status: QRScannerStatus) => {
          if (status.authorized) {
            // camera permission was granted
 
@@ -127,6 +129,7 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
            // permission was denied, but not permanently. You can ask for permission again at a later time.
          }
       }).catch((e: any) => console.log('Error is', e));
+      
     }
     /**
      * Load the site info.

@@ -20,10 +20,15 @@ import { CoreComponentsModule } from '@components/components.module';
 import { CoreDirectivesModule } from '@directives/directives.module';
 import { CorePipesModule } from '@pipes/pipes.module';
 import { AddonEvaluateInputInfoPage } from './input-info';
-
+import { QRScanner } from '@ionic-native/qr-scanner/ngx';
+import { Camera } from '@ionic-native/camera';
 @NgModule({
     declarations: [
         AddonEvaluateInputInfoPage,
+    ],
+    providers: [
+        QRScanner,
+        Camera
     ],
     imports: [
         CoreComponentsModule,

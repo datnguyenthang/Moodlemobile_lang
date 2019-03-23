@@ -97,8 +97,6 @@
     <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application/activity[@android:name='MainActivity']">
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|screenLayout|smallestScreenSize" android:debuggable="true" />
     </edit-config>
-    <engine name="android" spec="7.1.2" />
-    <engine name="ios" spec="4.5.5" />
     <plugin name="cordova-plugin-file-opener2" spec="2.0.19" />
     <plugin name="cordova-plugin-file-transfer" spec="1.7.1" />
     <plugin name="cordova-plugin-globalization" spec="1.11.0" />
@@ -133,4 +131,6 @@
     <plugin name="cordova-plugin-device" spec="^2.0.2" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-qrscanner" spec="^2.6.0" />
+    <engine name="android" spec="7.1.2" />
+    <engine name="ios" spec="4.5.5" />
 </widget>

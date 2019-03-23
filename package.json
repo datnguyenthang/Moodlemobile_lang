@@ -51,7 +51,7 @@
     "@ionic-native/badge": "4.17.0",
     "@ionic-native/camera": "4.17.0",
     "@ionic-native/clipboard": "4.17.0",
-    "@ionic-native/core": "4.11.0",
+    "@ionic-native/core": "^4.20.0",
     "@ionic-native/device": "4.17.0",
     "@ionic-native/file": "4.17.0",
     "@ionic-native/file-opener": "4.17.0",

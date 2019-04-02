@@ -1,0 +1,42 @@
+page-addon-landing-my-landing {
+	.box {
+		height: 100%;
+        .row {
+        	height: 50%;
+        	.col {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            		img {
+            			height: 97px;
+            			width: 97px;
+            		}	
+                    p {
+                        color: white;
+                        font-weight: 500;
+                        font-size: 15px;
+                    }
+                .item {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                }
+            }
+
+        	
+        	#s-o-s {
+                background: #5cacc5;
+        	}
+        	#s-o-r {
+                background: #dd8757;
+        	}
+            #f-a {
+               background: #e47381;
+            }
+            #m-c {
+               background: #49c88e;
+            }
+        }
+	}
+}

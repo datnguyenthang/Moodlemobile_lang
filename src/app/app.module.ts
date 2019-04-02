@@ -127,6 +127,7 @@ import { AddonQtypeModule } from '@addon/qtype/qtype.module';
 import { AddonMandatoryModule } from '@addon/mandatory/mandatory.module';
 import { AddonResourceModule } from '@addon/resource/resource.module';
 import { AddonEvaluateModule } from '@addon/evaluate/evaluate.module';
+import { AddonLandingModule } from '@addon/landing/landing.module';
 
 // For translate loader. AoT requires an exported function for factories.
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
@@ -246,7 +247,8 @@ export const CORE_PROVIDERS: any[] = [
         AddonQtypeModule,
         AddonMandatoryModule,
         AddonResourceModule,
-        AddonEvaluateModule
+        AddonEvaluateModule,
+        AddonLandingModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

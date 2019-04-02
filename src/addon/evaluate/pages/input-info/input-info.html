@@ -10,6 +10,7 @@
 </ion-header>
 <ion-content class="core-center-view">
     <core-loading [hideUntil]="pageLoaded" class="core-loading-center">
+        <div class="box" [ngClass]="boxClass">
             <form ion-list [formGroup]="credForm" (ngSubmit)="checkcode()">
                 <div text-wrap text-center margin-bottom>
                     <h3>{{ 'addon.evaluate.evaluate' | translate }}</h3>
@@ -17,21 +18,26 @@
                 </div>
                 <div class="inputs-control">
                     <ion-item>
-                        <ion-input type="text" name="coursecode" placeholder="{{ 'addon.evaluate.coursecode' | translate }}" formControlName="coursecode" autocapitalize="none" autocorrect="off"></ion-input>
+                        <ion-icon name="code"></ion-icon>
+                        <ion-input type="text" name="coursecode" placeholder="{{ 'addon.evaluate.coursecode' | translate }}" formControlName="coursecode" autocapitalize="none" autocorrect="off" (focus)="focusInSelect()" (focusout)="focusOutSelect()"></ion-input>
                     </ion-item>
                 <ion-item>
-                    <ion-input type="text" name="fullname" placeholder="{{ 'addon.evaluate.fullname' | translate }}" formControlName="fullname" autocapitalize="none" autocorrect="off"></ion-input>
+                    <ion-icon name="contact"></ion-icon>
+                    <ion-input type="text" name="fullname" placeholder="{{ 'addon.evaluate.fullname' | translate }}" formControlName="fullname" autocapitalize="none" autocorrect="off" (focus)="focusInSelect()" (focusout)="focusOutSelect()" ></ion-input>
                 </ion-item>
                 <ion-item>
-                    <ion-input type="text" name="email" placeholder="{{ 'addon.evaluate.email' | translate }}" formControlName="email" autocapitalize="none" autocorrect="off"></ion-input>
+                    <ion-icon name="mail"></ion-icon>
+                    <ion-input type="text" name="email" placeholder="{{ 'addon.evaluate.email' | translate }}" formControlName="email" autocapitalize="none" autocorrect="off" (focus)="focusInSelect()" (focusout)="focusOutSelect()"></ion-input>
                 </ion-item>
                 <ion-item margin-bottom>
-                    <ion-input type="text" name="cmnd" placeholder="{{ 'addon.evaluate.cmnd' | translate }}" formControlName="cmnd" autocapitalize="none" autocorrect="off"></ion-input>
+                    <ion-icon name="card"></ion-icon>
+                    <ion-input type="text" name="cmnd" placeholder="{{ 'addon.evaluate.cmnd' | translate }}" formControlName="cmnd" autocapitalize="none" autocorrect="off" (focus)="focusInSelect()" (focusout)="focusOutSelect()"></ion-input>
                 </ion-item>    
                 </div>
                 <div class="submit-control">
                     <button ion-button block [disabled]="!credForm.valid">{{ 'addon.evaluate.btnnext' | translate }}</button>    
                 </div>
             </form>
+        </div>
     </core-loading>
 </ion-content>

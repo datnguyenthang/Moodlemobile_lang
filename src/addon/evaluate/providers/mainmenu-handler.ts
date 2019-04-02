@@ -22,7 +22,7 @@ import { CoreMainMenuHandler, CoreMainMenuHandlerData } from '@core/mainmenu/pro
 @Injectable()
 export class AddonEvaluateMainMenuHandler implements CoreMainMenuHandler {
     name = 'AddonEvaluate';
-    priority = 900;
+    priority = 800;
 
     constructor(private evaluateProvider: AddonEvaluateProvider) { }
 

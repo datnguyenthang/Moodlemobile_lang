@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title><core-format-text [text]="siteName"></core-format-text></ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only (click)="openSearch()" [attr.aria-p]="'core.courses.searchcourses' | translate">
+                <ion-icon name="search"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <div class="box" ion-fixed>
+        <div class="row">
+                <div class="col" id="s-o-s">
+                    <div class="item">
+                        <img src="/assets/img/landing/sales.svg">
+                        <p>School Of Sale</p>
+                    </div>
+                </div>
+                <div class="col" id="s-o-r">
+                    <div class="item">
+                        <img src="/assets/img/landing/recovery.svg">
+                        <p>School Of Recovery</p>
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col" id="f-a">
+                    <div class="item">
+                        <img src="/assets/img/landing/fe-academy.svg">
+                        <p>Fe Academy</p>
+                    </div>
+                </div>
+                <div class="col" id="m-c" (click)="openCataloguePage('AddonMandatoryMyMandatoryPage')">
+                    <div class="item">
+                        <img src="/assets/img/landing/mandatory.svg">
+                        <p>Mandatory Course</p>
+                    </div>
+                </div>
+        </div>
+    </div>
+</ion-content>

@@ -36,29 +36,30 @@ export class CoreDashboardMainMenuHandler implements CoreMainMenuHandler {
      * @return {boolean | Promise<boolean>} Whether or not the handler is enabled on a site level.
      */
     isEnabled(): boolean | Promise<boolean> {
+        return false;
         // Check if 3.6 dashboard is enabled.
-        return this.dashboardProvider.isAvailable().then((enabled) => {
-            if (enabled) {
-                return true;
-            }
+        // return this.dashboardProvider.isAvailable().then((enabled) => {
+        //     if (enabled) {
+        //         return true;
+        //     }
 
-            // Check if my overview is enabled.
-            return this.timelineProvider.isAvailable().then((enabled) => {
-                if (enabled) {
-                    return true;
-                }
+        //     // Check if my overview is enabled.
+        //     return this.timelineProvider.isAvailable().then((enabled) => {
+        //         if (enabled) {
+        //             return true;
+        //         }
 
-                return this.siteHomeProvider.isAvailable().then((enabled) => {
-                    // Show in case siteHome is enabled.
-                    if (enabled) {
-                        return true;
-                    }
+        //         return this.siteHomeProvider.isAvailable().then((enabled) => {
+        //             // Show in case siteHome is enabled.
+        //             if (enabled) {
+        //                 return true;
+        //             }
 
-                    // My overview not enabled, check if my courses is enabled.
-                    return !this.coursesProvider.isMyCoursesDisabledInSite();
-                });
-            });
-        });
+        //             // My overview not enabled, check if my courses is enabled.
+        //             return !this.coursesProvider.isMyCoursesDisabledInSite();
+        //         });
+        //     });
+        // });
     }
 
     /**

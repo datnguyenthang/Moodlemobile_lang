@@ -32,7 +32,7 @@ export class AddonResourceMainMenuHandler implements CoreMainMenuHandler {
      * @return {boolean} Whether or not the handler is enabled on a site level.
      */
     isEnabled(): boolean | Promise<boolean> {
-        return !this.resourceProvider.isResourceDisabledInSite();
+        return this.resourceProvider.isResourceDisabledInSite();
     }
 
     /**

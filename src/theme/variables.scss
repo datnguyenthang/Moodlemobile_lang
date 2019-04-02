@@ -486,3 +486,4 @@ $fa-font-path: $font-path;
     background: nth($color-list, $i+1);
   }
 }
+.transparentBody { background: transparent !important; }

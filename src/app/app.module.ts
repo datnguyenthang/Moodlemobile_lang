@@ -128,6 +128,9 @@ import { AddonMandatoryModule } from '@addon/mandatory/mandatory.module';
 import { AddonResourceModule } from '@addon/resource/resource.module';
 import { AddonEvaluateModule } from '@addon/evaluate/evaluate.module';
 import { AddonLandingModule } from '@addon/landing/landing.module';
+import { AddonSchoolOfSalesModule } from '@addon/schoolofsales/schoolofsales.module';
+import { AddonSchoolOfRecoveryModule } from '@addon/schoolofrecovery/schoolofrecovery.module';
+import { AddonFeAcademyModule } from '@addon/feacademy/feacademy.module';
 
 // For translate loader. AoT requires an exported function for factories.
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {

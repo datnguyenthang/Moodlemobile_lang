@@ -27,7 +27,6 @@ import { CoreTabsComponent } from '@components/tabs/tabs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddonEvaluateProvider } from '../../providers/evaluate';
 import { TranslateService } from '@ngx-translate/core';
-import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
 
 
@@ -48,6 +47,7 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
     siteUrl: string;
     protected evaluateProvider: AddonEvaluateProvider;
     boxClass = '';
+    scanSub: any;
 
     protected prefetchIconsInitialized = false;
     protected isDestroyed;
@@ -59,8 +59,7 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
             private myOverviewProvider: AddonBlockTimelineProvider, private sitesProvider: CoreSitesProvider,
             private courseHelper: CoreCourseHelperProvider, private courseOptionsDelegate: CoreCourseOptionsDelegate,
             private eventsProvider: CoreEventsProvider, private navCtrl: NavController, appProvider: CoreAppProvider, 
-            evaluateProvider: AddonEvaluateProvider,fb: FormBuilder,private translate: TranslateService,
-            private qrScanner: QRScanner, public alertController: AlertController) {
+            evaluateProvider: AddonEvaluateProvider,fb: FormBuilder,private translate: TranslateService, public alertController: AlertController) {
         
         this.evaluateProvider = evaluateProvider;
         this.loadSiteInfo();
@@ -112,64 +111,6 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
         return;
     }
     
-    scanQR(): void {
-        this.qrScanner.prepare().then((status: QRScannerStatus) => {
-         if (status.authorized) {
-           // camera permission was granted
-           // window.document.querySelector('ion-app').classList.add('transparentBody');
-           var ionApp = <HTMLElement>document.getElementsByTagName("ion-app")[0];
-           
-           
-
-              
-           // start scanning
-           let scanSub = this.qrScanner.scan().subscribe((text: string) => {
-             console.log('Scanned something', text);
-
-             this.qrScanner.hide(); // hide camera preview
-             scanSub.unsubscribe(); // stop scanning
-             //ionApp.style.display = "block";
-             ionApp.style.opacity = "1";
-             let obj = JSON.parse(text);
-             
-             if (obj.type == 'EVALUATE') {
-               this.credForm.controls['coursecode'].setValue(obj.value);  
-             } else {
-              const alert =  this.alertController.create({
-                message: 'Dữ liệu không hợp lê.',
-                buttons: ['OK']
-                });
-              alert.present();
-             }
-             
-           });
-
-           // ionApp.style.display = "none"; 
-           ionApp.style.opacity = "0";
-           this.qrScanner.show();
-
-         } else if (status.denied) {
-           const alert =  this.alertController.create({
-              message: 'camera permission was permanently denied',
-              buttons: ['OK']
-            });
-            alert.present();
-
-           // camera permission was permanently denied
-           // you must use QRScanner.openSettings() method to guide the user to the settings page
-           // then they can grant the permission from there
-         } else {
-           // permission was denied, but not permanently. You can ask for permission again at a later time.
-          const alert =  this.alertController.create({
-                message: 'permission was denied, but not permanently. You can ask for permission again at a later time.',
-                buttons: ['OK']
-          });
-
-          alert.present();
-         }
-      }).catch((e: any) => console.log('Error is', e));
-      
-    }
     /**
      * Load the site info.
      */

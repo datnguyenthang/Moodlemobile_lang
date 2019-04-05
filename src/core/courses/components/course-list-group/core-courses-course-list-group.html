@@ -1,6 +1,6 @@
 <div *ngFor="let category of categories; index as i" class="item-group-category">
     <div [@openCloseGroup]="category.selected ? 'open' : 'closed'" class="card-category-title category-group-title-background-{{i%8}}" >
-        <div class="wrap-tag" [ngStyle]="{'height.px': ( deviceHeight/categories.length )}">
+        <div class="wrap-tag" [ngStyle]="{'height.px': ( deviceHeight/categories.length )}" (click)="showContent(i)">
         	<img class="thumb-category" src="assets/img/thumbs/img-my-course.png"/>
             <div class="title-category">
             	<h6 text-uppercase >{{ category.name }}</h6>	

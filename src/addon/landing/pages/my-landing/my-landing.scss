@@ -39,4 +39,17 @@ page-addon-landing-my-landing {
             }
         }
 	}
+     @media (min-width: 576px) {
+        .row {
+            .col {
+                img {
+                    height: 194px !important;
+                    width: 194px !important;
+                }
+                p {
+                    font-size: 30px !important;
+                }
+            }
+        }
+    }
 }

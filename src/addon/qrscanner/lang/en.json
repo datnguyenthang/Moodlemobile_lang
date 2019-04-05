@@ -1,0 +1,19 @@
+{
+    "qrscanner" : "QRScanner course",
+    "courseinfo" : "Course info",
+    "qrscannerquestion" : "QRScanner content",
+    "coursecode" : "Course code",
+    "coursename" : "Course name",
+    "coursestartdate" : "Start date",
+    "fullname" : "Fullname",
+    "email": "Email",
+    "cmnd" : "CMND",
+    "placeholdercomment" : "Comment ...",
+    "alerttitle" : "Alert",
+    "messagecoursecodeinvalid" : "Course code invalid",
+    "messagesubmitsuccess" : "QRScanner success",
+    "messagesubmitfailed" : "QRScanner failed",
+    "btnnext" : "Next",
+    "btnsubmit" : "Finish",
+    "btnok" : "Ok"
+}

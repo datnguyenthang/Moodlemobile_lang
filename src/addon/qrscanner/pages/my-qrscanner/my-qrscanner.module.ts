@@ -15,22 +15,24 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { TranslateModule } from '@ngx-translate/core';
-import { CoreCoursesComponentsModule } from '@core/courses/components/components.module';
 import { CoreComponentsModule } from '@components/components.module';
 import { CoreDirectivesModule } from '@directives/directives.module';
 import { CorePipesModule } from '@pipes/pipes.module';
-import { AddonEvaluateInputInfoPage } from './input-info';
+import { AddonQRScannerPage } from './my-qrscanner';
+import { QRScanner } from '@ionic-native/qr-scanner';
 @NgModule({
     declarations: [
-        AddonEvaluateInputInfoPage,
+        AddonQRScannerPage,
+    ],
+    providers: [
+        QRScanner,
     ],
     imports: [
         CoreComponentsModule,
         CoreDirectivesModule,
         CorePipesModule,
-        CoreCoursesComponentsModule,
-        IonicPageModule.forChild(AddonEvaluateInputInfoPage),
+        IonicPageModule.forChild(AddonQRScannerPage),
         TranslateModule.forChild()
     ],
 })
-export class AddonEvaluateInputInfoPagePageModule {}
+export class AddonQRScannerInputInfoPagePageModule {}

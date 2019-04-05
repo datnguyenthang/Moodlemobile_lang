@@ -125,12 +125,13 @@ import { AddonQbehaviourModule } from '@addon/qbehaviour/qbehaviour.module';
 import { AddonQtypeModule } from '@addon/qtype/qtype.module';
 //danglongfe
 import { AddonMandatoryModule } from '@addon/mandatory/mandatory.module';
-import { AddonResourceModule } from '@addon/resource/resource.module';
+// import { AddonResourceModule } from '@addon/resource/resource.module';
 import { AddonEvaluateModule } from '@addon/evaluate/evaluate.module';
 import { AddonLandingModule } from '@addon/landing/landing.module';
 import { AddonSchoolOfSalesModule } from '@addon/schoolofsales/schoolofsales.module';
 import { AddonSchoolOfRecoveryModule } from '@addon/schoolofrecovery/schoolofrecovery.module';
 import { AddonFeAcademyModule } from '@addon/feacademy/feacademy.module';
+import { AddonQRScannerModule } from '@addon/qrscanner/qrscanner.module';
 
 // For translate loader. AoT requires an exported function for factories.
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
@@ -249,9 +250,10 @@ export const CORE_PROVIDERS: any[] = [
         AddonQbehaviourModule,
         AddonQtypeModule,
         AddonMandatoryModule,
-        AddonResourceModule,
+        // AddonResourceModule,
         AddonEvaluateModule,
-        AddonLandingModule
+        AddonLandingModule,
+        AddonQRScannerModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

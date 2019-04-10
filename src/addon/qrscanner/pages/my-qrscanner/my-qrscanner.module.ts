@@ -20,6 +20,7 @@ import { CoreDirectivesModule } from '@directives/directives.module';
 import { CorePipesModule } from '@pipes/pipes.module';
 import { AddonQRScannerPage } from './my-qrscanner';
 import { QRScanner } from '@ionic-native/qr-scanner';
+
 @NgModule({
     declarations: [
         AddonQRScannerPage,

@@ -1,5 +1,6 @@
 {
-    "evaluate" : "Đánh giá sau đào tạo",
+    "evaluatecourse" : "Đánh giá khóa học",
+    "evaluate" : "Đánh giá",
     "courseinfo" : "Thông tin chương trình",
     "evaluatequestion" : "Nội dung đánh giá",
     "coursecode" : "Code chương trình",

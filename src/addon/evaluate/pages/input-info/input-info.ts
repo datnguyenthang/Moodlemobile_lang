@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 import { Component, ViewChild, OnDestroy, OnInit } from '@angular/core';
-import { IonicPage, Searchbar, NavController, AlertController } from 'ionic-angular';
+import { IonicPage, Searchbar, NavController, AlertController, NavParams } from 'ionic-angular';
 import { CoreCoursesProvider } from '@core/courses/providers/courses';
 import { CoreDomUtilsProvider } from '@providers/utils/dom';
 import { CoreUtilsProvider } from '@providers/utils/utils';
@@ -45,6 +45,7 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
     pageLoaded = false;
     siteName: string;
     siteUrl: string;
+    evaluateCode: string;
     protected evaluateProvider: AddonEvaluateProvider;
     boxClass = '';
     scanSub: any;
@@ -59,7 +60,7 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
             private myOverviewProvider: AddonBlockTimelineProvider, private sitesProvider: CoreSitesProvider,
             private courseHelper: CoreCourseHelperProvider, private courseOptionsDelegate: CoreCourseOptionsDelegate,
             private eventsProvider: CoreEventsProvider, private navCtrl: NavController, appProvider: CoreAppProvider, 
-            evaluateProvider: AddonEvaluateProvider,fb: FormBuilder,private translate: TranslateService, public alertController: AlertController) {
+            evaluateProvider: AddonEvaluateProvider,fb: FormBuilder,private translate: TranslateService, public alertController: AlertController,  navParams: NavParams) {
         
         this.evaluateProvider = evaluateProvider;
         this.loadSiteInfo();
@@ -70,6 +71,10 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
             cmnd: ['']
         });
         this.boxClass = 'box box-bg';
+
+        this.evaluateCode =  navParams.get('evaluateCode');
+        
+        this.credForm.controls['coursecode'].setValue(this.evaluateCode);  
     }
 
     /**

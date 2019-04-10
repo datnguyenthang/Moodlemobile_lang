@@ -229,7 +229,7 @@ export class AddonFeAcademyMyFeAcademyPage implements OnDestroy {
      * @return {Promise<any>} Promise resolved when done.
      */
     protected fetchUserCourses(): Promise<any> {
-        return this.coursesProvider.getUserCourses(null, null, 1).then((courses) => {
+        return this.coursesProvider.getUserCourses(null, null, 5).then((courses) => {
             const promises = [],
                 courseIds = courses.map((course) => {
                 return course.id;

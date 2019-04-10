@@ -1,5 +1,6 @@
 {
-    "evaluate" : "Evaluate course",
+    "evaluatecourse" : "Evaluate course",
+    "evaluate" : "Evaluate",
     "courseinfo" : "Course info",
     "evaluatequestion" : "Evaluate content",
     "coursecode" : "Course code",

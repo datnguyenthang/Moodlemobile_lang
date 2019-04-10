@@ -43,7 +43,7 @@ export class AddonQRScannerMainMenuHandler implements CoreMainMenuHandler {
     getDisplayData(): CoreMainMenuHandlerData {
         return {
             icon: 'qr-scanner',
-            title: 'addon.qrscanner.qrscanner',
+            title: 'addon.qrscanner.qrcode',
             page: 'AddonQRScannerPage',
             class: 'addon-qrscanner-handler'
         };

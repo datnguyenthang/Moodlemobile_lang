@@ -1,21 +1,27 @@
 page-addon-evaluate-input-info {
-	
-    .box-bg {
-        background-image: url('../assets/img/evaluate.svg')!important;   
-        background-position: bottom!important;
-        background-repeat: no-repeat!important;
-        background-size: cover!important;
-    }
     .box {
         padding: 8px;
         margin: 0px;
         background: #008543;
-        height: 555px;
-        /*border: 1px solid #dddddd;*/
-        color: #e1ede3;
-        /*height: 100%;*/
-    	
+        color: white;//#e1ede3;
+        height: 100%;
+    	width: 100%;
+        background: #49c88e;
+        // background-image: url('../assets/img/bg-evaluate.svg')!important;   //#49c88e
+        // background-position: bottom!important;
+        // background-repeat: no-repeat!important;
+        // background-size: cover!important;
     	/*position: relative; */
+        // .thumbs-evaluate {
+        //     background-image: url('../assets/img/thumbs-evaluate.svg')!important;   //#49c88e
+        //     background-position: bottom!important;
+        //     background-repeat: no-repeat!important;
+        //     background-size: cover!important;
+        // }
+        h3 {
+            color: white;
+            text-transform: uppercase;
+        }
     	form {
     		display: flex;
     	    flex-direction: column;
@@ -23,7 +29,9 @@ page-addon-evaluate-input-info {
     	    padding: 10px;
             color: #e1ede3;
     	}
-        
+        .item-ios.item-block .item-inner {
+            border-bottom: 0.55px solid #ffffff;
+        }
         .inputs-control{
         	/*height: 74%;*/
             height: 350px;
@@ -33,22 +41,29 @@ page-addon-evaluate-input-info {
         		padding-left: unset !important;
         	}
         	input {
-        		color: #e1ede3;
+        		color: white;//#e1ede3;
         	}
         	input::placeholder {
-        		color: #e1ede3;
+        		color: white;//#e1ede3;
         	}
+            button {
+                background: #FF9800;
+            }
         }
         .submit-control{
-        	
             left: 10px;
             right: 10px;
         }
     }
-    @media (min-width: 576px) {
-        core-loading {
-            max-width: unset !important;
-            height: 100%;
-      }
+    @media (width: 320px) {
+        .thumbs-evaluate {
+            height: 124px;
+        }
     }
+    // @media (min-width: 576px) {
+    //     core-loading {
+    //         max-width: unset !important;
+    //         height: 100%;
+    //   }
+    // }
 }

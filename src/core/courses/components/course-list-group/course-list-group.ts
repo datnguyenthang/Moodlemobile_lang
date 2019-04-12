@@ -48,7 +48,6 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
                 display: 'block'
             })),
             state('closed', style({
-                
                 display: 'none'
             })),
             transition('open => closed', [
@@ -63,12 +62,11 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
     
 })
 export class CoreCoursesCourseListGroupComponent implements OnInit, OnDestroy {
-    @Input() categories: any;
+    @Input() categories: Array<any>;
     protected isDestroyed = false;
     protected courseStatusObserver;
     protected siteUpdatedObserver;
     protected deviceHeight;
-    protected deviceHeight1 = 0;
     protected classString = { 
       forward : 'ion ion-ios-arrow-forward', 
       arrow_down : 'ion ion-ios-arrow-down'

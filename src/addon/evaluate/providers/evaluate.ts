@@ -59,6 +59,7 @@ export class AddonEvaluateProvider {
     checkCourseCode(siteId?: string, courseCode?: string ): Promise<any[]> {
         return this.sitesProvider.getSite(siteId).then((site) => {
             const data = { course_code  : courseCode };
+
             return site.read('mod_mobile_evaluate_check_code', data);
         });
     }
@@ -73,6 +74,7 @@ export class AddonEvaluateProvider {
     submitEvaluateCourse(siteId?: string, submitData?: string ): Promise<any[]> {
         return this.sitesProvider.getSite(siteId).then((site) => {
             const data = { evaluatedata  : submitData };
+            
             return site.read('mod_mobile_evaluate_submit', data);
         });
     }

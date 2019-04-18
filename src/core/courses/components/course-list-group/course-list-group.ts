@@ -44,8 +44,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
         ]),
         trigger('openCloseCourse', [
             state('open', style({
-                
-                display: 'block'
+              display: 'block'
             })),
             state('closed', style({
                 display: 'none'
@@ -59,7 +58,6 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
         ])
     ],
     templateUrl: 'core-courses-course-list-group.html'
-    
 })
 export class CoreCoursesCourseListGroupComponent implements OnInit, OnDestroy {
     @Input() categories: Array<any>;
@@ -67,11 +65,8 @@ export class CoreCoursesCourseListGroupComponent implements OnInit, OnDestroy {
     protected courseStatusObserver;
     protected siteUpdatedObserver;
     protected deviceHeight;
-    protected classString = { 
-      forward : 'ion ion-ios-arrow-forward', 
-      arrow_down : 'ion ion-ios-arrow-down'
-    };
-   
+    protected classString = {forward : 'ion ion-ios-arrow-forward', arrow_down : 'ion ion-ios-arrow-down'};
+
     constructor(platform: Platform) {
         platform.ready().then((readySource) => {
           this.deviceHeight = platform.height();
@@ -84,26 +79,27 @@ export class CoreCoursesCourseListGroupComponent implements OnInit, OnDestroy {
       this.categories.forEach( (el, i) => {
         if (index !== i) {
           el.iconClassString = this.classString.forward;
-          el.selected = false;  
+          el.selected = false;
         }
       });
       this.categories[index].selected = !this.categories[index].selected;
       if ( this.categories[index].selected ) {
-        this.categories[index].iconClassString = this.classString.arrow_down;  
+        this.categories[index].iconClassString = this.classString.arrow_down;
       } else {
         this.categories[index].iconClassString = this.classString.forward;
-      } 
+      }
     }
     /**
      * Component being initialized.
      */
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        // Nothing here.
+    }
     /**
      * Component destroyed.
      */
     ngOnDestroy(): void {
         this.isDestroyed = true;
-
         this.siteUpdatedObserver && this.siteUpdatedObserver.off();
         this.courseStatusObserver && this.courseStatusObserver.off();
     }

@@ -108,8 +108,9 @@ export class AddonEvaluateSubmitEvaluatePage implements OnDestroy {
                 this.domUtils.showAlert(this.translate.instant('addon.evaluate.alerttitle'),
                                         this.translate.instant('addon.evaluate.messagesubmitsuccess'),
                                         this.translate.instant('addon.evaluate.btnok'));
-                this.navCtrl.popToRoot();
-                this.navCtrl.parent.select(1);
+                // this.navCtrl.popToRoot();
+                // this.navCtrl.parent.select(1);
+                this.navCtrl.setRoot("CoreLoginInitPage"); 
                                         
             } else {
                 this.domUtils.showErrorModal(this.translate.instant('addon.evaluate.messagesubmitfailed'), true);

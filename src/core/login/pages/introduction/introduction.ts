@@ -14,12 +14,6 @@
 
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { TranslateService } from '@ngx-translate/core';
-import { CoreAppProvider } from '@providers/app';
-import { CoreEventsProvider } from '@providers/events';
-import { CoreSitesProvider } from '@providers/sites';
-import { CoreDomUtilsProvider } from '@providers/utils/dom';
-import { CoreLoginHelperProvider } from '../../providers/helper';
 
 /**
  * Page to enter the user introduction page.
@@ -31,25 +25,11 @@ import { CoreLoginHelperProvider } from '../../providers/helper';
 })
 export class CoreLoginIntroductionPage {
     siteUrl: string;
-    siteChecked = false;
-    siteName: string;
-    logoUrl: string;
-    authInstructions: string;
-    canSignup: boolean;
-    identityProviders: any[];
-    pageLoaded = false;
-    isBrowserSSO = false;
 
     protected siteConfig;
-    protected eventThrown = false;
-    protected viewLeft = false;
-    protected siteId: string;
     protected urlToOpen: string;
 
-    constructor(private navCtrl: NavController, navParams: NavParams, private appProvider: CoreAppProvider,
-            private sitesProvider: CoreSitesProvider, private loginHelper: CoreLoginHelperProvider,
-            private domUtils: CoreDomUtilsProvider, private translate: TranslateService,
-            private eventsProvider: CoreEventsProvider) {
+    constructor(private navCtrl: NavController, navParams: NavParams) {
 
         this.siteUrl = navParams.get('siteUrl');
         this.siteConfig = navParams.get('siteConfig');

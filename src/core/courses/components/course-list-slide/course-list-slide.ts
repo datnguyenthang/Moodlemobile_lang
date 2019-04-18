@@ -34,7 +34,7 @@ export class CoreCoursesCourseListSlideComponent implements OnInit, OnDestroy {
      * Component being initialized.
      */
     ngOnInit(): void {
-        
+        // Nothing here.
     }
     /**
      * Component destroyed.

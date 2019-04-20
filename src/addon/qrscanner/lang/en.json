@@ -1,4 +1,6 @@
 {
-    "qrscanner" : "QRScanner course",
-    "qrcode" : "QR Code"
+    "qrscanner" : "Scanner",
+    "qrcode" : "QR Code",
+    "notification": "Camera is activating, touch \"SCAN\" if camera is not active.",
+    "scan": "Scan"
 }

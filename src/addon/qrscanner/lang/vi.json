@@ -1,4 +1,6 @@
 {
-    "qrscanner" : "Quét QR",
-    "qrcode" : "QR Code"
+    "qrscanner" : "Máy quét",
+    "qrcode" : "QR Code",
+    "notification": "Máy ảnh đang kích hoạt, nhấn vào nút \"Quét\" nếu máy ảnh không hoạt động.",
+    "scan": "Quét"
 }

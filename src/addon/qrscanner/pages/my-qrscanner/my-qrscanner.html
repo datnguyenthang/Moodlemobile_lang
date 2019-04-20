@@ -1,3 +1,14 @@
-<div class="top-bar">
-    <ion-icon name="md-close" (click)="exitPage()"></ion-icon>
-</div>
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{ 'addon.qrscanner.qrscanner' | translate }}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-card>
+    	<ion-card-content>
+    		<h3>{{ 'addon.qrscanner.notification' | translate }}</h3>
+    		<button ion-button block color="primary" (click)="scanQR()">{{ 'addon.qrscanner.scan' | translate }}</button>
+  		</ion-card-content>
+    	
+   	</ion-card>
+</ion-content>

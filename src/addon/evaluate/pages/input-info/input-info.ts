@@ -18,6 +18,7 @@ import { CoreDomUtilsProvider } from '@providers/utils/dom';
 import { CoreUtilsProvider } from '@providers/utils/utils';
 import { CoreSitesProvider } from '@providers/sites';
 import { CoreEventsProvider } from '@providers/events';
+import { DataService } from '@providers/data.service';
 import { CoreAppProvider } from '@providers/app';
 import { AddonBlockTimelineProvider } from '@addon/block/timeline/providers/timeline';
 import { CoreCourseHelperProvider } from '@core/course/providers/helper';
@@ -60,7 +61,8 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
             private myOverviewProvider: AddonBlockTimelineProvider, private sitesProvider: CoreSitesProvider,
             private courseHelper: CoreCourseHelperProvider, private courseOptionsDelegate: CoreCourseOptionsDelegate,
             private eventsProvider: CoreEventsProvider, private navCtrl: NavController, appProvider: CoreAppProvider, 
-            evaluateProvider: AddonEvaluateProvider,fb: FormBuilder,private translate: TranslateService, public alertController: AlertController,  navParams: NavParams) {
+            evaluateProvider: AddonEvaluateProvider,fb: FormBuilder,private translate: TranslateService,
+            public alertController: AlertController,  navParams: NavParams, private data: DataService) {
         
         this.evaluateProvider = evaluateProvider;
         this.loadSiteInfo();
@@ -71,16 +73,31 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
             cmnd: ['']
         });
         this.boxClass = 'box box-bg';
-
         this.evaluateCode =  navParams.get('evaluateCode');
-        
         this.credForm.controls['coursecode'].setValue(this.evaluateCode);  
+
+        // this.events.subscribe('scanner:evaluateCode',(evaluateCode)=>{
+        //     console.log(evaluateCode);
+        //     this.credForm.controls['coursecode'].setValue(evaluateCode);  
+        // });
     }
 
     /**
      * View loaded.
      */
     ionViewDidLoad(): void {
+        // if (window['globalVariable'] && window['globalVariable'].evaluateCode) {
+        //     // console.log(window['globalVariable'])
+        //     this.credForm.controls['coursecode'].setValue(window['globalVariable'].evaluateCode);  
+        //     window['globalVariable'].evaluateCode = '';
+        // }
+        // this.data.currentMessage.subscribe( (message) => {
+        //     console.log(message);
+
+        // });
+        if (this.data.getOrigin() == 'scanner') {
+            this.credForm.controls['coursecode'].setValue(this.data.getData());    
+        }
         this.pageLoaded = true;
     }
     focusInSelect(): void {

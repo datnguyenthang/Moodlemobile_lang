@@ -49,6 +49,7 @@
     "@angular/platform-browser": "5.2.10",
     "@angular/platform-browser-dynamic": "5.2.10",
     "@ionic-native/badge": "4.17.0",
+    "@ionic-native/barcode-scanner": "^4.20.0",
     "@ionic-native/camera": "^4.17.0",
     "@ionic-native/clipboard": "4.17.0",
     "@ionic-native/core": "^4.20.0",
@@ -78,6 +79,7 @@
     "@types/cordova-plugin-network-information": "0.0.3",
     "@types/node": "8.10.19",
     "@types/promise.prototype.finally": "2.0.2",
+    "a": "2.1.2",
     "c": "^0.1.0",
     "chart.js": "2.7.2",
     "com-darryncampbell-cordova-plugin-intent": "^1.1.1",
@@ -99,7 +101,6 @@
     "cordova-plugin-local-notifications-mm": "1.0.13",
     "cordova-plugin-media-capture": "3.0.2",
     "cordova-plugin-network-information": "2.0.1",
-    "cordova-plugin-qrscanner": "^2.6.0",
     "cordova-plugin-screen-orientation": "3.0.1",
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "2.4.2",
@@ -114,6 +115,7 @@
     "jszip": "3.1.5",
     "moment": "2.22.2",
     "nl.kingsquare.cordova.background-audio": "1.0.1",
+    "phonegap-plugin-barcodescanner": "^8.0.1",
     "phonegap-plugin-push": "git+https://github.com/moodlemobile/phonegap-plugin-push.git#moodle",
     "promise.prototype.finally": "3.1.0",
     "rxjs": "5.5.11",
@@ -179,7 +181,9 @@
       "phonegap-plugin-push": {
         "SENDER_ID": "694767596569"
       },
-      "cordova-plugin-qrscanner": {}
+      "phonegap-plugin-barcodescanner": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      }
     }
   },
   "main": "desktop/electron.js",

@@ -132,7 +132,9 @@ import { AddonSchoolOfSalesModule } from '@addon/schoolofsales/schoolofsales.mod
 import { AddonSchoolOfRecoveryModule } from '@addon/schoolofrecovery/schoolofrecovery.module';
 import { AddonFeAcademyModule } from '@addon/feacademy/feacademy.module';
 import { AddonQRScannerModule } from '@addon/qrscanner/qrscanner.module';
-
+//danglongfe
+import { DataService } from '@providers/data.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 // For translate loader. AoT requires an exported function for factories.
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     return new TranslateHttpLoader(http, './assets/lang/', '.json');
@@ -287,6 +289,8 @@ export const CORE_PROVIDERS: any[] = [
         CorePluginFileDelegate,
         CoreSyncProvider,
         CoreFileHelperProvider,
+        DataService, //danglongfe
+        BarcodeScanner,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: CoreInterceptor,

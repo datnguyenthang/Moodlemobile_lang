@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import { Component, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ViewChild, OnDestroy, OnInit } from '@angular/core';
 import { IonicPage, Searchbar, NavController, NavParams } from 'ionic-angular';
 import { CoreDomUtilsProvider } from '@providers/utils/dom';
 import { CoreSitesProvider } from '@providers/sites';
@@ -21,6 +21,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddonEvaluateProvider } from '../../providers/evaluate';
 import { TranslateService } from '@ngx-translate/core';
 import { App } from 'ionic-angular/components/app/app';
+import { StarRatingModule } from 'ionic3-star-rating';
 
 /**
  * Page that displays the list of calendar events.
@@ -30,7 +31,7 @@ import { App } from 'ionic-angular/components/app/app';
     selector: 'page-addon-evaluate-submit-evaluate',
     templateUrl: 'submit-evaluate.html',
 })
-export class AddonEvaluateSubmitEvaluatePage implements OnDestroy {
+export class AddonEvaluateSubmitEvaluatePage implements OnInit, OnDestroy {
     @ViewChild(CoreTabsComponent) tabsComponent: CoreTabsComponent;
     @ViewChild('searchbar') searchbar: Searchbar;
     credForm: FormGroup;
@@ -108,9 +109,9 @@ export class AddonEvaluateSubmitEvaluatePage implements OnDestroy {
                 this.domUtils.showAlert(this.translate.instant('addon.evaluate.alerttitle'),
                                         this.translate.instant('addon.evaluate.messagesubmitsuccess'),
                                         this.translate.instant('addon.evaluate.btnok'));
-                // this.navCtrl.popToRoot();
-                // this.navCtrl.parent.select(1);
-                this.navCtrl.setRoot("CoreLoginInitPage"); 
+                this.navCtrl.popToRoot();
+                this.navCtrl.parent.select(1);
+                // this.navCtrl.setRoot("CoreLoginInitPage"); 
                                         
             } else {
                 this.domUtils.showErrorModal(this.translate.instant('addon.evaluate.messagesubmitfailed'), true);
@@ -126,7 +127,10 @@ export class AddonEvaluateSubmitEvaluatePage implements OnDestroy {
 
         return;
     }
-
+    /**
+     * Component being initialized.
+     */
+    ngOnInit(): void {}
     /**
      * Load the site info.
      */

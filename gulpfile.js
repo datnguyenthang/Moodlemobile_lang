@@ -50,6 +50,7 @@ function treatFile(file, data) {
         var path = file.path.substr(file.path.lastIndexOf('/src/') + 5);
         data[path] = JSON.parse(file.contents.toString());
     } catch (err) {
+        console.log(file.contents.toString());
         console.log('Error parsing JSON: ' + err);
     }
 }
@@ -193,6 +194,7 @@ var paths = {
 // Build the language files into a single file per language.
 gulp.task('lang', function(done) {
     buildLang('en', paths.lang, path.join(paths.assets, 'lang'), done);
+    buildLang('vi', paths.lang, path.join(paths.assets, 'lang'), done);
 });
 
 // Convert config.json into a TypeScript class.

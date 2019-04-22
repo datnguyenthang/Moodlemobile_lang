@@ -670,7 +670,7 @@ export class CoreSitesProvider {
      * @return {Promise<boolean>} Promise resolved with true if site is loaded, resolved with false if cannot login.
      */
     loadSite(siteId: string, pageName?: string, params?: any): Promise<boolean> {
-        this.logger.debug(`Load site ${siteId}`);
+        this.logger.debug('Load site ${siteId}');
 
         return this.getSite(siteId).then((site) => {
             this.currentSite = site;

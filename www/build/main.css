@@ -48979,6 +48979,10 @@ page-addon-evaluate-submit-evaluate .box .item-no-border .item-inner {
   border-bottom: 0px solid;
 }
 
+core-courses-course-list-group.feacademy .card-category-title.category-group-title-background-0 {
+  background: #e47381 !important;
+}
+
 page-addon-landing-my-landing .box {
   height: 100%;
 }
@@ -49057,6 +49061,10 @@ page-addon-landing-my-landing .box .row #m-c, page-addon-landing-my-landing .box
   page-addon-landing-my-landing .row .col p, page-addon-landing-my-landing .addon-data-contents tr .col p, .addon-data-contents page-addon-landing-my-landing tr .col p, page-addon-landing-my-landing .row .addon-data-contents td p, .addon-data-contents page-addon-landing-my-landing .row td p, page-addon-landing-my-landing .addon-data-contents tr td p, .addon-data-contents page-addon-landing-my-landing tr td p, page-addon-landing-my-landing .row .addon-data-contents th p, .addon-data-contents page-addon-landing-my-landing .row th p, page-addon-landing-my-landing .addon-data-contents tr th p, .addon-data-contents page-addon-landing-my-landing tr th p {
     font-size: 30px !important;
   }
+}
+
+core-courses-course-list-group.madatory .card-category-title.category-group-title-background-0 {
+  background: #49c88e !important;
 }
 
 ion-app.app-root page-addon-messages-discussion .toolbar-title {

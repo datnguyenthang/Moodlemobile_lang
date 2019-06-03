@@ -20,8 +20,7 @@
         <core-empty-box *ngIf="courses[courses.selected].length == 0 && courses.selected == 'future'" image="assets/img/icons/courses.svg" [message]="'core.courses.nocoursesfuture' | translate"></core-empty-box>
         <core-empty-box *ngIf="courses[courses.selected].length == 0 && courses.selected == 'past'" image="assets/img/icons/courses.svg" [message]="'core.courses.nocoursespast' | translate"></core-empty-box>
         <div>
-            <core-courses-course-list-group [categories]="filteredCategory">
-            </core-courses-course-list-group>
+            <core-courses-course-list-group class="madatory" [categories]="filteredCategory"></core-courses-course-list-group>
         </div>
     </core-loading>
 

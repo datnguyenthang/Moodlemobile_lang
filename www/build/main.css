@@ -49014,7 +49014,7 @@ page-addon-landing-my-landing .box .row .col img, page-addon-landing-my-landing 
 page-addon-landing-my-landing .box .row .col p, page-addon-landing-my-landing .box .addon-data-contents tr .col p, .addon-data-contents page-addon-landing-my-landing .box tr .col p, page-addon-landing-my-landing .box .row .addon-data-contents td p, .addon-data-contents page-addon-landing-my-landing .box .row td p, page-addon-landing-my-landing .box .addon-data-contents tr td p, .addon-data-contents page-addon-landing-my-landing .box tr td p, page-addon-landing-my-landing .box .row .addon-data-contents th p, .addon-data-contents page-addon-landing-my-landing .box .row th p, page-addon-landing-my-landing .box .addon-data-contents tr th p, .addon-data-contents page-addon-landing-my-landing .box tr th p {
   color: white;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 page-addon-landing-my-landing .box .row .col .item, page-addon-landing-my-landing .box .addon-data-contents tr .col .item, .addon-data-contents page-addon-landing-my-landing .box tr .col .item, page-addon-landing-my-landing .box .row .addon-data-contents td .item, .addon-data-contents page-addon-landing-my-landing .box .row td .item, page-addon-landing-my-landing .box .addon-data-contents tr td .item, .addon-data-contents page-addon-landing-my-landing .box tr td .item, page-addon-landing-my-landing .box .row .addon-data-contents th .item, .addon-data-contents page-addon-landing-my-landing .box .row th .item, page-addon-landing-my-landing .box .addon-data-contents tr th .item, .addon-data-contents page-addon-landing-my-landing .box tr th .item {
@@ -56370,6 +56370,10 @@ core-courses-course-list-group .card-category-title .ion {
   color: white;
   display: table-cell;
   float: right;
+  font-size: x-large;
+  font-weight: 600;
+  right: 10px;
+  position: fixed;
 }
 
 core-courses-course-list-group .card-category-title h6, core-courses-course-list-group .card-category-title ion-app.app-root .item .item-heading, ion-app.app-root .item core-courses-course-list-group .card-category-title .item-heading {

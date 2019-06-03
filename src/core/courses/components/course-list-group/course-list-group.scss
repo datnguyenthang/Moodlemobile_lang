@@ -35,7 +35,11 @@ core-courses-course-list-group {
 		.ion {
 			color: white;
     		display: table-cell;
-    		float: right;
+			float: right;
+			font-size: x-large;
+			font-weight: 600;
+			right: 10px;
+			position: fixed;
 		}
     	h6{ 
 			color: white;

@@ -65,7 +65,7 @@ export class CoreCoursesCourseListGroupComponent implements OnInit, OnDestroy {
     protected courseStatusObserver;
     protected siteUpdatedObserver;
     protected deviceHeight;
-    protected classString = {forward : 'ion ion-ios-arrow-forward', arrow_down : 'ion ion-ios-arrow-down'};
+    protected classString = {forward : 'ion ion-ios-arrow-dropright', arrow_down : 'ion ion-ios-arrow-dropdown'};
 
     constructor(platform: Platform) {
         platform.ready().then((readySource) => {

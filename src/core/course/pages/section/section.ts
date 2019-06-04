@@ -279,6 +279,7 @@ export class CoreCourseSectionPage implements OnDestroy {
                 handlers.forEach((handler, index) => {
                     handler.data.componentData = handler.data.componentData || {};
                     handler.data.componentData.courseId = this.course.id;
+                    handler.data.componentData.progress = this.course.progress;
 
                     // Check if this handler should be the first selected tab.
                     if (this.firstTabName && handler.name == this.firstTabName) {

@@ -12,5 +12,8 @@
     "percentage": "Percentage",
     "range": "Range",
     "rank": "Rank",
-    "weight": "Weight"
+    "weight": "Weight",
+    "lastresult": "Final result",
+    "completed": "Completed",
+    "incomplete": "Incomplete"
 }

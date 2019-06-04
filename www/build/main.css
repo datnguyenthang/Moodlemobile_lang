@@ -56032,6 +56032,10 @@ ion-app.app-root core-course-format .core-course-section-nav-buttons .button-inn
   text-transform: none;
 }
 
+.item-dimmed {
+  display: none;
+}
+
 ion-app.app-root core-course-module {
   background: white;
   display: block;

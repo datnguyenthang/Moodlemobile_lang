@@ -278,7 +278,10 @@ var AddonSchoolOfSalesMySchoolOfSalesPage = /** @class */ (function () {
                     _this.courses.inprogress.push(course);
                 }
                 if (!categoryList.find(function (el) { return el.id == course.category; })) {
-                    categoryList.push({ id: course.category, name: course.categoryname, courses: [] });
+                    categoryList.push({ id: course.category,
+                        name: course.categoryname,
+                        description: course.categorydescription,
+                        courses: [] });
                 }
             });
             categoryList.forEach(function (category) {

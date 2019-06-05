@@ -82,6 +82,7 @@ export class CoreCoursesCourseListGroupComponent implements OnInit, OnDestroy {
           el.selected = false;
         }
       });
+      console.log(this.categories);
       this.categories[index].selected = !this.categories[index].selected;
       if ( this.categories[index].selected ) {
         this.categories[index].iconClassString = this.classString.arrow_down;

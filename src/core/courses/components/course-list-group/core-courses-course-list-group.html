@@ -5,7 +5,19 @@
     <div *ngFor="let category of categories; index as i" class="item-group-category">
         <div [@openCloseGroup]="category.selected ? 'open' : 'closed'" class="card-category-title category-group-title-background-{{i%8}}" >
             <div class="wrap-tag" [ngStyle]="{'height.px': ( ( deviceHeight - (47.5 * 2) ) /categories.length )}" (click)="showContent(i)">
-                <img class="thumb-category" src="assets/img/thumbs/img-my-course.png"/>
+
+                <!--<img class="thumb-category" src="assets/img/thumbs/img-my-course.png"/>-->
+                <div *ngIf="category.description; then description ;else noDescription"></div>
+                <ng-template #description>
+                    <div class="thumb-category" [innerHTML]="category.description">
+                    </div>
+                </ng-template>
+                <ng-template #noDescription>
+                    <div class="thumb-category">
+                        <p><img src="assets/img/thumbs/img-my-course.png"/></p>
+                    </div>
+                </ng-template>
+                
                 <div class="title-category">
                     <h6 text-uppercase >{{ category.name }}</h6>    
                 </div>
@@ -23,7 +35,19 @@
     <div *ngFor="let category of categories; index as i" class="item-group-category">
         <div style="display: table;" class="card-category-title category-group-title-background-{{i%8}}" >
             <div class="wrap-tag" [ngStyle]="{'height.px': 81}" (click)="showContent(i)">
-                <img class="thumb-category" src="assets/img/thumbs/img-my-course.png"/>
+
+                <!--<img class="thumb-category" src="assets/img/thumbs/img-my-course.png"/>-->
+                <div *ngIf="category.description; then description ;else noDescription"></div>
+                <ng-template #description>
+                    <div class="thumb-category"  [innerHTML]="category.description">
+                    </div>
+                </ng-template>
+                <ng-template #noDescription>
+                    <div class="thumb-category">
+                        <p><img src="assets/img/thumbs/img-my-course.png"/></p>
+                    </div>
+                </ng-template>
+
                 <div class="title-category">
                     <h6 text-uppercase >{{ category.name }}</h6>    
                 </div>

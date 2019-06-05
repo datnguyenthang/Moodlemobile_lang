@@ -30,7 +30,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
     animations: [
         trigger('openCloseGroup', [
             state('open', style({
-                'min-height': '177px'
+                'min-height': '160px'
             })),
             state('closed', style({
                 height: '82px'

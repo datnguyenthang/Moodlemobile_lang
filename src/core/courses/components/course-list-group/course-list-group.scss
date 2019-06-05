@@ -9,7 +9,6 @@ core-courses-course-list-group {
     	min-height: 81px;
     	max-height: 160.125px;
     	width: 100%;
-    	border-bottom: 1px solid white;
     	text-align: center !important;
     	display: table;
     	@for $i from 0 to length($list-eight-color){
@@ -18,7 +17,10 @@ core-courses-course-list-group {
   			}
 		}
 		.title-category {
-    		width: 80%;
+			width: 100%;
+			margin-right: 30px;
+    		margin-left: 55px;
+    		text-align: left;
 		}
 		.wrap-tag {
 			display: flex;
@@ -29,8 +31,8 @@ core-courses-course-list-group {
 			width: 40px;
 			height: 40px;
 			display: table-cell;
-    		float: left;
 			margin-left: 10px;
+			position: fixed;
 			p {
 				margin: 0px;
 				width: 100%;

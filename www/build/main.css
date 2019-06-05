@@ -56309,7 +56309,6 @@ core-courses-course-list-group .card-category-title {
   min-height: 81px;
   max-height: 160.125px;
   width: 100%;
-  border-bottom: 1px solid white;
   text-align: center !important;
   display: table;
 }
@@ -56347,7 +56346,10 @@ core-courses-course-list-group .card-category-title.category-group-title-backgro
 }
 
 core-courses-course-list-group .card-category-title .title-category {
-  width: 80%;
+  width: 100%;
+  margin-right: 30px;
+  margin-left: 55px;
+  text-align: left;
 }
 
 core-courses-course-list-group .card-category-title .wrap-tag {
@@ -56366,8 +56368,8 @@ core-courses-course-list-group .card-category-title .thumb-category {
   width: 40px;
   height: 40px;
   display: table-cell;
-  float: left;
   margin-left: 10px;
+  position: fixed;
 }
 
 core-courses-course-list-group .card-category-title .thumb-category p {

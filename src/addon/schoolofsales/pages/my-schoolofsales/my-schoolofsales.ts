@@ -200,9 +200,9 @@ export class AddonSchoolOfSalesMySchoolOfSalesPage implements OnDestroy {
                 }
                 if (!categoryList.find((el) => { return el.id == course.category; })) {
                     categoryList.push({ id: course.category, 
-                                        name: course.categoryname,
-                                        description: course.categorydescription
-                                        , courses: [] });
+                                        name: course.categoryname, 
+                                        description: course.categorydescription, 
+                                        courses: [] });
                 }
             });
             categoryList.forEach((category) => {
@@ -265,6 +265,7 @@ export class AddonSchoolOfSalesMySchoolOfSalesPage implements OnDestroy {
                 }));
             }
 
+            /*
             return Promise.all(promises).then(() => {
                 return courses.sort((a, b) => {
                     const compareA = a.fullname.toLowerCase(),
@@ -273,6 +274,9 @@ export class AddonSchoolOfSalesMySchoolOfSalesPage implements OnDestroy {
                     return compareA.localeCompare(compareB);
                 });
             });
+            */
+
+            return courses;
         });
     }
     /**

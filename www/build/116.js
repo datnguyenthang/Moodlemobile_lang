@@ -1,6 +1,6 @@
 webpackJsonp([116],{
 
-/***/ 1860:
+/***/ 1859:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13,7 +13,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_directives_module__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pipes_pipes_module__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__my_mandatory__ = __webpack_require__(2002);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__my_mandatory__ = __webpack_require__(2001);
 // (C) Copyright 2015 Martin Dougiamas
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -66,7 +66,7 @@ var AddonMandatoryMyMandatoryPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 2002:
+/***/ 2001:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -278,7 +278,10 @@ var AddonMandatoryMyMandatoryPage = /** @class */ (function () {
                     _this.courses.inprogress.push(course);
                 }
                 if (!categoryList.find(function (el) { return el.id == course.category; })) {
-                    categoryList.push({ id: course.category, name: course.categoryname, courses: [] });
+                    categoryList.push({ id: course.category,
+                        name: course.categoryname,
+                        description: course.categorydescription,
+                        courses: [] });
                 }
             });
             categoryList.forEach(function (category) {
@@ -336,12 +339,17 @@ var AddonMandatoryMyMandatoryPage = /** @class */ (function () {
                     });
                 }));
             }
-            return Promise.all(promises).then(function () {
-                return courses.sort(function (a, b) {
-                    var compareA = a.fullname.toLowerCase(), compareB = b.fullname.toLowerCase();
+            /*
+            return Promise.all(promises).then(() => {
+                return courses.sort((a, b) => {
+                    const compareA = a.fullname.toLowerCase(),
+                        compareB = b.fullname.toLowerCase();
+
                     return compareA.localeCompare(compareB);
                 });
             });
+            */
+            return courses;
         });
     };
     /**

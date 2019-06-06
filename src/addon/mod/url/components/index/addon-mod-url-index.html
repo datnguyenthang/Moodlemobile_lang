@@ -12,10 +12,11 @@
 
     <core-course-module-description *ngIf="displayDescription" [description]="description" [component]="component" [componentId]="componentId"></core-course-module-description>
 
-    <div *ngIf="shouldIframe || (shouldEmbed && isOther)" class="addon-mod_url-embedded-url">
+    <!--<div *ngIf="shouldIframe || (shouldEmbed && isOther)" class="addon-mod_url-embedded-url">-->
+    <div class="addon-mod_url-embedded-url">
         <core-iframe [src]="url"></core-iframe>
     </div>
-
+<!--
     <ion-list *ngIf="!shouldIframe && (!shouldEmbed || !isOther)">
         <ion-item *ngIf="shouldEmbed">
             <img *ngIf="isImage" title="{{name}}" [src]="url">
@@ -26,6 +27,7 @@
                 <source [src]="url" [type]="mimetype">
             </audio>
         </ion-item>
+        
         <ion-item text-wrap>
             <h2>{{ 'addon.mod_url.pointingtourl' | translate }}</h2>
             <p>{{ url }}</p>
@@ -36,5 +38,7 @@
                 {{ 'addon.mod_url.accessurl' | translate }}
             </a>
         </div>
+        
     </ion-list>
+-->
 </core-loading>

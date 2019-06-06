@@ -50234,6 +50234,12 @@ ion-app.app-root addon-mod-url-index .addon-mod_url-embedded-url {
   height: 100%;
 }
 
+/*
+video {
+    max-width: 100%;
+    min-width: 100%;
+}
+*/
 ion-app.app-root addon-mod-wiki-index {
   background-color: #ffffff;
   /* Hide edit section links */

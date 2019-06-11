@@ -50436,21 +50436,38 @@ ion-app.app-root page-addon-notifications-settings .toggle {
   display: inline-block;
 }
 
-page-addon-my-qrscanner .top-bar {
-  height: 47.8px;
-  background: white;
+/*
+page-addon-my-qrscanner {
+    .top-bar {
+        height: 47.8px;
+        background: white;
+        width: 100%;
+        padding: 8px;
+        padding-left: 16px;
+        ion-icon {
+            font-size: 30px;
+            color: #008446;
+        }
+    }
+}
+.show-qr-scanner {
+    display: none;
+}
+*/
+page-addon-my-qrscanner ion-content {
+  /* background: white !important;
+      background-color: white !important; */
+  height: 100%;
   width: 100%;
-  padding: 8px;
-  padding-left: 16px;
 }
 
-page-addon-my-qrscanner .top-bar ion-icon {
+page-addon-my-qrscanner ion-icon {
   font-size: 30px;
   color: #008446;
 }
 
-.show-qr-scanner {
-  display: none;
+page-addon-my-qrscanner .closecamera {
+  background: none !important;
 }
 
 addon-qtype-ddimageortext .qtext {

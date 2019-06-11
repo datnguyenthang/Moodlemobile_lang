@@ -5,9 +5,9 @@
 </ion-header>
 <ion-content>
     <ion-card>
-			<button ion-button class="button button-light hide closeCamera" (click)="exitPage()">
-				<ion-icon name="close"></ion-icon>
-			</button>
+		<button ion-button class="button button-light closecamera" (click)="exitPage()">
+			<ion-icon ios="ios-close" md="md-close"></ion-icon>
+		</button>
     	<ion-card-content>
     		<h3>{{ 'addon.qrscanner.notification' | translate }}</h3>
     		<button ion-button block color="primary" (click)="scanQR()">{{ 'addon.qrscanner.scan' | translate }}</button>

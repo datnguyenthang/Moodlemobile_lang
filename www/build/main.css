@@ -48858,6 +48858,7 @@ page-addon-evaluate-input-info .box {
   height: 100%;
   width: 100%;
   background: #49c88e;
+  overflow: scroll;
   /*position: relative; */
 }
 
@@ -48887,7 +48888,7 @@ page-addon-evaluate-input-info .box .item-ios.item-block .item-inner {
 
 page-addon-evaluate-input-info .box .inputs-control {
   /*height: 74%;*/
-  height: 350px;
+  height: 100%;
 }
 
 page-addon-evaluate-input-info .box .inputs-control ion-item {

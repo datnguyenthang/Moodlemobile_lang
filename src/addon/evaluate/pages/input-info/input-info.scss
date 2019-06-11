@@ -7,6 +7,7 @@ page-addon-evaluate-input-info {
         height: 100%;
     	width: 100%;
         background: #49c88e;
+        overflow: scroll;
         // background-image: url('../assets/img/bg-evaluate.svg')!important;   //#49c88e
         // background-position: bottom!important;
         // background-repeat: no-repeat!important;
@@ -34,7 +35,7 @@ page-addon-evaluate-input-info {
         }
         .inputs-control{
         	/*height: 74%;*/
-            height: 350px;
+            height: 100%;
         	ion-item {
         		background-color: unset;
         		margin-bottom: 10px !important;

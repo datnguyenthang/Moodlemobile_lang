@@ -1,6 +1,6 @@
 webpackJsonp([4],{
 
-/***/ 1855:
+/***/ 1854:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13,8 +13,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_directives_module__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pipes_pipes_module__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__submit_evaluate__ = __webpack_require__(1995);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic3_star_rating__ = __webpack_require__(1996);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__submit_evaluate__ = __webpack_require__(1994);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic3_star_rating__ = __webpack_require__(1995);
 // (C) Copyright 2015 Martin Dougiamas
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -126,7 +126,7 @@ var StarRating = (function () {
 
 /***/ }),
 
-/***/ 1995:
+/***/ 1994:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -290,11 +290,11 @@ var AddonEvaluateSubmitEvaluatePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1996:
+/***/ 1995:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic3_star_rating_module__ = __webpack_require__(1997);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic3_star_rating_module__ = __webpack_require__(1996);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__ionic3_star_rating_module__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_ionic3_star_rating_component__ = __webpack_require__(1981);
 /* unused harmony namespace reexport */
@@ -304,7 +304,7 @@ var AddonEvaluateSubmitEvaluatePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1997:
+/***/ 1996:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

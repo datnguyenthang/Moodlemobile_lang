@@ -8,3 +8,15 @@ video {
     width: 100%;
     height: auto;
 }
+@media screen and (orientation:landscape) {
+    ion-list {
+        margin: 0px !important;
+    }
+    ion-label {
+        margin: 0px !important;
+    }
+    video {
+        height: calc(100vh - 100px);
+    }
+}
+

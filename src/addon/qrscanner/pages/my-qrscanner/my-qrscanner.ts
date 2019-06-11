@@ -50,9 +50,10 @@ export class AddonQRScannerPage implements OnDestroy {
       this.scanQR();
     }
     exitPage(): void {
-      this.navCtrl.setRoot("CoreLoginInitPage"); 
+      this.navCtrl.setRoot("CoreLoginInitPage");
     }
     scanQR(): void {
+      (window.document.querySelector('.closeCamera') as HTMLElement).classList.remove('hide');
       this.barcodeScanner.scan().then(barcodeData => {
         this.dataHandle(barcodeData.text);
       }).catch(err => {
@@ -74,14 +75,14 @@ export class AddonQRScannerPage implements OnDestroy {
             break;
           }
         }
-      } catch(e) {
+      } catch(e){
 
       }
     }
     checkDataHandle(obj: any): boolean {
       let result = false;
       const TeamplateData = {type: '', value: ''};
-      for(const el in obj) {
+      for (const el in obj) {
         result = TeamplateData.hasOwnProperty(el);
       }
 

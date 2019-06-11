@@ -133,6 +133,7 @@ var AddonQRScannerPage = /** @class */ (function () {
     };
     AddonQRScannerPage.prototype.scanQR = function () {
         var _this = this;
+        window.document.querySelector('.closeCamera').classList.remove('hide');
         this.barcodeScanner.scan().then(function (barcodeData) {
             _this.dataHandle(barcodeData.text);
         }).catch(function (err) {
@@ -179,7 +180,7 @@ var AddonQRScannerPage = /** @class */ (function () {
     ], AddonQRScannerPage.prototype, "tabsComponent", void 0);
     AddonQRScannerPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-addon-my-qrscanner',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/addon/qrscanner/pages/my-qrscanner/my-qrscanner.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>{{ \'addon.qrscanner.qrscanner\' | translate }}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content>\n    <ion-card>\n    	<ion-card-content>\n    		<h3>{{ \'addon.qrscanner.notification\' | translate }}</h3>\n    		<button ion-button block color="primary" (click)="scanQR()">{{ \'addon.qrscanner.scan\' | translate }}</button>\n  		</ion-card-content>\n    	\n   	</ion-card>\n</ion-content>'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/addon/qrscanner/pages/my-qrscanner/my-qrscanner.html"*/,
+            selector: 'page-addon-my-qrscanner',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/addon/qrscanner/pages/my-qrscanner/my-qrscanner.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>{{ \'addon.qrscanner.qrscanner\' | translate }}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content>\n    <ion-card>\n			<button ion-button class="button button-light hide closeCamera" (click)="exitPage()">\n				<ion-icon name="close"></ion-icon>\n			</button>\n    	<ion-card-content>\n    		<h3>{{ \'addon.qrscanner.notification\' | translate }}</h3>\n    		<button ion-button block color="primary" (click)="scanQR()">{{ \'addon.qrscanner.scan\' | translate }}</button>\n  		</ion-card-content>\n    	\n   	</ion-card>\n</ion-content>'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/addon/qrscanner/pages/my-qrscanner/my-qrscanner.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_utils_utils__["a" /* CoreUtilsProvider */], __WEBPACK_IMPORTED_MODULE_3__providers_sites__["a" /* CoreSitesProvider */],
             __WEBPACK_IMPORTED_MODULE_5__providers_events__["a" /* CoreEventsProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_6__providers_app__["a" /* CoreAppProvider */],

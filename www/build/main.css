@@ -49053,13 +49053,25 @@ page-addon-landing-my-landing .box .row #m-c, page-addon-landing-my-landing .box
   background: #49c88e;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 768px) {
   page-addon-landing-my-landing .row .col img, page-addon-landing-my-landing .addon-data-contents tr .col img, .addon-data-contents page-addon-landing-my-landing tr .col img, page-addon-landing-my-landing .row .addon-data-contents td img, .addon-data-contents page-addon-landing-my-landing .row td img, page-addon-landing-my-landing .addon-data-contents tr td img, .addon-data-contents page-addon-landing-my-landing tr td img, page-addon-landing-my-landing .row .addon-data-contents th img, .addon-data-contents page-addon-landing-my-landing .row th img, page-addon-landing-my-landing .addon-data-contents tr th img, .addon-data-contents page-addon-landing-my-landing tr th img {
-    height: 194px !important;
-    width: 194px !important;
+    height: 180px !important;
+    width: 180px !important;
   }
   page-addon-landing-my-landing .row .col p, page-addon-landing-my-landing .addon-data-contents tr .col p, .addon-data-contents page-addon-landing-my-landing tr .col p, page-addon-landing-my-landing .row .addon-data-contents td p, .addon-data-contents page-addon-landing-my-landing .row td p, page-addon-landing-my-landing .addon-data-contents tr td p, .addon-data-contents page-addon-landing-my-landing tr td p, page-addon-landing-my-landing .row .addon-data-contents th p, .addon-data-contents page-addon-landing-my-landing .row th p, page-addon-landing-my-landing .addon-data-contents tr th p, .addon-data-contents page-addon-landing-my-landing tr th p {
     font-size: 30px !important;
+    margin: 5px;
+  }
+}
+
+@media (max-height: 450px) {
+  page-addon-landing-my-landing .row .col img, page-addon-landing-my-landing .addon-data-contents tr .col img, .addon-data-contents page-addon-landing-my-landing tr .col img, page-addon-landing-my-landing .row .addon-data-contents td img, .addon-data-contents page-addon-landing-my-landing .row td img, page-addon-landing-my-landing .addon-data-contents tr td img, .addon-data-contents page-addon-landing-my-landing tr td img, page-addon-landing-my-landing .row .addon-data-contents th img, .addon-data-contents page-addon-landing-my-landing .row th img, page-addon-landing-my-landing .addon-data-contents tr th img, .addon-data-contents page-addon-landing-my-landing tr th img {
+    height: 50px !important;
+    width: 50px !important;
+  }
+  page-addon-landing-my-landing .row .col p, page-addon-landing-my-landing .addon-data-contents tr .col p, .addon-data-contents page-addon-landing-my-landing tr .col p, page-addon-landing-my-landing .row .addon-data-contents td p, .addon-data-contents page-addon-landing-my-landing .row td p, page-addon-landing-my-landing .addon-data-contents tr td p, .addon-data-contents page-addon-landing-my-landing tr td p, page-addon-landing-my-landing .row .addon-data-contents th p, .addon-data-contents page-addon-landing-my-landing .row th p, page-addon-landing-my-landing .addon-data-contents tr th p, .addon-data-contents page-addon-landing-my-landing tr th p {
+    margin: 5px;
+    font-size: 16px !important;
   }
 }
 
@@ -50239,6 +50251,18 @@ video {
   height: auto;
 }
 
+@media screen and (orientation: landscape) {
+  ion-list {
+    margin: 0px !important;
+  }
+  ion-label {
+    margin: 0px !important;
+  }
+  video {
+    height: calc(100vh - 100px);
+  }
+}
+
 ion-app.app-root addon-mod-wiki-index {
   background-color: #ffffff;
   /* Hide edit section links */
@@ -50422,6 +50446,10 @@ page-addon-my-qrscanner .top-bar {
 page-addon-my-qrscanner .top-bar ion-icon {
   font-size: 30px;
   color: #008446;
+}
+
+.show-qr-scanner {
+  display: none;
 }
 
 addon-qtype-ddimageortext .qtext {

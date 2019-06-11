@@ -50457,7 +50457,7 @@ page-addon-my-qrscanner {
 page-addon-my-qrscanner ion-content {
   /* background: white !important;
       background-color: white !important; */
-  height: 100%;
+  height: 80%;
   width: 100%;
 }
 

@@ -28,7 +28,7 @@ export class AddonQRScannerMainMenuHandler implements CoreMainMenuHandler {
 
     /**
      * Check if the handler is enabled on a site level.
-     *
+     * return !this.qrscannerProvider.isQRScannerDisabledInSite(); Dat-tc Remove this plug-in QR code
      * @return {boolean} Whether or not the handler is enabled on a site level.
      */
     isEnabled(): boolean | Promise<boolean> {

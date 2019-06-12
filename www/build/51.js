@@ -1,18 +1,18 @@
 webpackJsonp([51],{
 
-/***/ 1933:
+/***/ 1934:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreCourseUnsupportedModulePageModule", function() { return CoreCourseUnsupportedModulePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreCoursesAvailableCoursesPageModule", function() { return CoreCoursesAvailableCoursesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__unsupported_module__ = __webpack_require__(2079);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__available_courses__ = __webpack_require__(2081);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_directives_module__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_components_module__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_components_module__ = __webpack_require__(167);
 // (C) Copyright 2015 Martin Dougiamas
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -39,39 +39,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CoreCourseUnsupportedModulePageModule = /** @class */ (function () {
-    function CoreCourseUnsupportedModulePageModule() {
+var CoreCoursesAvailableCoursesPageModule = /** @class */ (function () {
+    function CoreCoursesAvailableCoursesPageModule() {
     }
-    CoreCourseUnsupportedModulePageModule = __decorate([
+    CoreCoursesAvailableCoursesPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_3__unsupported_module__["a" /* CoreCourseUnsupportedModulePage */],
+                __WEBPACK_IMPORTED_MODULE_3__available_courses__["a" /* CoreCoursesAvailableCoursesPage */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* CoreComponentsModule */],
                 __WEBPACK_IMPORTED_MODULE_5__directives_directives_module__["a" /* CoreDirectivesModule */],
-                __WEBPACK_IMPORTED_MODULE_6__components_components_module__["a" /* CoreCourseComponentsModule */],
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__unsupported_module__["a" /* CoreCourseUnsupportedModulePage */]),
+                __WEBPACK_IMPORTED_MODULE_6__components_components_module__["a" /* CoreCoursesComponentsModule */],
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__available_courses__["a" /* CoreCoursesAvailableCoursesPage */]),
                 __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["b" /* TranslateModule */].forChild()
             ],
         })
-    ], CoreCourseUnsupportedModulePageModule);
-    return CoreCourseUnsupportedModulePageModule;
+    ], CoreCoursesAvailableCoursesPageModule);
+    return CoreCoursesAvailableCoursesPageModule;
 }());
 
-//# sourceMappingURL=unsupported-module.module.js.map
+//# sourceMappingURL=available-courses.module.js.map
 
 /***/ }),
 
-/***/ 2079:
+/***/ 2081:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoreCourseUnsupportedModulePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoreCoursesAvailableCoursesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_utils_text__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_sites__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_utils_dom__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_courses__ = __webpack_require__(33);
 // (C) Copyright 2015 Martin Dougiamas
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -99,30 +99,67 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Page that displays info about an unsupported module.
+ * Page that displays available courses in current site.
  */
-var CoreCourseUnsupportedModulePage = /** @class */ (function () {
-    function CoreCourseUnsupportedModulePage(navParams, translate, textUtils) {
-        this.translate = translate;
-        this.textUtils = textUtils;
-        this.module = navParams.get('module') || {};
+var CoreCoursesAvailableCoursesPage = /** @class */ (function () {
+    function CoreCoursesAvailableCoursesPage(coursesProvider, domUtils, sitesProvider) {
+        this.coursesProvider = coursesProvider;
+        this.domUtils = domUtils;
+        this.sitesProvider = sitesProvider;
+        this.courses = [];
     }
     /**
-     * Expand the description.
+     * View loaded.
      */
-    CoreCourseUnsupportedModulePage.prototype.expandDescription = function () {
-        this.textUtils.expandText(this.translate.instant('core.description'), this.module.description);
+    CoreCoursesAvailableCoursesPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.loadCourses().finally(function () {
+            _this.coursesLoaded = true;
+        });
     };
-    CoreCourseUnsupportedModulePage = __decorate([
+    /**
+     * Load the courses.
+     *
+     * @return {Promise<any>} Promise resolved when done.
+     */
+    CoreCoursesAvailableCoursesPage.prototype.loadCourses = function () {
+        var _this = this;
+        var frontpageCourseId = this.sitesProvider.getCurrentSite().getSiteHomeId();
+        return this.coursesProvider.getCoursesByField().then(function (courses) {
+            _this.courses = courses.filter(function (course) {
+                return course.id != frontpageCourseId;
+            });
+        }).catch(function (error) {
+            _this.domUtils.showErrorModalDefault(error, 'core.courses.errorloadcourses', true);
+        });
+    };
+    /**
+     * Refresh the courses.
+     *
+     * @param {any} refresher Refresher.
+     */
+    CoreCoursesAvailableCoursesPage.prototype.refreshCourses = function (refresher) {
+        var _this = this;
+        var promises = [];
+        promises.push(this.coursesProvider.invalidateUserCourses());
+        promises.push(this.coursesProvider.invalidateCoursesByField());
+        Promise.all(promises).finally(function () {
+            _this.loadCourses().finally(function () {
+                refresher.complete();
+            });
+        });
+    };
+    CoreCoursesAvailableCoursesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-core-course-unsupported-module',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/course/pages/unsupported-module/unsupported-module.html"*/'<ion-header>\n    <ion-navbar core-back-button>\n        <ion-title><core-format-text [text]="module.name"></core-format-text></ion-title>\n\n        <ion-buttons end>\n            <core-context-menu>\n                <core-context-menu-item [priority]="900" *ngIf="module.url" [href]="module.url" [content]="\'core.openinbrowser\' | translate" [iconAction]="\'open\'"></core-context-menu-item>\n                <core-context-menu-item [priority]="800" *ngIf="module.description" [content]="\'core.moduleintro\' | translate" (action)="expandDescription()" [iconAction]="\'arrow-forward\'"></core-context-menu-item>\n            </core-context-menu>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n<ion-content>\n    <core-course-unsupported-module [module]="module"></core-course-unsupported-module>\n</ion-content>\n'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/course/pages/unsupported-module/unsupported-module.html"*/,
+            selector: 'page-core-courses-available-courses',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/courses/pages/available-courses/available-courses.html"*/'<ion-header>\n    <ion-navbar core-back-button>\n        <ion-title>{{ \'core.courses.availablecourses\' | translate }}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content>\n    <ion-refresher [enabled]="coursesLoaded" (ionRefresh)="refreshCourses($event)">\n        <ion-refresher-content pullingText="{{ \'core.pulltorefresh\' | translate }}"></ion-refresher-content>\n    </ion-refresher>\n    <core-loading [hideUntil]="coursesLoaded">\n        <div *ngIf="courses.length > 0">\n            <core-courses-course-list-item *ngFor="let course of courses" [course]="course"></core-courses-course-list-item>\n        </div>\n        <core-empty-box *ngIf="!courses.length" icon="ionic" [message]="\'core.courses.nocourses\' | translate"></core-empty-box>\n    </core-loading>\n</ion-content>\n'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/courses/pages/available-courses/available-courses.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_3__providers_utils_text__["a" /* CoreTextUtilsProvider */]])
-    ], CoreCourseUnsupportedModulePage);
-    return CoreCourseUnsupportedModulePage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_courses__["a" /* CoreCoursesProvider */], __WEBPACK_IMPORTED_MODULE_2__providers_utils_dom__["a" /* CoreDomUtilsProvider */],
+            __WEBPACK_IMPORTED_MODULE_1__providers_sites__["a" /* CoreSitesProvider */]])
+    ], CoreCoursesAvailableCoursesPage);
+    return CoreCoursesAvailableCoursesPage;
 }());
 
-//# sourceMappingURL=unsupported-module.js.map
+//# sourceMappingURL=available-courses.js.map
 
 /***/ })
 

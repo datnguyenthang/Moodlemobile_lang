@@ -1,14 +1,14 @@
 webpackJsonp([31],{
 
-/***/ 1953:
+/***/ 1954:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreLoginSiteErrorPageModule", function() { return CoreLoginSiteErrorPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreLoginSiteHelpPageModule", function() { return CoreLoginSiteHelpPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__site_error__ = __webpack_require__(2099);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__site_help__ = __webpack_require__(2101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_directives_module__ = __webpack_require__(14);
 // (C) Copyright 2015 Martin Dougiamas
@@ -35,33 +35,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CoreLoginSiteErrorPageModule = /** @class */ (function () {
-    function CoreLoginSiteErrorPageModule() {
+var CoreLoginSiteHelpPageModule = /** @class */ (function () {
+    function CoreLoginSiteHelpPageModule() {
     }
-    CoreLoginSiteErrorPageModule = __decorate([
+    CoreLoginSiteHelpPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__site_error__["a" /* CoreLoginSiteErrorPage */]
+                __WEBPACK_IMPORTED_MODULE_2__site_help__["a" /* CoreLoginSiteHelpPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_4__directives_directives_module__["a" /* CoreDirectivesModule */],
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__site_error__["a" /* CoreLoginSiteErrorPage */]),
-                __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */].forChild()
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__site_help__["a" /* CoreLoginSiteHelpPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */].forChild(),
             ]
         })
-    ], CoreLoginSiteErrorPageModule);
-    return CoreLoginSiteErrorPageModule;
+    ], CoreLoginSiteHelpPageModule);
+    return CoreLoginSiteHelpPageModule;
 }());
 
-//# sourceMappingURL=site-error.module.js.map
+//# sourceMappingURL=site-help.module.js.map
 
 /***/ }),
 
-/***/ 2099:
+/***/ 2101:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoreLoginSiteErrorPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoreLoginSiteHelpPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
 // (C) Copyright 2015 Martin Dougiamas
@@ -89,30 +89,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Component that displays an error when trying to connect to a site.
+ * Component that displays some help regarding the CoreLoginSitePage.
  */
-var CoreLoginSiteErrorPage = /** @class */ (function () {
-    function CoreLoginSiteErrorPage(viewCtrl, params) {
+var CoreLoginSiteHelpPage = /** @class */ (function () {
+    function CoreLoginSiteHelpPage(viewCtrl) {
         this.viewCtrl = viewCtrl;
-        this.siteUrl = params.get('siteUrl');
-        this.issue = params.get('issue');
     }
     /**
-     * Close modal.
+     * Close help modal.
      */
-    CoreLoginSiteErrorPage.prototype.closeModal = function () {
+    CoreLoginSiteHelpPage.prototype.closeHelp = function () {
         this.viewCtrl.dismiss();
     };
-    CoreLoginSiteErrorPage = __decorate([
+    CoreLoginSiteHelpPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-core-login-site-error',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/login/pages/site-error/site-error.html"*/'<ion-header>\n    <ion-navbar core-back-button>\n        <ion-title>{{ \'core.error\' | translate }}</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only (click)="closeModal()" [attr.aria-label]="\'core.close\' | translate">\n                <ion-icon name="close"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n    <h3>{{ \'core.whoops\' | translate }}</h3>\n    <p>{{ \'core.login.problemconnectingerror\' | translate }}</p>\n    <p padding>{{siteUrl}}</p>\n    <p>{{ \'core.login.problemconnectingerrorcontinue\' | translate }}</p>\n    <button ion-button block (click)="closeModal()">{{ \'core.tryagain\' | translate }}</button>\n    <h3>{{ \'core.login.stillcantconnect\' | translate }}</h3>\n    <p>{{ \'core.login.contactyouradministrator\' | translate }}</p>\n    <p *ngIf="issue">\n        {{ \'core.login.contactyouradministratorissue\' | translate:{$a: \'\'} }}\n    </p>\n    <p *ngIf="issue">\n        <core-format-text [text]="issue"></core-format-text>\n    </p>\n</ion-content>\n\n'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/login/pages/site-error/site-error.html"*/,
+            selector: 'page-core-login-site-help',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/login/pages/site-help/site-help.html"*/'<ion-header>\n    <ion-navbar core-back-button>\n        <ion-title>{{ \'core.login.help\' | translate }}</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only (click)="closeHelp()" [attr.aria-label]="\'core.close\' | translate">\n                <ion-icon name="close"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n    <core-format-text [text]="\'core.login.helpmelogin\' | translate"></core-format-text>\n</ion-content>\n'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/login/pages/site-help/site-help.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["F" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */]])
-    ], CoreLoginSiteErrorPage);
-    return CoreLoginSiteErrorPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["F" /* ViewController */]])
+    ], CoreLoginSiteHelpPage);
+    return CoreLoginSiteHelpPage;
 }());
 
-//# sourceMappingURL=site-error.js.map
+//# sourceMappingURL=site-help.js.map
 
 /***/ })
 

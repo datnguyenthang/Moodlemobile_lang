@@ -1,15 +1,15 @@
 webpackJsonp([21],{
 
-/***/ 1963:
+/***/ 1964:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreSettingsSpaceUsagePageModule", function() { return CoreSettingsSpaceUsagePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreSettingsSynchronizationPageModule", function() { return CoreSettingsSynchronizationPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__space_usage__ = __webpack_require__(2109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__synchronization__ = __webpack_require__(2111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_directives_module__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pipes_pipes_module__ = __webpack_require__(62);
@@ -39,42 +39,42 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CoreSettingsSpaceUsagePageModule = /** @class */ (function () {
-    function CoreSettingsSpaceUsagePageModule() {
+var CoreSettingsSynchronizationPageModule = /** @class */ (function () {
+    function CoreSettingsSynchronizationPageModule() {
     }
-    CoreSettingsSpaceUsagePageModule = __decorate([
+    CoreSettingsSynchronizationPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_3__space_usage__["a" /* CoreSettingsSpaceUsagePage */]
+                __WEBPACK_IMPORTED_MODULE_3__synchronization__["a" /* CoreSettingsSynchronizationPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* CoreComponentsModule */],
                 __WEBPACK_IMPORTED_MODULE_5__directives_directives_module__["a" /* CoreDirectivesModule */],
                 __WEBPACK_IMPORTED_MODULE_6__pipes_pipes_module__["a" /* CorePipesModule */],
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__space_usage__["a" /* CoreSettingsSpaceUsagePage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__synchronization__["a" /* CoreSettingsSynchronizationPage */]),
                 __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["b" /* TranslateModule */].forChild()
             ],
         })
-    ], CoreSettingsSpaceUsagePageModule);
-    return CoreSettingsSpaceUsagePageModule;
+    ], CoreSettingsSynchronizationPageModule);
+    return CoreSettingsSynchronizationPageModule;
 }());
 
-//# sourceMappingURL=space-usage.module.js.map
+//# sourceMappingURL=synchronization.module.js.map
 
 /***/ }),
 
-/***/ 2109:
+/***/ 2111:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoreSettingsSpaceUsagePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoreSettingsSynchronizationPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_filepool__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_sites__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_utils_text__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_utils_dom__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_constants__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_events__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_sites__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_utils_dom__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_config__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_settings_providers_helper__ = __webpack_require__(952);
 // (C) Copyright 2015 Martin Dougiamas
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -105,143 +105,96 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Page that displays the space usage settings.
+ * Page that displays the synchronization settings.
  */
-var CoreSettingsSpaceUsagePage = /** @class */ (function () {
-    function CoreSettingsSpaceUsagePage(filePoolProvider, sitesProvider, textUtils, translate, domUtils, appProvider) {
-        this.filePoolProvider = filePoolProvider;
+var CoreSettingsSynchronizationPage = /** @class */ (function () {
+    function CoreSettingsSynchronizationPage(configProvider, eventsProvider, sitesProvider, domUtils, settingsHelper) {
+        var _this = this;
+        this.configProvider = configProvider;
+        this.eventsProvider = eventsProvider;
         this.sitesProvider = sitesProvider;
-        this.textUtils = textUtils;
-        this.translate = translate;
         this.domUtils = domUtils;
-        this.usageLoaded = false;
+        this.settingsHelper = settingsHelper;
         this.sites = [];
+        this.sitesLoaded = false;
         this.currentSiteId = '';
-        this.totalUsage = 0;
+        this.syncOnlyOnWifi = false;
+        this.isDestroyed = false;
         this.currentSiteId = this.sitesProvider.getCurrentSiteId();
+        this.sitesObserver = this.eventsProvider.on(__WEBPACK_IMPORTED_MODULE_2__providers_events__["a" /* CoreEventsProvider */].SITE_UPDATED, function (data) {
+            _this.sitesProvider.getSite(data.siteId).then(function (site) {
+                var siteInfo = site.getInfo();
+                var siteEntry = _this.sites.find(function (siteEntry) { return siteEntry.id == site.id; });
+                if (siteEntry) {
+                    siteEntry.siteUrl = siteInfo.siteurl;
+                    siteEntry.siteName = siteInfo.sitename;
+                    siteEntry.fullName = siteInfo.fullname;
+                }
+            });
+        });
     }
     /**
      * View loaded.
      */
-    CoreSettingsSpaceUsagePage.prototype.ionViewDidLoad = function () {
+    CoreSettingsSynchronizationPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        this.fetchData().finally(function () {
-            _this.usageLoaded = true;
-        });
-    };
-    /**
-     * Convenience function to calculate each site's usage, and the total usage.
-     *
-     * @return {Promise<any>} Resolved when done.
-     */
-    CoreSettingsSpaceUsagePage.prototype.calculateSizeUsage = function () {
-        var _this = this;
-        return this.sitesProvider.getSortedSites().then(function (sites) {
+        this.sitesProvider.getSortedSites().then(function (sites) {
             _this.sites = sites;
-            // Get space usage.
-            var promises = _this.sites.map(function (siteEntry) {
-                return _this.sitesProvider.getSite(siteEntry.id).then(function (site) {
-                    return site.getSpaceUsage().then(function (size) {
-                        siteEntry.spaceUsage = size;
-                    });
-                });
-            });
-            return Promise.all(promises);
+        }).finally(function () {
+            _this.sitesLoaded = true;
+        });
+        this.configProvider.get(__WEBPACK_IMPORTED_MODULE_1__core_constants__["a" /* CoreConstants */].SETTINGS_SYNC_ONLY_ON_WIFI, true).then(function (syncOnlyOnWifi) {
+            _this.syncOnlyOnWifi = !!syncOnlyOnWifi;
         });
     };
     /**
-     * Convenience function to calculate total usage.
+     * Called when sync only on wifi setting is enabled or disabled.
      */
-    CoreSettingsSpaceUsagePage.prototype.calculateTotalUsage = function () {
-        var total = 0;
-        this.sites.forEach(function (site) {
-            if (site.spaceUsage) {
-                total += parseInt(site.spaceUsage, 10);
+    CoreSettingsSynchronizationPage.prototype.syncOnlyOnWifiChanged = function () {
+        this.configProvider.set(__WEBPACK_IMPORTED_MODULE_1__core_constants__["a" /* CoreConstants */].SETTINGS_SYNC_ONLY_ON_WIFI, this.syncOnlyOnWifi ? 1 : 0);
+    };
+    /**
+     * Syncrhonizes a site.
+     *
+     * @param {string} siteId Site ID.
+     */
+    CoreSettingsSynchronizationPage.prototype.synchronize = function (siteId) {
+        var _this = this;
+        this.settingsHelper.synchronizeSite(this.syncOnlyOnWifi, siteId).catch(function (error) {
+            if (_this.isDestroyed) {
+                return;
             }
-        });
-        this.totalUsage = total;
-    };
-    /**
-     * Convenience function to calculate space usage.
-     *
-     * @return {Promise<any>} Resolved when done.
-     */
-    CoreSettingsSpaceUsagePage.prototype.fetchData = function () {
-        var _this = this;
-        var promises = [
-            this.calculateSizeUsage().then(function () { return _this.calculateTotalUsage(); }),
-        ];
-        return Promise.all(promises);
-    };
-    /**
-     * Refresh the data.
-     *
-     * @param {any} refresher Refresher.
-     */
-    CoreSettingsSpaceUsagePage.prototype.refreshData = function (refresher) {
-        this.fetchData().finally(function () {
-            refresher.complete();
+            _this.domUtils.showErrorModalDefault(error, 'core.settings.errorsyncsite', true);
         });
     };
     /**
-     * Convenience function to update site size, along with total usage.
+     * Returns true if site is beeing synchronized.
      *
-     * @param {any} site Site object with space usage.
-     * @param {number} newUsage New space usage of the site in bytes.
+     * @param {string} siteId Site ID.
+     * @return {boolean} True if site is beeing synchronized, false otherwise.
      */
-    CoreSettingsSpaceUsagePage.prototype.updateSiteUsage = function (site, newUsage) {
-        var oldUsage = site.spaceUsage;
-        site.spaceUsage = newUsage;
-        this.totalUsage -= oldUsage - newUsage;
+    CoreSettingsSynchronizationPage.prototype.isSynchronizing = function (siteId) {
+        return !!this.settingsHelper.getSiteSyncPromise(siteId);
     };
     /**
-     * Deletes files of a site.
-     *
-     * @param {any} siteData Site object with space usage.
+     * Page destroyed.
      */
-    CoreSettingsSpaceUsagePage.prototype.deleteSiteFiles = function (siteData) {
-        var _this = this;
-        this.textUtils.formatText(siteData.siteName).then(function (siteName) {
-            var title = _this.translate.instant('core.settings.deletesitefilestitle');
-            var message = _this.translate.instant('core.settings.deletesitefiles', { sitename: siteName });
-            _this.domUtils.showConfirm(message, title).then(function () {
-                return _this.sitesProvider.getSite(siteData.id);
-            }).then(function (site) {
-                site.deleteFolder().then(function () {
-                    _this.filePoolProvider.clearAllPackagesStatus(site.id);
-                    _this.filePoolProvider.clearFilepool(site.id);
-                    _this.updateSiteUsage(siteData, 0);
-                }).catch(function (error) {
-                    if (error && error.code === FileError.NOT_FOUND_ERR) {
-                        // Not found, set size 0.
-                        _this.filePoolProvider.clearAllPackagesStatus(site.id);
-                        _this.updateSiteUsage(siteData, 0);
-                    }
-                    else {
-                        // Error, recalculate the site usage.
-                        _this.domUtils.showErrorModal('core.settings.errordeletesitefiles', true);
-                        site.getSpaceUsage().then(function (size) {
-                            _this.updateSiteUsage(siteData, size);
-                        });
-                    }
-                });
-            }).catch(function () {
-                // Ignore cancelled confirmation modal.
-            });
-        });
+    CoreSettingsSynchronizationPage.prototype.ngOnDestroy = function () {
+        this.isDestroyed = true;
+        this.sitesObserver && this.sitesObserver.off();
     };
-    CoreSettingsSpaceUsagePage = __decorate([
+    CoreSettingsSynchronizationPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-core-settings-space-usage',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/settings/pages/space-usage/space-usage.html"*/'<ion-header>\n    <ion-navbar core-back-button>\n        <ion-title>{{ \'core.settings.spaceusage\' | translate }}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content>\n    <ion-refresher [enabled]="usageLoaded" (ionRefresh)="refreshData($event)">\n        <ion-refresher-content pullingText="{{ \'core.pulltorefresh\' | translate }}"></ion-refresher-content>\n    </ion-refresher>\n    <core-loading [hideUntil]="usageLoaded">\n        <ion-item *ngFor="let site of sites" [class.core-primary-selected-item]="site.id == currentSiteId">\n            <h2><core-format-text [text]="site.siteName"></core-format-text></h2>\n            <p>{{ site.fullName }}</p>\n            <p item-end>{{ site.spaceUsage | coreBytesToSize }}</p>\n            <button ion-button icon-only clear color="danger" item-end (click)="deleteSiteFiles(site)" [hidden]="!site.spaceUsage > \'0\'" [attr.aria-label]="\'core.settings.deletesitefilestitle\' | translate">\n                <ion-icon name="trash"></ion-icon>\n            </button>\n        </ion-item>\n        <ion-item-divider>\n            <p>{{ \'core.settings.total\' | translate }}</p>\n            <p item-end>{{ totalUsage | coreBytesToSize }}</p>\n        </ion-item-divider>\n    </core-loading>\n</ion-content>\n'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/settings/pages/space-usage/space-usage.html"*/,
+            selector: 'page-core-settings-synchronization',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/settings/pages/synchronization/synchronization.html"*/'<ion-header>\n    <ion-navbar core-back-button>\n        <ion-title>{{ \'core.settings.synchronization\' | translate }}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content>\n    <core-loading [hideUntil]="sitesLoaded">\n        <ion-item-divider>\n            <p>{{ \'core.settings.syncsettings\' | translate }}</p>\n        </ion-item-divider>\n        <ion-item text-wrap>\n            <ion-label>{{ \'core.settings.enablesyncwifi\' | translate }}</ion-label>\n            <ion-toggle item-end [(ngModel)]="syncOnlyOnWifi" (ngModelChange)="syncOnlyOnWifiChanged()">\n            </ion-toggle>\n        </ion-item>\n        <ion-item-divider>\n            <p>{{ \'core.settings.sites\' | translate }}</p>\n        </ion-item-divider>\n        <ion-item *ngFor="let site of sites" [class.core-primary-selected-item]="site.id == currentSiteId" text-wrap>\n            <h2><core-format-text [text]="site.siteName"></core-format-text></h2>\n            <p>{{ site.fullName }}</p>\n            <p>{{ site.siteUrl }}</p>\n            <button ion-button icon-only clear item-end *ngIf="!isSynchronizing(site.id)" (click)="synchronize(site.id)" [title]="site.siteName" [attr.aria-label]="\'core.settings.synchronizenow\' | translate">\n                <ion-icon name="sync"></ion-icon>\n            </button>\n            <ion-spinner item-end *ngIf="isSynchronizing(site.id)"></ion-spinner>\n        </ion-item>\n    </core-loading>\n</ion-content>\n'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/settings/pages/synchronization/synchronization.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_filepool__["a" /* CoreFilepoolProvider */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_sites__["a" /* CoreSitesProvider */], __WEBPACK_IMPORTED_MODULE_5__providers_utils_text__["a" /* CoreTextUtilsProvider */],
-            __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_6__providers_utils_dom__["a" /* CoreDomUtilsProvider */], __WEBPACK_IMPORTED_MODULE_2__providers_app__["a" /* CoreAppProvider */]])
-    ], CoreSettingsSpaceUsagePage);
-    return CoreSettingsSpaceUsagePage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__providers_config__["a" /* CoreConfigProvider */], __WEBPACK_IMPORTED_MODULE_2__providers_events__["a" /* CoreEventsProvider */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_sites__["a" /* CoreSitesProvider */], __WEBPACK_IMPORTED_MODULE_4__providers_utils_dom__["a" /* CoreDomUtilsProvider */],
+            __WEBPACK_IMPORTED_MODULE_6__core_settings_providers_helper__["a" /* CoreSettingsHelper */]])
+    ], CoreSettingsSynchronizationPage);
+    return CoreSettingsSynchronizationPage;
 }());
 
-//# sourceMappingURL=space-usage.js.map
+//# sourceMappingURL=synchronization.js.map
 
 /***/ })
 

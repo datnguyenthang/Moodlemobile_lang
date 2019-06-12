@@ -1,15 +1,15 @@
 webpackJsonp([11],{
 
-/***/ 1973:
+/***/ 1974:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreViewerIframePageModule", function() { return CoreViewerIframePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreViewerImagePageModule", function() { return CoreViewerImagePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__iframe__ = __webpack_require__(2119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__image__ = __webpack_require__(2121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_directives_module__ = __webpack_require__(14);
 // (C) Copyright 2015 Martin Dougiamas
 //
@@ -35,36 +35,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CoreViewerIframePageModule = /** @class */ (function () {
-    function CoreViewerIframePageModule() {
+var CoreViewerImagePageModule = /** @class */ (function () {
+    function CoreViewerImagePageModule() {
     }
-    CoreViewerIframePageModule = __decorate([
+    CoreViewerImagePageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__iframe__["a" /* CoreViewerIframePage */]
+                __WEBPACK_IMPORTED_MODULE_3__image__["a" /* CoreViewerImagePage */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* CoreComponentsModule */],
                 __WEBPACK_IMPORTED_MODULE_4__directives_directives_module__["a" /* CoreDirectivesModule */],
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__iframe__["a" /* CoreViewerIframePage */])
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__image__["a" /* CoreViewerImagePage */]),
+                __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["b" /* TranslateModule */].forChild()
             ]
         })
-    ], CoreViewerIframePageModule);
-    return CoreViewerIframePageModule;
+    ], CoreViewerImagePageModule);
+    return CoreViewerImagePageModule;
 }());
 
-//# sourceMappingURL=iframe.module.js.map
+//# sourceMappingURL=image.module.js.map
 
 /***/ }),
 
-/***/ 2119:
+/***/ 2121:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoreViewerIframePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoreViewerImagePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_sites__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(3);
 // (C) Copyright 2015 Martin Dougiamas
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -91,37 +91,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Page to display a URL in an iframe.
+ * Page to view an image. If opened as a modal, it will have a button to close the modal.
  */
-var CoreViewerIframePage = /** @class */ (function () {
-    //   "yes" -> Always auto-login.
-    //   "no" -> Never auto-login.
-    //   "check" -> Auto-login only if it points to the current site. Default value.
-    function CoreViewerIframePage(params, sitesProvider) {
-        var _this = this;
-        this.title = params.get('title');
-        this.autoLogin = params.get('autoLogin') || 'check';
-        var url = params.get('url'), currentSite = sitesProvider.getCurrentSite();
-        if (currentSite && (this.autoLogin == 'yes' || (this.autoLogin == 'check' && currentSite.containsUrl(url)))) {
-            // Format the URL to add auto-login.
-            currentSite.getAutoLoginUrl(url, false).then(function (url) {
-                _this.url = url;
-            });
-        }
-        else {
-            this.url = url;
-        }
+var CoreViewerImagePage = /** @class */ (function () {
+    function CoreViewerImagePage(viewCtrl, params, translate) {
+        this.viewCtrl = viewCtrl;
+        this.title = params.get('title') || translate.instant('core.imageviewer');
+        this.image = params.get('image');
+        this.component = params.get('component');
+        this.componentId = params.get('componentId');
     }
-    CoreViewerIframePage = __decorate([
+    /**
+     * Close modal.
+     */
+    CoreViewerImagePage.prototype.closeModal = function () {
+        this.viewCtrl.dismiss();
+    };
+    CoreViewerImagePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-core-viewer-iframe',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/viewer/pages/iframe/iframe.html"*/'<ion-header>\n    <ion-navbar core-back-button>\n        <ion-title>{{ title }}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content>\n    <core-loading [hideUntil]="url">\n        <core-iframe *ngIf="url" [src]="url"></core-iframe>\n    </core-loading>\n</ion-content>\n'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/viewer/pages/iframe/iframe.html"*/,
+            selector: 'page-core-viewer-image',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/viewer/pages/image/image.html"*/'<ion-header>\n    <ion-navbar core-back-button>\n        <ion-title>{{ title }}</ion-title>\n\n        <ion-buttons end>\n            <button ion-button icon-only (click)="closeModal()" [attr.aria-label]="\'core.close\' | translate">\n                <ion-icon name="close"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n<ion-content>\n    <ion-scroll zoom="true" maxZoom="2" class="core-zoom-pane" scrollX="true" scrollY="true">\n        <img [src]="image" [alt]="title" core-external-content [component]="component" [componentId]="componentId">\n    </ion-scroll>\n</ion-content>\n'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/viewer/pages/image/image.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_sites__["a" /* CoreSitesProvider */]])
-    ], CoreViewerIframePage);
-    return CoreViewerIframePage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["F" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["u" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */]])
+    ], CoreViewerImagePage);
+    return CoreViewerImagePage;
 }());
 
-//# sourceMappingURL=iframe.js.map
+//# sourceMappingURL=image.js.map
 
 /***/ })
 

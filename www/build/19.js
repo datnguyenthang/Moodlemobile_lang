@@ -1,14 +1,14 @@
 webpackJsonp([19],{
 
-/***/ 1965:
+/***/ 1966:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreSharedFilesChooseSitePageModule", function() { return CoreSharedFilesChooseSitePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreSharedFilesListPageModule", function() { return CoreSharedFilesListPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__choose_site__ = __webpack_require__(2111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__list__ = __webpack_require__(2113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_directives_module__ = __webpack_require__(14);
@@ -37,40 +37,42 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CoreSharedFilesChooseSitePageModule = /** @class */ (function () {
-    function CoreSharedFilesChooseSitePageModule() {
+var CoreSharedFilesListPageModule = /** @class */ (function () {
+    function CoreSharedFilesListPageModule() {
     }
-    CoreSharedFilesChooseSitePageModule = __decorate([
+    CoreSharedFilesListPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__choose_site__["a" /* CoreSharedFilesChooseSitePage */]
+                __WEBPACK_IMPORTED_MODULE_2__list__["a" /* CoreSharedFilesListPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* CoreComponentsModule */],
                 __WEBPACK_IMPORTED_MODULE_5__directives_directives_module__["a" /* CoreDirectivesModule */],
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__choose_site__["a" /* CoreSharedFilesChooseSitePage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__list__["a" /* CoreSharedFilesListPage */]),
                 __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */].forChild()
             ]
         })
-    ], CoreSharedFilesChooseSitePageModule);
-    return CoreSharedFilesChooseSitePageModule;
+    ], CoreSharedFilesListPageModule);
+    return CoreSharedFilesListPageModule;
 }());
 
-//# sourceMappingURL=choose-site.module.js.map
+//# sourceMappingURL=list.module.js.map
 
 /***/ }),
 
-/***/ 2111:
+/***/ 2113:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoreSharedFilesChooseSitePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoreSharedFilesListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_file__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_sites__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_utils_dom__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_helper__ = __webpack_require__(409);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_events__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_file__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_sites__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_utils_text__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_sharedfiles__ = __webpack_require__(408);
 // (C) Copyright 2015 Martin Dougiamas
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -99,72 +101,160 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 /**
- * Modal to display the list of sites to choose one to store a shared file.
+ * Modal to display the list of shared files.
  */
-var CoreSharedFilesChooseSitePage = /** @class */ (function () {
-    function CoreSharedFilesChooseSitePage(navCtrl, navParams, sharedFilesHelper, sitesProvider, domUtils, fileProvider) {
-        this.navCtrl = navCtrl;
-        this.sharedFilesHelper = sharedFilesHelper;
+var CoreSharedFilesListPage = /** @class */ (function () {
+    function CoreSharedFilesListPage(viewCtrl, navParams, sharedFilesProvider, sitesProvider, textUtils, translate, fileProvider, eventsProvider, navCtrl) {
+        this.viewCtrl = viewCtrl;
+        this.sharedFilesProvider = sharedFilesProvider;
         this.sitesProvider = sitesProvider;
-        this.domUtils = domUtils;
+        this.textUtils = textUtils;
+        this.translate = translate;
         this.fileProvider = fileProvider;
-        this.filePath = navParams.get('filePath');
-        this.isInbox = navParams.get('isInbox');
+        this.eventsProvider = eventsProvider;
+        this.navCtrl = navCtrl;
+        this.path = '';
+        this.siteId = navParams.get('siteId') || this.sitesProvider.getCurrentSiteId();
+        this.mimetypes = navParams.get('mimetypes');
+        this.isModal = !!navParams.get('isModal');
+        this.manage = !!navParams.get('manage');
+        this.pick = !!navParams.get('pick');
+        this.path = navParams.get('path') || '';
     }
     /**
      * Component being initialized.
      */
-    CoreSharedFilesChooseSitePage.prototype.ngOnInit = function () {
+    CoreSharedFilesListPage.prototype.ngOnInit = function () {
         var _this = this;
-        if (!this.filePath) {
-            this.domUtils.showErrorModal('Error reading file.');
-            this.navCtrl.pop();
-            return;
-        }
-        var fileAndDir = this.fileProvider.getFileAndDirectoryFromPath(this.filePath);
-        this.fileName = fileAndDir.name;
-        // Get the file.
-        this.fileProvider.getExternalFile(this.filePath).then(function (fe) {
-            _this.fileEntry = fe;
-            _this.fileName = _this.fileEntry.name;
-        }).catch(function () {
-            _this.domUtils.showErrorModal('Error reading file.');
-            _this.navCtrl.pop();
-        });
-        // Get the sites.
-        this.sitesProvider.getSites().then(function (sites) {
-            _this.sites = sites;
-        }).finally(function () {
-            _this.loaded = true;
+        this.loadFiles();
+        // Listen for new files shared with the app.
+        this.shareObserver = this.eventsProvider.on(__WEBPACK_IMPORTED_MODULE_3__providers_events__["a" /* CoreEventsProvider */].FILE_SHARED, function (data) {
+            if (data.siteId == _this.siteId) {
+                // File was stored in current site, refresh the list.
+                _this.filesLoaded = false;
+                _this.loadFiles().finally(function () {
+                    _this.filesLoaded = true;
+                });
+            }
         });
     };
     /**
-     * Store the file in a certain site.
+     * Load the files.
      *
-     * @param {string} siteId Site ID.
+     * @return {Promise<any>} Promise resolved when done.
      */
-    CoreSharedFilesChooseSitePage.prototype.storeInSite = function (siteId) {
+    CoreSharedFilesListPage.prototype.loadFiles = function () {
         var _this = this;
-        this.loaded = false;
-        this.sharedFilesHelper.storeSharedFileInSite(this.fileEntry, siteId, this.isInbox).then(function () {
-            _this.navCtrl.pop();
-        }).finally(function () {
-            _this.loaded = true;
+        if (this.path) {
+            this.title = this.fileProvider.getFileAndDirectoryFromPath(this.path).name;
+        }
+        else {
+            this.title = this.translate.instant('core.sharedfiles.sharedfiles');
+        }
+        return this.sharedFilesProvider.getSiteSharedFiles(this.siteId, this.path, this.mimetypes).then(function (files) {
+            _this.files = files;
+            _this.filesLoaded = true;
         });
     };
-    CoreSharedFilesChooseSitePage = __decorate([
+    /**
+     * Close modal.
+     */
+    CoreSharedFilesListPage.prototype.closeModal = function () {
+        this.viewCtrl.dismiss();
+    };
+    /**
+     * Refresh the list of files.
+     *
+     * @param {any} refresher Refresher.
+     */
+    CoreSharedFilesListPage.prototype.refreshFiles = function (refresher) {
+        this.loadFiles().finally(function () {
+            refresher.complete();
+        });
+    };
+    /**
+     * Called when a file is deleted. Remove the file from the list.
+     *
+     * @param {number} index Position of the file.
+     */
+    CoreSharedFilesListPage.prototype.fileDeleted = function (index) {
+        this.files.splice(index, 1);
+    };
+    /**
+     * Called when a file is renamed. Update the list.
+     *
+     * @param {number} index Position of the file.
+     * @param {any} data Data containing the new FileEntry.
+     */
+    CoreSharedFilesListPage.prototype.fileRenamed = function (index, data) {
+        this.files[index] = data.file;
+    };
+    /**
+     * Open a subfolder.
+     *
+     * @param {any} folder The folder to open.
+     */
+    CoreSharedFilesListPage.prototype.openFolder = function (folder) {
+        var path = this.textUtils.concatenatePaths(this.path, folder.name);
+        if (this.isModal) {
+            // In Modal we don't want to open a new page because we cannot dismiss the modal from the new page.
+            this.path = path;
+            this.filesLoaded = false;
+            this.loadFiles();
+        }
+        else {
+            this.navCtrl.push('CoreSharedFilesListPage', {
+                path: path,
+                manage: this.manage,
+                pick: this.pick,
+                siteId: this.siteId,
+                mimetypes: this.mimetypes,
+                isModal: this.isModal
+            });
+        }
+    };
+    /**
+     * Change site loaded.
+     *
+     * @param {string} id Site to load.
+     */
+    CoreSharedFilesListPage.prototype.changeSite = function (id) {
+        this.siteId = id;
+        this.path = '';
+        this.filesLoaded = false;
+        this.loadFiles();
+    };
+    /**
+     * A file was picked.
+     *
+     * @param {any} file Picked file.
+     */
+    CoreSharedFilesListPage.prototype.filePicked = function (file) {
+        this.viewCtrl.dismiss(file);
+    };
+    /**
+     * Component destroyed.
+     */
+    CoreSharedFilesListPage.prototype.ngOnDestroy = function () {
+        if (this.shareObserver) {
+            this.shareObserver.off();
+        }
+    };
+    CoreSharedFilesListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-core-shared-files-choose-site',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/sharedfiles/pages/choose-site/choose-site.html"*/'<ion-header>\n    <ion-navbar core-back-button>\n        <ion-title>{{ \'core.sharedfiles.sharedfiles\' | translate }}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content>\n    <core-loading [hideUntil]="loaded">\n        <ion-list>\n            <ion-item text-wrap>\n                <p class="item-heading">{{ \'core.sharedfiles.chooseaccountstorefile\' | translate }}</p>\n                <p>{{fileName}}</p>\n            </ion-item>\n            <a ion-item *ngFor="let site of sites" (click)="storeInSite(site.id)">\n                <img [src]="site.avatar" item-start>\n                <h2>{{site.fullName}}</h2>\n                <p><core-format-text clean="true" [text]="site.siteName"></core-format-text></p>\n                <p>{{site.siteUrl}}</p>\n            </a>\n        </ion-list>\n    </core-loading>\n</ion-content>\n\n\n\n'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/sharedfiles/pages/choose-site/choose-site.html"*/,
+            selector: 'page-core-shared-files-list',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/sharedfiles/pages/list/list.html"*/'<ion-header>\n    <ion-navbar core-back-button>\n        <ion-title><core-format-text [text]="title"></core-format-text></ion-title>\n\n        <ion-buttons end *ngIf="isModal">\n            <button ion-button icon-only (click)="closeModal()" [attr.aria-label]="\'core.close\' | translate">\n                <ion-icon name="close"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n<ion-content>\n    <ion-refresher [enabled]="filesLoaded" (ionRefresh)="refreshFiles($event)">\n        <ion-refresher-content pullingText="{{ \'core.pulltorefresh\' | translate }}"></ion-refresher-content>\n    </ion-refresher>\n    <!-- Allow selecting the site to view. -->\n    <core-site-picker [hidden]="!filesLoaded" [initialSite]="siteId" (siteSelected)="changeSite($event)"></core-site-picker>\n    <core-loading [hideUntil]="filesLoaded">\n        <ion-list *ngIf="files && files.length > 0">\n            <ng-container *ngFor="let file of files; let idx = index">\n                <core-local-file *ngIf="file.isFile" [file]="file" [manage]="manage" [overrideClick]="pick" (onClick)="filePicked(file)" (onDelete)="fileDeleted(idx)" (onRename)="fileRenamed(idx, $event)"></core-local-file>\n                <a ion-item text-wrap class="item-media" *ngIf="!file.isFile" (click)="openFolder(file)">\n                    <img src="assets/img/files/folder-64.png" alt="{{ \'core.folder\' | translate }}" role="presentation" item-start>\n                    <p>{{ file.name }}</p>\n                </a>\n            </ng-container>\n        </ion-list>\n        <core-empty-box *ngIf="files && !files.length && manage" icon="folder" [message]="\'core.sharedfiles.nosharedfiles\' | translate"></core-empty-box>\n        <core-empty-box *ngIf="files && !files.length && !manage" icon="folder" [message]="\'core.sharedfiles.nosharedfilestoupload\' | translate"></core-empty-box>\n    </core-loading>\n</ion-content>\n'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/sharedfiles/pages/list/list.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__providers_helper__["a" /* CoreSharedFilesHelperProvider */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_sites__["a" /* CoreSitesProvider */], __WEBPACK_IMPORTED_MODULE_4__providers_utils_dom__["a" /* CoreDomUtilsProvider */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_file__["a" /* CoreFileProvider */]])
-    ], CoreSharedFilesChooseSitePage);
-    return CoreSharedFilesChooseSitePage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["F" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */], __WEBPACK_IMPORTED_MODULE_7__providers_sharedfiles__["a" /* CoreSharedFilesProvider */],
+            __WEBPACK_IMPORTED_MODULE_5__providers_sites__["a" /* CoreSitesProvider */], __WEBPACK_IMPORTED_MODULE_6__providers_utils_text__["a" /* CoreTextUtilsProvider */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_file__["a" /* CoreFileProvider */], __WEBPACK_IMPORTED_MODULE_3__providers_events__["a" /* CoreEventsProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */]])
+    ], CoreSharedFilesListPage);
+    return CoreSharedFilesListPage;
 }());
 
-//# sourceMappingURL=choose-site.js.map
+//# sourceMappingURL=list.js.map
 
 /***/ })
 

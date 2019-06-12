@@ -183,7 +183,8 @@
       },
       "phonegap-plugin-barcodescanner": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      }
+      },
+      "cordova-plugin-qrscanner": {}
     }
   },
   "main": "desktop/electron.js",

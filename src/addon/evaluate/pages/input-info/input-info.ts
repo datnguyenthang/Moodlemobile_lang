@@ -18,6 +18,7 @@ import { CoreDomUtilsProvider } from '@providers/utils/dom';
 import { CoreUtilsProvider } from '@providers/utils/utils';
 import { CoreSitesProvider } from '@providers/sites';
 import { CoreEventsProvider } from '@providers/events';
+import { CoreUserProvider } from '@core/user/providers/user';
 import { DataService } from '@providers/data.service';
 import { CoreAppProvider } from '@providers/app';
 import { AddonBlockTimelineProvider } from '@addon/block/timeline/providers/timeline';
@@ -62,10 +63,16 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
             private courseHelper: CoreCourseHelperProvider, private courseOptionsDelegate: CoreCourseOptionsDelegate,
             private eventsProvider: CoreEventsProvider, private navCtrl: NavController, appProvider: CoreAppProvider, 
             evaluateProvider: AddonEvaluateProvider,fb: FormBuilder,private translate: TranslateService,
-            public alertController: AlertController,  navParams: NavParams, private data: DataService) {
+            public alertController: AlertController,  navParams: NavParams, private data: DataService,
+            private userProvider: CoreUserProvider) {
         
         this.evaluateProvider = evaluateProvider;
         this.loadSiteInfo();
+        this.userProvider.getProfile(this.sitesProvider.getCurrentSiteUserId(),1).then((user)=> {
+            this.credForm.controls['fullname'].setValue(user.fullname);
+            this.credForm.controls['email'].setValue(user.email);
+        });
+       
         this.credForm = fb.group({
             coursecode: ['', Validators.required],
             fullname: [''],
@@ -96,7 +103,7 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
 
         // });
         if (this.data.getOrigin() == 'scanner') {
-            this.credForm.controls['coursecode'].setValue(this.data.getData());    
+            this.credForm.controls['coursecode'].setValue(this.data.getData());
         }
         this.pageLoaded = true;
     }

@@ -11,12 +11,17 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import { Component, ViewChild, OnDestroy } from '@angular/core';
-import { IonicPage, NavController, AlertController } from 'ionic-angular';
+import { Component, ViewChild, OnDestroy, OnInit } from '@angular/core';
+import { IonicPage, Searchbar, NavController, AlertController } from 'ionic-angular';
+import { CoreUtilsProvider } from '@providers/utils/utils';
+import { CoreSitesProvider } from '@providers/sites';
 import { DataService } from '@providers/data.service';
+import { CoreEventsProvider } from '@providers/events';
+import { CoreAppProvider } from '@providers/app';
 import { CoreTabsComponent } from '@components/tabs/tabs';
 import { AddonQRScannerProvider } from '../../providers/qrscanner';
-import { QRScanner } from '@ionic-native/qr-scanner';
+import { TranslateService } from '@ngx-translate/core';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 /**
  * Page that displays the list of calendar events.
@@ -31,52 +36,54 @@ export class AddonQRScannerPage implements OnDestroy {
     ionApp: any;
     ionicTabbar: any;
 
-    protected qrProvider: AddonQRScannerProvider;
+    protected qrscannerProvider: AddonQRScannerProvider;
     protected prefetchIconsInitialized = false;
     protected isDestroyed;
     protected updateSiteObserver;
     
-    constructor(private navCtrl: NavController, public alertController: AlertController,
-                private data: DataService, private qrScanner: QRScanner) {}
+    constructor(private utils: CoreUtilsProvider, private sitesProvider: CoreSitesProvider,
+      private eventsProvider: CoreEventsProvider, private navCtrl: NavController, appProvider: CoreAppProvider, 
+      private translate: TranslateService, public alertController: AlertController, private data: DataService,
+      private barcodeScanner: BarcodeScanner) {}
 
     ionViewWillEnter(): void {
       this.scanQR();
     }
     exitPage(): void {
-      this.navCtrl.setRoot('CoreLoginInitPage');
+      this.navCtrl.setRoot("CoreLoginInitPage");
     }
     scanQR(): void {
-      this.qrScanner.scan().subscribe((text: string) => {
-          console.log('Scanned something', text);
-          this.dataHandle(text);
+      (window.document.querySelector('.closeCamera') as HTMLElement).classList.remove('hide');
+      this.barcodeScanner.scan().then(barcodeData => {
+        this.dataHandle(barcodeData.text);
+      }).catch(err => {
+        console.log('Error', err);
       });
     }
     dataHandle(data: any): void {
       try {
-        const obj = JSON.parse(data);
-        if (this.checkDataHandle(obj)) {
+        let obj = JSON.parse(data);
+        if(this.checkDataHandle(obj)) {
           switch (obj.type) {
             case 'EVALUATE':
-                this.data.setData(obj.value, 'scanner');
+                this.data.setData(obj.value,"scanner");
                 this.navCtrl.popToRoot();
                 this.navCtrl.parent.select(2);
             break;
             case 'COURSE':
                 this.navCtrl.push('CoreCourseSectionPage', { course: { id: obj.value } });
             break;
-            default:
-                this.navCtrl.setRoot('CoreLoginInitPage');
           }
         }
-      } catch (e) {
-        console.log('Error is', e);
+      } catch(e){
+
       }
     }
     checkDataHandle(obj: any): boolean {
       let result = false;
-      const teamplateData = {type: '', value: ''};
+      const TeamplateData = {type: '', value: ''};
       for (const el in obj) {
-        result = teamplateData.hasOwnProperty(el);
+        result = TeamplateData.hasOwnProperty(el);
       }
 
       return result;

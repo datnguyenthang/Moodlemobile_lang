@@ -1,17 +1,18 @@
 webpackJsonp([20],{
 
-/***/ 1965:
+/***/ 1964:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreSharedFilesChooseSitePageModule", function() { return CoreSharedFilesChooseSitePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreSettingsSynchronizationPageModule", function() { return CoreSettingsSynchronizationPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__choose_site__ = __webpack_require__(2112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__synchronization__ = __webpack_require__(2110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_directives_module__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pipes_pipes_module__ = __webpack_require__(62);
 // (C) Copyright 2015 Martin Dougiamas
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -37,40 +38,43 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CoreSharedFilesChooseSitePageModule = /** @class */ (function () {
-    function CoreSharedFilesChooseSitePageModule() {
+
+var CoreSettingsSynchronizationPageModule = /** @class */ (function () {
+    function CoreSettingsSynchronizationPageModule() {
     }
-    CoreSharedFilesChooseSitePageModule = __decorate([
+    CoreSettingsSynchronizationPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__choose_site__["a" /* CoreSharedFilesChooseSitePage */]
+                __WEBPACK_IMPORTED_MODULE_3__synchronization__["a" /* CoreSettingsSynchronizationPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* CoreComponentsModule */],
                 __WEBPACK_IMPORTED_MODULE_5__directives_directives_module__["a" /* CoreDirectivesModule */],
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__choose_site__["a" /* CoreSharedFilesChooseSitePage */]),
-                __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */].forChild()
-            ]
+                __WEBPACK_IMPORTED_MODULE_6__pipes_pipes_module__["a" /* CorePipesModule */],
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__synchronization__["a" /* CoreSettingsSynchronizationPage */]),
+                __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["b" /* TranslateModule */].forChild()
+            ],
         })
-    ], CoreSharedFilesChooseSitePageModule);
-    return CoreSharedFilesChooseSitePageModule;
+    ], CoreSettingsSynchronizationPageModule);
+    return CoreSettingsSynchronizationPageModule;
 }());
 
-//# sourceMappingURL=choose-site.module.js.map
+//# sourceMappingURL=synchronization.module.js.map
 
 /***/ }),
 
-/***/ 2112:
+/***/ 2110:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoreSharedFilesChooseSitePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoreSettingsSynchronizationPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_file__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_constants__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_events__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_sites__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_utils_dom__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_helper__ = __webpack_require__(409);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_config__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_settings_providers_helper__ = __webpack_require__(952);
 // (C) Copyright 2015 Martin Dougiamas
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -99,72 +103,98 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
- * Modal to display the list of sites to choose one to store a shared file.
+ * Page that displays the synchronization settings.
  */
-var CoreSharedFilesChooseSitePage = /** @class */ (function () {
-    function CoreSharedFilesChooseSitePage(navCtrl, navParams, sharedFilesHelper, sitesProvider, domUtils, fileProvider) {
-        this.navCtrl = navCtrl;
-        this.sharedFilesHelper = sharedFilesHelper;
+var CoreSettingsSynchronizationPage = /** @class */ (function () {
+    function CoreSettingsSynchronizationPage(configProvider, eventsProvider, sitesProvider, domUtils, settingsHelper) {
+        var _this = this;
+        this.configProvider = configProvider;
+        this.eventsProvider = eventsProvider;
         this.sitesProvider = sitesProvider;
         this.domUtils = domUtils;
-        this.fileProvider = fileProvider;
-        this.filePath = navParams.get('filePath');
-        this.isInbox = navParams.get('isInbox');
+        this.settingsHelper = settingsHelper;
+        this.sites = [];
+        this.sitesLoaded = false;
+        this.currentSiteId = '';
+        this.syncOnlyOnWifi = false;
+        this.isDestroyed = false;
+        this.currentSiteId = this.sitesProvider.getCurrentSiteId();
+        this.sitesObserver = this.eventsProvider.on(__WEBPACK_IMPORTED_MODULE_2__providers_events__["a" /* CoreEventsProvider */].SITE_UPDATED, function (data) {
+            _this.sitesProvider.getSite(data.siteId).then(function (site) {
+                var siteInfo = site.getInfo();
+                var siteEntry = _this.sites.find(function (siteEntry) { return siteEntry.id == site.id; });
+                if (siteEntry) {
+                    siteEntry.siteUrl = siteInfo.siteurl;
+                    siteEntry.siteName = siteInfo.sitename;
+                    siteEntry.fullName = siteInfo.fullname;
+                }
+            });
+        });
     }
     /**
-     * Component being initialized.
+     * View loaded.
      */
-    CoreSharedFilesChooseSitePage.prototype.ngOnInit = function () {
+    CoreSettingsSynchronizationPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        if (!this.filePath) {
-            this.domUtils.showErrorModal('Error reading file.');
-            this.navCtrl.pop();
-            return;
-        }
-        var fileAndDir = this.fileProvider.getFileAndDirectoryFromPath(this.filePath);
-        this.fileName = fileAndDir.name;
-        // Get the file.
-        this.fileProvider.getExternalFile(this.filePath).then(function (fe) {
-            _this.fileEntry = fe;
-            _this.fileName = _this.fileEntry.name;
-        }).catch(function () {
-            _this.domUtils.showErrorModal('Error reading file.');
-            _this.navCtrl.pop();
-        });
-        // Get the sites.
-        this.sitesProvider.getSites().then(function (sites) {
+        this.sitesProvider.getSortedSites().then(function (sites) {
             _this.sites = sites;
         }).finally(function () {
-            _this.loaded = true;
+            _this.sitesLoaded = true;
+        });
+        this.configProvider.get(__WEBPACK_IMPORTED_MODULE_1__core_constants__["a" /* CoreConstants */].SETTINGS_SYNC_ONLY_ON_WIFI, true).then(function (syncOnlyOnWifi) {
+            _this.syncOnlyOnWifi = !!syncOnlyOnWifi;
         });
     };
     /**
-     * Store the file in a certain site.
+     * Called when sync only on wifi setting is enabled or disabled.
+     */
+    CoreSettingsSynchronizationPage.prototype.syncOnlyOnWifiChanged = function () {
+        this.configProvider.set(__WEBPACK_IMPORTED_MODULE_1__core_constants__["a" /* CoreConstants */].SETTINGS_SYNC_ONLY_ON_WIFI, this.syncOnlyOnWifi ? 1 : 0);
+    };
+    /**
+     * Syncrhonizes a site.
      *
      * @param {string} siteId Site ID.
      */
-    CoreSharedFilesChooseSitePage.prototype.storeInSite = function (siteId) {
+    CoreSettingsSynchronizationPage.prototype.synchronize = function (siteId) {
         var _this = this;
-        this.loaded = false;
-        this.sharedFilesHelper.storeSharedFileInSite(this.fileEntry, siteId, this.isInbox).then(function () {
-            _this.navCtrl.pop();
-        }).finally(function () {
-            _this.loaded = true;
+        this.settingsHelper.synchronizeSite(this.syncOnlyOnWifi, siteId).catch(function (error) {
+            if (_this.isDestroyed) {
+                return;
+            }
+            _this.domUtils.showErrorModalDefault(error, 'core.settings.errorsyncsite', true);
         });
     };
-    CoreSharedFilesChooseSitePage = __decorate([
+    /**
+     * Returns true if site is beeing synchronized.
+     *
+     * @param {string} siteId Site ID.
+     * @return {boolean} True if site is beeing synchronized, false otherwise.
+     */
+    CoreSettingsSynchronizationPage.prototype.isSynchronizing = function (siteId) {
+        return !!this.settingsHelper.getSiteSyncPromise(siteId);
+    };
+    /**
+     * Page destroyed.
+     */
+    CoreSettingsSynchronizationPage.prototype.ngOnDestroy = function () {
+        this.isDestroyed = true;
+        this.sitesObserver && this.sitesObserver.off();
+    };
+    CoreSettingsSynchronizationPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-core-shared-files-choose-site',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/sharedfiles/pages/choose-site/choose-site.html"*/'<ion-header>\n    <ion-navbar core-back-button>\n        <ion-title>{{ \'core.sharedfiles.sharedfiles\' | translate }}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content>\n    <core-loading [hideUntil]="loaded">\n        <ion-list>\n            <ion-item text-wrap>\n                <p class="item-heading">{{ \'core.sharedfiles.chooseaccountstorefile\' | translate }}</p>\n                <p>{{fileName}}</p>\n            </ion-item>\n            <a ion-item *ngFor="let site of sites" (click)="storeInSite(site.id)">\n                <img [src]="site.avatar" item-start>\n                <h2>{{site.fullName}}</h2>\n                <p><core-format-text clean="true" [text]="site.siteName"></core-format-text></p>\n                <p>{{site.siteUrl}}</p>\n            </a>\n        </ion-list>\n    </core-loading>\n</ion-content>\n\n\n\n'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/sharedfiles/pages/choose-site/choose-site.html"*/,
+            selector: 'page-core-settings-synchronization',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/settings/pages/synchronization/synchronization.html"*/'<ion-header>\n    <ion-navbar core-back-button>\n        <ion-title>{{ \'core.settings.synchronization\' | translate }}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content>\n    <core-loading [hideUntil]="sitesLoaded">\n        <ion-item-divider>\n            <p>{{ \'core.settings.syncsettings\' | translate }}</p>\n        </ion-item-divider>\n        <ion-item text-wrap>\n            <ion-label>{{ \'core.settings.enablesyncwifi\' | translate }}</ion-label>\n            <ion-toggle item-end [(ngModel)]="syncOnlyOnWifi" (ngModelChange)="syncOnlyOnWifiChanged()">\n            </ion-toggle>\n        </ion-item>\n        <ion-item-divider>\n            <p>{{ \'core.settings.sites\' | translate }}</p>\n        </ion-item-divider>\n        <ion-item *ngFor="let site of sites" [class.core-primary-selected-item]="site.id == currentSiteId" text-wrap>\n            <h2><core-format-text [text]="site.siteName"></core-format-text></h2>\n            <p>{{ site.fullName }}</p>\n            <p>{{ site.siteUrl }}</p>\n            <button ion-button icon-only clear item-end *ngIf="!isSynchronizing(site.id)" (click)="synchronize(site.id)" [title]="site.siteName" [attr.aria-label]="\'core.settings.synchronizenow\' | translate">\n                <ion-icon name="sync"></ion-icon>\n            </button>\n            <ion-spinner item-end *ngIf="isSynchronizing(site.id)"></ion-spinner>\n        </ion-item>\n    </core-loading>\n</ion-content>\n'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/settings/pages/synchronization/synchronization.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__providers_helper__["a" /* CoreSharedFilesHelperProvider */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__providers_config__["a" /* CoreConfigProvider */], __WEBPACK_IMPORTED_MODULE_2__providers_events__["a" /* CoreEventsProvider */],
             __WEBPACK_IMPORTED_MODULE_3__providers_sites__["a" /* CoreSitesProvider */], __WEBPACK_IMPORTED_MODULE_4__providers_utils_dom__["a" /* CoreDomUtilsProvider */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_file__["a" /* CoreFileProvider */]])
-    ], CoreSharedFilesChooseSitePage);
-    return CoreSharedFilesChooseSitePage;
+            __WEBPACK_IMPORTED_MODULE_6__core_settings_providers_helper__["a" /* CoreSettingsHelper */]])
+    ], CoreSettingsSynchronizationPage);
+    return CoreSettingsSynchronizationPage;
 }());
 
-//# sourceMappingURL=choose-site.js.map
+//# sourceMappingURL=synchronization.js.map
 
 /***/ })
 

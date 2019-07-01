@@ -1,11 +1,11 @@
 webpackJsonp([59],{
 
-/***/ 1925:
+/***/ 1924:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddonSchoolOfRecoveryMySchoolOfRecoveryPageModule", function() { return AddonSchoolOfRecoveryMySchoolOfRecoveryPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddonResourceMyResourcePageModule", function() { return AddonResourceMyResourcePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(1);
@@ -13,7 +13,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_directives_module__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pipes_pipes_module__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__my_schoolofrecovery__ = __webpack_require__(2073);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__my_resource__ = __webpack_require__(2071);
 // (C) Copyright 2015 Martin Dougiamas
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -41,36 +41,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AddonSchoolOfRecoveryMySchoolOfRecoveryPageModule = /** @class */ (function () {
-    function AddonSchoolOfRecoveryMySchoolOfRecoveryPageModule() {
+var AddonResourceMyResourcePageModule = /** @class */ (function () {
+    function AddonResourceMyResourcePageModule() {
     }
-    AddonSchoolOfRecoveryMySchoolOfRecoveryPageModule = __decorate([
+    AddonResourceMyResourcePageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_7__my_schoolofrecovery__["a" /* AddonSchoolOfRecoveryMySchoolOfRecoveryPage */],
+                __WEBPACK_IMPORTED_MODULE_7__my_resource__["a" /* AddonResourceMyResourcePage */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* CoreComponentsModule */],
                 __WEBPACK_IMPORTED_MODULE_5__directives_directives_module__["a" /* CoreDirectivesModule */],
                 __WEBPACK_IMPORTED_MODULE_6__pipes_pipes_module__["a" /* CorePipesModule */],
                 __WEBPACK_IMPORTED_MODULE_3__core_courses_components_components_module__["a" /* CoreCoursesComponentsModule */],
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_7__my_schoolofrecovery__["a" /* AddonSchoolOfRecoveryMySchoolOfRecoveryPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_7__my_resource__["a" /* AddonResourceMyResourcePage */]),
                 __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["b" /* TranslateModule */].forChild()
             ],
         })
-    ], AddonSchoolOfRecoveryMySchoolOfRecoveryPageModule);
-    return AddonSchoolOfRecoveryMySchoolOfRecoveryPageModule;
+    ], AddonResourceMyResourcePageModule);
+    return AddonResourceMyResourcePageModule;
 }());
 
-//# sourceMappingURL=my-schoolofrecovery.module.js.map
+//# sourceMappingURL=my-resource.module.js.map
 
 /***/ }),
 
-/***/ 2073:
+/***/ 2071:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddonSchoolOfRecoveryMySchoolOfRecoveryPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddonResourceMyResourcePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_courses_providers_courses__ = __webpack_require__(33);
@@ -85,15 +85,6 @@ var AddonSchoolOfRecoveryMySchoolOfRecoveryPageModule = /** @class */ (function 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_moment__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_tabs_tabs__ = __webpack_require__(138);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 // (C) Copyright 2015 Martin Dougiamas
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -107,6 +98,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 
 
@@ -123,8 +123,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 /**
  * Page that displays the list of calendar events.
  */
-var AddonSchoolOfRecoveryMySchoolOfRecoveryPage = /** @class */ (function () {
-    function AddonSchoolOfRecoveryMySchoolOfRecoveryPage(domUtils, coursesProvider, utils, myOverviewProvider, sitesProvider, courseHelper, courseOptionsDelegate, eventsProvider, navCtrl, appProvider) {
+var AddonResourceMyResourcePage = /** @class */ (function () {
+    function AddonResourceMyResourcePage(domUtils, coursesProvider, utils, myOverviewProvider, sitesProvider, courseHelper, courseOptionsDelegate, eventsProvider, navCtrl, appProvider) {
         this.domUtils = domUtils;
         this.coursesProvider = coursesProvider;
         this.utils = utils;
@@ -167,7 +167,7 @@ var AddonSchoolOfRecoveryMySchoolOfRecoveryPage = /** @class */ (function () {
     /**
      * View loaded.
      */
-    AddonSchoolOfRecoveryMySchoolOfRecoveryPage.prototype.ionViewDidLoad = function () {
+    AddonResourceMyResourcePage.prototype.ionViewDidLoad = function () {
         var _this = this;
         this.searchEnabled = !this.coursesProvider.isSearchCoursesDisabledInSite();
         this.downloadAllCoursesEnabled = !this.coursesProvider.isDownloadCoursesDisabledInSite();
@@ -194,7 +194,7 @@ var AddonSchoolOfRecoveryMySchoolOfRecoveryPage = /** @class */ (function () {
      * @param {number} [afterEventId] The last event id.
      * @return {Promise<any>} Promise resolved when done.
      */
-    AddonSchoolOfRecoveryMySchoolOfRecoveryPage.prototype.fetchMyOverviewTimeline = function (afterEventId) {
+    AddonResourceMyResourcePage.prototype.fetchMyOverviewTimeline = function (afterEventId) {
         var _this = this;
         return this.myOverviewProvider.getActionEventsByTimesort(afterEventId).then(function (events) {
             _this.timeline.events = events.events;
@@ -206,7 +206,7 @@ var AddonSchoolOfRecoveryMySchoolOfRecoveryPage = /** @class */ (function () {
     /**
      * Go to search courses.
      */
-    AddonSchoolOfRecoveryMySchoolOfRecoveryPage.prototype.openSearch = function () {
+    AddonResourceMyResourcePage.prototype.openSearch = function () {
         this.navCtrl.push('CoreCoursesSearchPage');
     };
     /**
@@ -214,7 +214,7 @@ var AddonSchoolOfRecoveryMySchoolOfRecoveryPage = /** @class */ (function () {
      *
      * @return {Promise<any>} Promise resolved when done.
      */
-    AddonSchoolOfRecoveryMySchoolOfRecoveryPage.prototype.fetchMyOverviewTimelineByCourses = function () {
+    AddonResourceMyResourcePage.prototype.fetchMyOverviewTimelineByCourses = function () {
         var _this = this;
         return this.fetchUserCourses().then(function (courses) {
             var today = __WEBPACK_IMPORTED_MODULE_11_moment__().unix();
@@ -241,7 +241,7 @@ var AddonSchoolOfRecoveryMySchoolOfRecoveryPage = /** @class */ (function () {
     /**
      * Show or hide the filter.
      */
-    AddonSchoolOfRecoveryMySchoolOfRecoveryPage.prototype.switchFilter = function () {
+    AddonResourceMyResourcePage.prototype.switchFilter = function () {
         var _this = this;
         this.showFilter = !this.showFilter;
         this.courses.filter = '';
@@ -257,7 +257,7 @@ var AddonSchoolOfRecoveryMySchoolOfRecoveryPage = /** @class */ (function () {
      *
      * @return {Promise<any>} Promise resolved when done.
      */
-    AddonSchoolOfRecoveryMySchoolOfRecoveryPage.prototype.fetchMyOverviewCourses = function () {
+    AddonResourceMyResourcePage.prototype.fetchMyOverviewCourses = function () {
         var _this = this;
         return this.fetchUserCourses().then(function (courses) {
             var today = __WEBPACK_IMPORTED_MODULE_11_moment__().unix(), categoryList = [];
@@ -278,10 +278,7 @@ var AddonSchoolOfRecoveryMySchoolOfRecoveryPage = /** @class */ (function () {
                     _this.courses.inprogress.push(course);
                 }
                 if (!categoryList.find(function (el) { return el.id == course.category; })) {
-                    categoryList.push({ id: course.category,
-                        name: course.categoryname,
-                        description: course.categorydescription,
-                        courses: [] });
+                    categoryList.push({ id: course.category, name: course.categoryname, courses: [] });
                 }
             });
             categoryList.forEach(function (category) {
@@ -308,9 +305,9 @@ var AddonSchoolOfRecoveryMySchoolOfRecoveryPage = /** @class */ (function () {
      *
      * @return {Promise<any>} Promise resolved when done.
      */
-    AddonSchoolOfRecoveryMySchoolOfRecoveryPage.prototype.fetchUserCourses = function () {
+    AddonResourceMyResourcePage.prototype.fetchUserCourses = function () {
         var _this = this;
-        return this.coursesProvider.getUserCourses(null, null, 4).then(function (courses) {
+        return this.coursesProvider.getUserCourses(null, null, 2).then(function (courses) {
             var promises = [], courseIds = courses.map(function (course) {
                 return course.id;
             });
@@ -339,23 +336,18 @@ var AddonSchoolOfRecoveryMySchoolOfRecoveryPage = /** @class */ (function () {
                     });
                 }));
             }
-            /*
-            return Promise.all(promises).then(() => {
-                return courses.sort((a, b) => {
-                    const compareA = a.fullname.toLowerCase(),
-                        compareB = b.fullname.toLowerCase();
-
+            return Promise.all(promises).then(function () {
+                return courses.sort(function (a, b) {
+                    var compareA = a.fullname.toLowerCase(), compareB = b.fullname.toLowerCase();
                     return compareA.localeCompare(compareB);
                 });
             });
-            */
-            return courses;
         });
     };
     /**
      * Initialize the prefetch icon for selected courses.
      */
-    AddonSchoolOfRecoveryMySchoolOfRecoveryPage.prototype.initPrefetchCoursesIcons = function () {
+    AddonResourceMyResourcePage.prototype.initPrefetchCoursesIcons = function () {
         var _this = this;
         if (this.prefetchIconsInitialized || !this.downloadAllCoursesEnabled) {
             // Already initialized.
@@ -384,7 +376,7 @@ var AddonSchoolOfRecoveryMySchoolOfRecoveryPage = /** @class */ (function () {
      * @param {any} refresher Refresher.
      * @return {Promise<any>} Promise resolved when done.
      */
-    AddonSchoolOfRecoveryMySchoolOfRecoveryPage.prototype.refreshMyOverview = function (refresher) {
+    AddonResourceMyResourcePage.prototype.refreshMyOverview = function (refresher) {
         var _this = this;
         var promises = [];
         if (this.tabShown == 'timeline') {
@@ -419,38 +411,38 @@ var AddonSchoolOfRecoveryMySchoolOfRecoveryPage = /** @class */ (function () {
     /**
      * Load the site name.
      */
-    AddonSchoolOfRecoveryMySchoolOfRecoveryPage.prototype.loadSiteName = function () {
+    AddonResourceMyResourcePage.prototype.loadSiteName = function () {
         this.siteName = this.sitesProvider.getCurrentSite().getInfo().sitename;
     };
     /**
      * Page destroyed.
      */
-    AddonSchoolOfRecoveryMySchoolOfRecoveryPage.prototype.ngOnDestroy = function () {
+    AddonResourceMyResourcePage.prototype.ngOnDestroy = function () {
         this.isDestroyed = true;
         this.updateSiteObserver && this.updateSiteObserver.off();
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_12__components_tabs_tabs__["a" /* CoreTabsComponent */]),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_12__components_tabs_tabs__["a" /* CoreTabsComponent */])
-    ], AddonSchoolOfRecoveryMySchoolOfRecoveryPage.prototype, "tabsComponent", void 0);
+    ], AddonResourceMyResourcePage.prototype, "tabsComponent", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('searchbar'),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["z" /* Searchbar */])
-    ], AddonSchoolOfRecoveryMySchoolOfRecoveryPage.prototype, "searchbar", void 0);
-    AddonSchoolOfRecoveryMySchoolOfRecoveryPage = __decorate([
+    ], AddonResourceMyResourcePage.prototype, "searchbar", void 0);
+    AddonResourceMyResourcePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-addon-schoolofrecovery-my-schoolofrecovery',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/addon/schoolofrecovery/pages/my-schoolofrecovery/my-schoolofrecovery.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title><core-format-text [text]="siteName"></core-format-text></ion-title>\n\n        <ion-buttons end>\n            <button *ngIf="searchEnabled" ion-button icon-only (click)="openSearch()" [attr.aria-label]="\'core.courses.searchcourses\' | translate">\n                <ion-icon name="search"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n<ion-content>\n   \n    <ion-refresher [enabled]="timeline.loaded || timelineCourses.loaded || courses.loaded" (ionRefresh)="refreshMyOverview($event)">\n        <ion-refresher-content pullingText="{{ \'core.pulltorefresh\' | translate }}"></ion-refresher-content>\n    </ion-refresher>\n\n    <core-loading [hideUntil]="courses.loaded" class="core-loading-center">\n        <core-empty-box *ngIf="courses[courses.selected].length == 0 && courses.selected == \'inprogress\'" image="assets/img/icons/courses.svg" [message]="\'core.courses.nocoursesinprogress\' | translate"></core-empty-box>\n        <core-empty-box *ngIf="courses[courses.selected].length == 0 && courses.selected == \'future\'" image="assets/img/icons/courses.svg" [message]="\'core.courses.nocoursesfuture\' | translate"></core-empty-box>\n        <core-empty-box *ngIf="courses[courses.selected].length == 0 && courses.selected == \'past\'" image="assets/img/icons/courses.svg" [message]="\'core.courses.nocoursespast\' | translate"></core-empty-box>\n        <div>\n            <core-courses-course-list-group [categories]="filteredCategory">\n            </core-courses-course-list-group>\n        </div>\n    </core-loading>\n\n</ion-content>'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/addon/schoolofrecovery/pages/my-schoolofrecovery/my-schoolofrecovery.html"*/,
+            selector: 'page-addon-resource-my-resource',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/addon/resource/pages/my-resource/my-resource.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title><core-format-text [text]="siteName"></core-format-text></ion-title>\n\n        <ion-buttons end>\n            <button *ngIf="searchEnabled" ion-button icon-only (click)="openSearch()" [attr.aria-label]="\'core.courses.searchcourses\' | translate">\n                <ion-icon name="search"></ion-icon>\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n<ion-content>\n   \n    <ion-refresher [enabled]="timeline.loaded || timelineCourses.loaded || courses.loaded" (ionRefresh)="refreshMyOverview($event)">\n        <ion-refresher-content pullingText="{{ \'core.pulltorefresh\' | translate }}"></ion-refresher-content>\n    </ion-refresher>\n\n    <core-loading [hideUntil]="courses.loaded" class="core-loading-center">\n        <core-empty-box *ngIf="courses[courses.selected].length == 0 && courses.selected == \'inprogress\'" image="assets/img/icons/courses.svg" [message]="\'core.courses.nocoursesinprogress\' | translate"></core-empty-box>\n        <core-empty-box *ngIf="courses[courses.selected].length == 0 && courses.selected == \'future\'" image="assets/img/icons/courses.svg" [message]="\'core.courses.nocoursesfuture\' | translate"></core-empty-box>\n        <core-empty-box *ngIf="courses[courses.selected].length == 0 && courses.selected == \'past\'" image="assets/img/icons/courses.svg" [message]="\'core.courses.nocoursespast\' | translate"></core-empty-box>\n        <div>\n            <core-courses-course-list-group [categories]="filteredCategory">\n            </core-courses-course-list-group>\n        </div>\n    </core-loading>\n\n</ion-content>'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/addon/resource/pages/my-resource/my-resource.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_utils_dom__["a" /* CoreDomUtilsProvider */],
             __WEBPACK_IMPORTED_MODULE_2__core_courses_providers_courses__["a" /* CoreCoursesProvider */], __WEBPACK_IMPORTED_MODULE_4__providers_utils_utils__["a" /* CoreUtilsProvider */],
             __WEBPACK_IMPORTED_MODULE_8__addon_block_timeline_providers_timeline__["a" /* AddonBlockTimelineProvider */], __WEBPACK_IMPORTED_MODULE_5__providers_sites__["a" /* CoreSitesProvider */],
             __WEBPACK_IMPORTED_MODULE_9__core_course_providers_helper__["a" /* CoreCourseHelperProvider */], __WEBPACK_IMPORTED_MODULE_10__core_course_providers_options_delegate__["a" /* CoreCourseOptionsDelegate */],
             __WEBPACK_IMPORTED_MODULE_6__providers_events__["a" /* CoreEventsProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* NavController */], __WEBPACK_IMPORTED_MODULE_7__providers_app__["a" /* CoreAppProvider */]])
-    ], AddonSchoolOfRecoveryMySchoolOfRecoveryPage);
-    return AddonSchoolOfRecoveryMySchoolOfRecoveryPage;
+    ], AddonResourceMyResourcePage);
+    return AddonResourceMyResourcePage;
 }());
 
-//# sourceMappingURL=my-schoolofrecovery.js.map
+//# sourceMappingURL=my-resource.js.map
 
 /***/ })
 

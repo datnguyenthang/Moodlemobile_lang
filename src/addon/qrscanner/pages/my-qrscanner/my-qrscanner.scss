@@ -1,34 +1,16 @@
-/*
 page-addon-my-qrscanner {
-    .top-bar {
-        height: 47.8px;
-        background: white;
-        width: 100%;
-        padding: 8px;
-        padding-left: 16px;
-        ion-icon {
-            font-size: 30px;
-            color: #008446;
-        }
-    }
+  .top-bar {
+      height: 47.8px;
+      background: white;
+      width: 100%;
+      padding: 8px;
+      padding-left: 16px;
+      ion-icon {
+          font-size: 30px;
+          color: #008446;
+      }
+  }
 }
 .show-qr-scanner {
-    display: none;
+  display: none;
 }
-*/
-page-addon-my-qrscanner {
-    ion-content  {
-      /* background: white !important;
-      background-color: white !important; */
-      height: 80%;
-      width: 100%;
-  
-    }
-    ion-icon {
-        font-size: 30px;
-        color: #008446;
-    }
-    .closecamera {
-      background: none !important
-    }
-  }

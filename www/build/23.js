@@ -1,15 +1,15 @@
 webpackJsonp([23],{
 
-/***/ 1962:
+/***/ 1961:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreSettingsListPageModule", function() { return CoreSettingsListPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreSettingsGeneralPageModule", function() { return CoreSettingsGeneralPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__list__ = __webpack_require__(2109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__general__ = __webpack_require__(2107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_directives_module__ = __webpack_require__(14);
 // (C) Copyright 2015 Martin Dougiamas
@@ -37,38 +37,48 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CoreSettingsListPageModule = /** @class */ (function () {
-    function CoreSettingsListPageModule() {
+var CoreSettingsGeneralPageModule = /** @class */ (function () {
+    function CoreSettingsGeneralPageModule() {
     }
-    CoreSettingsListPageModule = __decorate([
+    CoreSettingsGeneralPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_3__list__["a" /* CoreSettingsListPage */]
+                __WEBPACK_IMPORTED_MODULE_3__general__["a" /* CoreSettingsGeneralPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* CoreComponentsModule */],
                 __WEBPACK_IMPORTED_MODULE_5__directives_directives_module__["a" /* CoreDirectivesModule */],
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__list__["a" /* CoreSettingsListPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__general__["a" /* CoreSettingsGeneralPage */]),
                 __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["b" /* TranslateModule */].forChild()
             ],
         })
-    ], CoreSettingsListPageModule);
-    return CoreSettingsListPageModule;
+    ], CoreSettingsGeneralPageModule);
+    return CoreSettingsGeneralPageModule;
 }());
 
-//# sourceMappingURL=list.module.js.map
+//# sourceMappingURL=general.module.js.map
 
 /***/ }),
 
-/***/ 2109:
+/***/ 2107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoreSettingsListPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoreSettingsGeneralPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_delegate__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_split_view_split_view__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_app__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_constants__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_config__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_file__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_events__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_lang__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_utils_dom__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_local_notifications__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__configconstants__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_sites__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_network__ = __webpack_require__(119);
 // (C) Copyright 2015 Martin Dougiamas
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -95,51 +105,128 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
+
+
+
+
+
+
+
 /**
- * Page that displays the list of settings pages.
+ * Page that displays the general settings.
  */
-var CoreSettingsListPage = /** @class */ (function () {
-    function CoreSettingsListPage(settingsDelegate, platorm, navParams) {
-        this.settingsDelegate = settingsDelegate;
-        this.isIOS = platorm.is('ios');
-        this.selectedPage = navParams.get('page') || false;
+var CoreSettingsGeneralPage = /** @class */ (function () {
+    function CoreSettingsGeneralPage(appProvider, configProvider, fileProvider, eventsProvider, langProvider, domUtils, localNotificationsProvider, sitesProvider, alertCtrl, translate, network) {
+        var _this = this;
+        this.configProvider = configProvider;
+        this.eventsProvider = eventsProvider;
+        this.langProvider = langProvider;
+        this.domUtils = domUtils;
+        this.sitesProvider = sitesProvider;
+        this.alertCtrl = alertCtrl;
+        this.translate = translate;
+        this.network = network;
+        this.languages = {};
+        this.languageCodes = [];
+        this.languages = __WEBPACK_IMPORTED_MODULE_11__configconstants__["a" /* CoreConfigConstants */].languages;
+        this.languageCodes = Object.keys(this.languages);
+        langProvider.getCurrentLanguage().then(function (currentLanguage) {
+            _this.baseLanguage = _this.selectedLanguage = currentLanguage;
+        });
+        this.rteSupported = this.domUtils.isRichTextEditorSupported();
+        if (this.rteSupported) {
+            this.configProvider.get(__WEBPACK_IMPORTED_MODULE_4__core_constants__["a" /* CoreConstants */].SETTINGS_RICH_TEXT_EDITOR, true).then(function (richTextEditorEnabled) {
+                _this.richTextEditor = !!richTextEditorEnabled;
+            });
+        }
+        this.configProvider.get(__WEBPACK_IMPORTED_MODULE_4__core_constants__["a" /* CoreConstants */].SETTINGS_DEBUG_DISPLAY, false).then(function (debugDisplay) {
+            _this.debugDisplay = !!debugDisplay;
+        });
     }
     /**
-     * View loaded.
+     * Called when a new language is selected.
      */
-    CoreSettingsListPage.prototype.ionViewDidLoad = function () {
-        this.handlers = this.settingsDelegate.getHandlers();
-        if (this.selectedPage) {
-            this.openHandler(this.selectedPage);
+    CoreSettingsGeneralPage.prototype.languageChanged = function () {
+        var _this = this;
+        this.changeUserLang(this.selectedLanguage).then(function (data) {
+            _this.changeLocalLang(data);
+        }).catch(function (error) {
+            _this.onlineObserver = _this.network.onConnect().subscribe(function () {
+                _this.languageChanged();
+                _this.onlineObserver.unsubscribe();
+            });
+        });
+    };
+    /**
+     * Called when change User Lang success.
+     */
+    CoreSettingsGeneralPage.prototype.changeLocalLang = function (data) {
+        var _this = this;
+        var alert = this.alertCtrl.create({
+            message: this.translate.instant('core.settings.servenotreponse'),
+            buttons: [this.translate.instant('core.ok')]
+        });
+        var obj = {
+            message: '',
+            result: false
+        };
+        obj = data;
+        if (obj.result) {
+            this.baseLanguage = this.selectedLanguage;
+            this.langProvider.changeCurrentLanguage(this.selectedLanguage).finally(function () {
+                _this.eventsProvider.trigger(__WEBPACK_IMPORTED_MODULE_7__providers_events__["a" /* CoreEventsProvider */].LANGUAGE_CHANGED);
+            });
         }
-        else if (this.splitviewCtrl.isOn()) {
-            this.openHandler('CoreSettingsGeneralPage');
+        else {
+            this.selectedLanguage = this.baseLanguage;
+            alert.present();
         }
     };
     /**
-     * Open a handler.
-     *
-     * @param {string} page Page to open.
-     * @param {any} params Params of the page to open.
+     * Update language for user
      */
-    CoreSettingsListPage.prototype.openHandler = function (page, params) {
-        this.selectedPage = page;
-        this.splitviewCtrl.push(page, params);
+    CoreSettingsGeneralPage.prototype.changeUserLang = function (language, siteId) {
+        return this.sitesProvider.getSite(siteId).then(function (site) {
+            // The get_site_info WS call won't be cached.
+            var preSets = {
+                getFromCache: false,
+                saveToCache: false
+            }, data = {
+                lang: language
+            };
+            return site.read('core_language_update_lang_user', data, preSets);
+        });
     };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_3__components_split_view_split_view__["a" /* CoreSplitViewComponent */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__components_split_view_split_view__["a" /* CoreSplitViewComponent */])
-    ], CoreSettingsListPage.prototype, "splitviewCtrl", void 0);
-    CoreSettingsListPage = __decorate([
+    /**
+     * Called when the rich text editor is enabled or disabled.
+     */
+    CoreSettingsGeneralPage.prototype.richTextEditorChanged = function () {
+        this.configProvider.set(__WEBPACK_IMPORTED_MODULE_4__core_constants__["a" /* CoreConstants */].SETTINGS_RICH_TEXT_EDITOR, this.richTextEditor ? 1 : 0);
+    };
+    /**
+     * Called when the debug display setting is enabled or disabled.
+     */
+    CoreSettingsGeneralPage.prototype.debugDisplayChanged = function () {
+        this.configProvider.set(__WEBPACK_IMPORTED_MODULE_4__core_constants__["a" /* CoreConstants */].SETTINGS_DEBUG_DISPLAY, this.debugDisplay ? 1 : 0);
+        this.domUtils.setDebugDisplay(this.debugDisplay);
+    };
+    CoreSettingsGeneralPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-core-settings-list',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/settings/pages/list/list.html"*/'<ion-header>\n    <ion-navbar core-back-button>\n        <ion-title>{{ \'core.settings.settings\' | translate}}</ion-title>\n        <ion-buttons end>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n<core-split-view>\n    <ion-content>\n        <ion-list>\n            <a ion-item (click)="openHandler(\'CoreSettingsGeneralPage\')" [title]="\'core.settings.general\' | translate"  [class.core-split-item-selected]="\'CoreSettingsGeneralPage\' == selectedPage" detail-push>\n                <ion-icon name="construct" item-start></ion-icon>\n                <p>{{ \'core.settings.general\' | translate }}</p>\n            </a>\n            <a ion-item (click)="openHandler(\'CoreSettingsSpaceUsagePage\')" [title]="\'core.settings.spaceusage\' | translate" [class.core-split-item-selected]="\'CoreSettingsSpaceUsagePage\' == selectedPage" detail-push>\n                <ion-icon name="stats" item-start></ion-icon>\n                <p>{{ \'core.settings.spaceusage\' | translate }}</p>\n            </a>\n            <a ion-item (click)="openHandler(\'CoreSettingsSynchronizationPage\')" [title]="\'core.settings.synchronization\' | translate" [class.core-split-item-selected]="\'CoreSettingsSynchronizationPage\' == selectedPage" detail-push>\n                <ion-icon name="sync" item-start></ion-icon>\n                <p>{{ \'core.settings.synchronization\' | translate }}</p>\n            </a>\n            <a ion-item *ngIf="isIOS" (click)="openHandler(\'CoreSharedFilesListPage\', {manage: true})" [title]="\'core.sharedfiles.sharedfiles\' | translate" [class.core-split-item-selected]="\'CoreSharedFilesListPage\' == selectedPage" detail-push>\n                <ion-icon name="folder" item-start></ion-icon>\n                <p>{{ \'core.sharedfiles.sharedfiles\' | translate }}</p>\n            </a>\n\n            <a ion-item *ngFor="let handler of handlers" [ngClass]="[\'core-settings-handler\', handler.class]" (click)="openHandler(handler.page, handler.params)" [title]="handler.title | translate" detail-push [class.core-split-item-selected]="handler.page == selectedPage">\n                <core-icon [name]="handler.icon" item-start *ngIf="handler.icon"></core-icon>\n                <p>{{ handler.title | translate}}</p>\n            </a>\n\n            <a ion-item (click)="openHandler(\'CoreSettingsAboutPage\')" [title]="\'core.settings.about\' | translate" [class.core-split-item-selected]="\'CoreSettingsAboutPage\' == selectedPage" detail-push>\n                <ion-icon name="contacts" item-start></ion-icon>\n                <p>{{ \'core.settings.about\' | translate }}</p>\n            </a>\n        </ion-list>\n    </ion-content>\n</core-split-view>\n'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/settings/pages/list/list.html"*/,
+            selector: 'page-core-settings-general',template:/*ion-inline-start:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/settings/pages/general/general.html"*/'<ion-header>\n    <ion-navbar core-back-button>\n        <ion-title>{{ \'core.settings.general\' | translate }}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content>\n    <ion-item text-wrap>\n        <ion-label><h2>{{ \'core.settings.language\' | translate }}</h2></ion-label>\n        <ion-select [(ngModel)]="selectedLanguage" (ngModelChange)="languageChanged()" interface="action-sheet">\n            <ion-option *ngFor="let code of languageCodes" [value]="code">{{ languages[code] }}</ion-option>\n        </ion-select>\n    </ion-item>\n    <ion-item text-wrap *ngIf="rteSupported">\n        <ion-label>\n            <h2>{{ \'core.settings.enablerichtexteditor\' | translate }}</h2>\n            <p>{{ \'core.settings.enablerichtexteditordescription\' | translate }}</p>\n        </ion-label>\n        <ion-toggle [(ngModel)]="richTextEditor" (ngModelChange)="richTextEditorChanged()"></ion-toggle>\n    </ion-item>\n    <ion-item text-wrap>\n        <ion-label>\n            <h2>{{ \'core.settings.debugdisplay\' | translate }}</h2>\n            <p>{{ \'core.settings.debugdisplaydescription\' | translate }}</p>\n        </ion-label>\n        <ion-toggle [(ngModel)]="debugDisplay" (ngModelChange)="debugDisplayChanged()"></ion-toggle>\n    </ion-item>\n</ion-content>\n'/*ion-inline-end:"/Users/vndtadmin/Desktop/Moodlemobile_lang/src/core/settings/pages/general/general.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_delegate__["a" /* CoreSettingsDelegate */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["w" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* NavParams */]])
-    ], CoreSettingsListPage);
-    return CoreSettingsListPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_app__["a" /* CoreAppProvider */], __WEBPACK_IMPORTED_MODULE_5__providers_config__["a" /* CoreConfigProvider */], __WEBPACK_IMPORTED_MODULE_6__providers_file__["a" /* CoreFileProvider */],
+            __WEBPACK_IMPORTED_MODULE_7__providers_events__["a" /* CoreEventsProvider */], __WEBPACK_IMPORTED_MODULE_8__providers_lang__["a" /* CoreLangProvider */],
+            __WEBPACK_IMPORTED_MODULE_9__providers_utils_dom__["a" /* CoreDomUtilsProvider */],
+            __WEBPACK_IMPORTED_MODULE_10__providers_local_notifications__["a" /* CoreLocalNotificationsProvider */], __WEBPACK_IMPORTED_MODULE_12__providers_sites__["a" /* CoreSitesProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_13__ionic_native_network__["a" /* Network */]])
+    ], CoreSettingsGeneralPage);
+    return CoreSettingsGeneralPage;
 }());
 
-//# sourceMappingURL=list.js.map
+//# sourceMappingURL=general.js.map
 
 /***/ })
 

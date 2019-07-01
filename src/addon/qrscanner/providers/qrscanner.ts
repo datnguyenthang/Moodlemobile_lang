@@ -16,12 +16,14 @@ import { Injectable } from '@angular/core';
 import { CoreLoggerProvider } from '@providers/logger';
 import { CoreSitesProvider } from '@providers/sites';
 import { CoreSite } from '@classes/site';
+import { ModalController, Modal } from 'ionic-angular';
 
 @Injectable()
 export class AddonQRScannerProvider {
     protected logger;
+    protected modal: Modal;
 
-    constructor(logger: CoreLoggerProvider, private sitesProvider: CoreSitesProvider) {
+    constructor(logger: CoreLoggerProvider, private sitesProvider: CoreSitesProvider, protected modalController: ModalController) {
         this.logger = logger.getInstance('AddonQRScannerProvider');
     }
 
@@ -47,6 +49,21 @@ export class AddonQRScannerProvider {
         return this.sitesProvider.getSite(siteId).then((site) => {
             return this.isQRScannerDisabledInSite(site);
         });
+    }
+
+    scan(validate: (text: any) => any = (text) => { return text; }) : Promise<any> { 
+        this.modal = this.modalController.create('qrscanner', { validate: validate});
+        this.modal.present();
+
+        return new Promise<any>((resolve, reject) => {
+            this.modal.onDidDismiss(data => {
+                if (data && data.text) {
+                    resolve(data.text);
+                } else {
+                    reject();
+                }
+            });
+        });                        
     }
 
 }

@@ -66,7 +66,7 @@ export class AddonQRScannerPage implements OnDestroy {
         if(this.checkDataHandle(obj)) {
           switch (obj.type) {
             case 'EVALUATE':
-                this.data.setData(obj.value,"scanner");
+                this.data.setData(obj.value, "scanner");
                 this.navCtrl.popToRoot();
                 this.navCtrl.parent.select(2);
             break;

@@ -62,13 +62,13 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
             private myOverviewProvider: AddonBlockTimelineProvider, private sitesProvider: CoreSitesProvider,
             private courseHelper: CoreCourseHelperProvider, private courseOptionsDelegate: CoreCourseOptionsDelegate,
             private eventsProvider: CoreEventsProvider, private navCtrl: NavController, appProvider: CoreAppProvider, 
-            evaluateProvider: AddonEvaluateProvider,fb: FormBuilder,private translate: TranslateService,
-            public alertController: AlertController,  navParams: NavParams, private data: DataService,
+            evaluateProvider: AddonEvaluateProvider, fb: FormBuilder, private translate: TranslateService,
+            public alertController: AlertController, navParams: NavParams, private data: DataService,
             private userProvider: CoreUserProvider) {
         
         this.evaluateProvider = evaluateProvider;
         this.loadSiteInfo();
-        this.userProvider.getProfile(this.sitesProvider.getCurrentSiteUserId(),1).then((user)=> {
+        this.userProvider.getProfile(this.sitesProvider.getCurrentSiteUserId(), 1).then((user)=> {
             this.credForm.controls['fullname'].setValue(user.fullname);
             this.credForm.controls['email'].setValue(user.email);
         });
@@ -107,6 +107,20 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
         }
         this.pageLoaded = true;
     }
+
+    ionViewWillEnter(): void {
+        if (this.data.getOrigin() == 'scanner') {
+            this.credForm.controls['coursecode'].setValue(this.data.getData());
+        }
+    }
+
+    ionViewDidEnter(): void {
+        if (this.data.getOrigin() == 'scanner') {
+            this.credForm.controls['coursecode'].setValue(this.data.getData());
+        }
+    }
+
+
     focusInSelect(): void {
         this.boxClass = 'box';
     }
@@ -126,7 +140,7 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
             const status = Boolean(data['status']);
             if (status == true) {
                 const detail = data['detail'];
-                this.navCtrl.push('AddonEvaluateSubmitEvaluatePage',{coursecode,fullname,email,cmnd,detail});
+                this.navCtrl.push('AddonEvaluateSubmitEvaluatePage', {coursecode, fullname, email, cmnd, detail});
             } else {
                 this.domUtils.showErrorModal(this.translate.instant('addon.evaluate.messagecoursecodeinvalid'), true);
             }
@@ -150,7 +164,11 @@ export class AddonEvaluateInputInfoPage implements OnInit, OnDestroy {
     /**
      * Component being initialized.
      */
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        if (this.data.getOrigin() == 'scanner') {
+            this.credForm.controls['coursecode'].setValue(this.data.getData());
+        }
+    }
     /**
      * Page destroyed.
      */

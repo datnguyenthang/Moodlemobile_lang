@@ -48,5 +48,12 @@ export class AddonLandingProvider {
             return this.isLandingDisabledInSite(site);
         });
     }
+    getPopUpData(siteId?: string): Promise<any[]> {
+        return this.sitesProvider.getSite(siteId).then((site) => {
+            const data = {};
+
+            return site.read('custom_popup_get_data', data);
+        });
+    }
 
 }

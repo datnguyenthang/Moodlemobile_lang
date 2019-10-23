@@ -17,6 +17,8 @@ import { IonicPage, Searchbar, NavController } from 'ionic-angular';
 import { CoreSitesProvider } from '@providers/sites';
 import { CoreAppProvider } from '@providers/app';
 import { CoreTabsComponent } from '@components/tabs/tabs';
+import { AddonLandingProvider } from '../../providers/landing';
+import { CoreDomUtilsProvider } from '@providers/utils/dom';
 
 /**
  * Page this show up about FE School.
@@ -31,10 +33,16 @@ export class AddonLandingMyLandingPage implements OnDestroy {
     @ViewChild('searchbar') searchbar: Searchbar;
 
     siteName: string;
+
     protected isDestroyed;
 
-    constructor(private sitesProvider: CoreSitesProvider, private navCtrl: NavController, appProvider: CoreAppProvider) {
+    constructor(private landingProvider: AddonLandingProvider, private sitesProvider: CoreSitesProvider,
+                private navCtrl: NavController, appProvider: CoreAppProvider,
+                private domUtils: CoreDomUtilsProvider) {
         this.loadSiteName();
+        this.landingProvider.getPopUpData().then((data) => {
+            this.domUtils.showConfirm(data['content'], data['title'], data['ok'], data['cancel'], data['option']);
+        });
     }
     /**
      * Go to specific page.

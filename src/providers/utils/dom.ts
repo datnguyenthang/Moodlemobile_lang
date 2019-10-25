@@ -1219,7 +1219,18 @@ export class CoreDomUtilsProvider {
 
         const loader = this.loadingCtrl.create({
             content: text
-        });
+        }), dismiss = loader.dismiss.bind(loader);
+
+        let isDismissed = false;
+
+        loader.dismiss = (data, role, navOptions): Promise<any> => {
+            if (isDismissed) {
+                return Promise.resolve();
+            }
+            isDismissed = true;
+            return dismiss(data, role, navOptions);
+        };
+        
 
         loader.present();
 

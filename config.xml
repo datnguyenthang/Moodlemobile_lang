@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="vn.com.fecredit.training" version="3.6.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>FE ATS</name>
-    <description>FE ATS</description>
+    <name>FE Credit - Training</name>
+    <description>FE Credit - Training</description>
     <author email="dat.nguyen.2@fecredit.com.vn" href="https://training.fecredit.com.vn/">FE ATS</author>
     <content src="index.html" />
     <access origin="*" />

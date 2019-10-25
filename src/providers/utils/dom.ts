@@ -1059,7 +1059,7 @@ export class CoreDomUtilsProvider {
             promise.then((message) => {
                 options = options || {};
 
-                options.message = message;
+                options.message = this.sanitizer.bypassSecurityTrustHtml(message);
                 options.title = title;
                 if (!title) {
                     options.cssClass = 'core-nohead';
@@ -1088,11 +1088,13 @@ export class CoreDomUtilsProvider {
                 const alert = this.alertCtrl.create(options);
 
                 alert.present().then(() => {
+                    /*
                     if (hasHTMLTags) {
                         // Treat all anchors so they don't override the app.
                         const alertMessageEl: HTMLElement = alert.pageRef().nativeElement.querySelector('.alert-message');
                         this.treatAnchors(alertMessageEl);
                     }
+                    */
                 });
             });
         });

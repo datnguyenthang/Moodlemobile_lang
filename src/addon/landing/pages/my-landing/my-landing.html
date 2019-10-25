@@ -10,34 +10,39 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
-    <div class="box" ion-fixed>
-        <div class="row">
-                <div class="col" id="s-o-s" (click)="openCataloguePage('AddonSchoolOfSalesMySchoolOfSalesPage')">
-                    <div class="item">
-                        <img src="assets/img/landing/sales.svg">
-                        <p>{{ 'addon.landing.schoolofsale' | translate }}</p>
+    <ion-refresher [enabled]="landingLoaded" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingText="{{ 'core.pulltorefresh' | translate }}"></ion-refresher-content>
+    </ion-refresher>
+    <core-loading [hideUntil]="landingLoaded">
+        <div class="box" ion-fixed>
+            <div class="row">
+                    <div class="col" id="s-o-s" (click)="openCataloguePage('AddonSchoolOfSalesMySchoolOfSalesPage')">
+                        <div class="item">
+                            <img src="assets/img/landing/sales.svg">
+                            <p>{{ 'addon.landing.schoolofsale' | translate }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col" id="s-o-r" (click)="openCataloguePage('AddonSchoolOfRecoveryMySchoolOfRecoveryPage')">
-                    <div class="item">
-                        <img src="assets/img/landing/recovery.svg">
-                        <p>{{ 'addon.landing.schoolofrecovery' | translate }}</p>
+                    <div class="col" id="s-o-r" (click)="openCataloguePage('AddonSchoolOfRecoveryMySchoolOfRecoveryPage')">
+                        <div class="item">
+                            <img src="assets/img/landing/recovery.svg">
+                            <p>{{ 'addon.landing.schoolofrecovery' | translate }}</p>
+                        </div>
                     </div>
-                </div>
+            </div>
+            <div class="row">
+                    <div class="col" id="f-a" (click)="openCataloguePage('AddonFeAcademyMyFeAcademyPage')">
+                        <div class="item">
+                            <img src="assets/img/landing/fe-academy.svg">
+                            <p>{{ 'addon.landing.feacademy' | translate }}</p>
+                        </div>
+                    </div>
+                    <div class="col" id="m-c" (click)="openCataloguePage('AddonMandatoryMyMandatoryPage')">
+                        <div class="item">
+                            <img src="assets/img/landing/mandatory.svg">
+                            <p>{{ 'addon.landing.mandatorycourse' | translate }}</p>
+                        </div>
+                    </div>
+            </div>
         </div>
-        <div class="row">
-                <div class="col" id="f-a" (click)="openCataloguePage('AddonFeAcademyMyFeAcademyPage')">
-                    <div class="item">
-                        <img src="assets/img/landing/fe-academy.svg">
-                        <p>{{ 'addon.landing.feacademy' | translate }}</p>
-                    </div>
-                </div>
-                <div class="col" id="m-c" (click)="openCataloguePage('AddonMandatoryMyMandatoryPage')">
-                    <div class="item">
-                        <img src="assets/img/landing/mandatory.svg">
-                        <p>{{ 'addon.landing.mandatorycourse' | translate }}</p>
-                    </div>
-                </div>
-        </div>
-    </div>
+    </core-loading>
 </ion-content>

@@ -1042,6 +1042,61 @@ export class CoreDomUtilsProvider {
             });
         });
     }
+// DAT-TC show pop up on landing page
+    showPopup(message: string, title?: string, okText?: string, cancelText?: string, options?: any): Promise<void> {
+        return new Promise<void>((resolve, reject): void => {
+            const hasHTMLTags = this.textUtils.hasHTMLTags(message);
+            let promise;
+            /*
+            if (hasHTMLTags) {
+                // Format the text.
+                promise = this.textUtils.formatText(message);
+            } else {
+                promise = Promise.resolve(message);
+            }
+            */
+            promise = Promise.resolve(message);
+            promise.then((message) => {
+                options = options || {};
+
+                options.message = message;
+                options.title = title;
+                if (!title) {
+                    options.cssClass = 'core-nohead';
+                }
+                options.buttons = [];
+                if (okText) {
+                    options.buttons.push(
+                        {
+                            text: okText || this.translate.instant('core.ok'),
+                            handler: (): void => {
+                                resolve();
+                            }
+                        });
+                }
+                if (cancelText) {
+                    options.buttons .push(
+                        {
+                            text: cancelText || this.translate.instant('core.cancel'),
+                            role: 'cancel',
+                            handler: (): void => {
+                                reject(this.createCanceledError());
+                            }
+                        });
+                }
+
+                const alert = this.alertCtrl.create(options);
+
+                alert.present().then(() => {
+                    if (hasHTMLTags) {
+                        // Treat all anchors so they don't override the app.
+                        const alertMessageEl: HTMLElement = alert.pageRef().nativeElement.querySelector('.alert-message');
+                        this.treatAnchors(alertMessageEl);
+                    }
+                });
+            });
+        });
+    }
 
     /**
      * Show an alert modal with an error message.

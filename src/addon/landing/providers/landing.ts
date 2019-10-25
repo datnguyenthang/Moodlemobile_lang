@@ -52,7 +52,13 @@ export class AddonLandingProvider {
         return this.sitesProvider.getSite(siteId).then((site) => {
             const data = {};
 
-            return site.read('custom_popup_get_data', data);
+            const preSets = {
+                getFromCache: false,
+                saveToCache: false,
+                emergencyCache: false,
+            };
+
+            return site.read('custom_popup_get_data', data, preSets);
         });
     }
 

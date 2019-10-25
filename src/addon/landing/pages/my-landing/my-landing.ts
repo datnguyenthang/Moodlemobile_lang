@@ -33,6 +33,7 @@ export class AddonLandingMyLandingPage implements OnDestroy {
     @ViewChild('searchbar') searchbar: Searchbar;
 
     siteName: string;
+    landingLoaded = false;
 
     protected isDestroyed;
 
@@ -41,7 +42,9 @@ export class AddonLandingMyLandingPage implements OnDestroy {
                 private domUtils: CoreDomUtilsProvider) {
         this.loadSiteName();
         this.landingProvider.getPopUpData().then((data) => {
-            this.domUtils.showConfirm(data['content'], data['title'], data['ok'], data['cancel'], data['option']);
+            this.domUtils.showPopup(data['content'], data['title'], data['ok'], data['cancel'], data['option']).then(()=>{
+                // Todo
+            });
         });
     }
     /**
@@ -67,5 +70,25 @@ export class AddonLandingMyLandingPage implements OnDestroy {
      */
     ngOnDestroy(): void {
         this.isDestroyed = true;
+    }
+    /**
+     * Refresh the data.
+     *
+     * @param  {any} [refresher] Refresher.
+     * @return {Promise<any>} Promise resolved when done.
+     */
+    doRefresh(refresher?: any): void {
+        this.landingProvider.getPopUpData().then((data) => {
+            this.domUtils.showPopup(data['content'], data['title'], data['ok'], data['cancel'], data['option']).then(()=>{
+                // Todo
+            });
+        });
+        refresher.complete();
+    }
+    /**
+     * View loaded.
+     */
+    ionViewDidLoad(): void {
+        this.landingLoaded = true;
     }
 }

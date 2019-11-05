@@ -20,7 +20,6 @@ import { CoreComponentsModule } from '@components/components.module';
 import { CoreDirectivesModule } from '@directives/directives.module';
 import { CorePipesModule } from '@pipes/pipes.module';
 import { AddonLandingMyLandingPage } from './my-landing';
-import { AddonLandingIndexComponentsModule } from '@addon/landing/components/components.module';
 
 @NgModule({
     declarations: [
@@ -32,8 +31,7 @@ import { AddonLandingIndexComponentsModule } from '@addon/landing/components/com
         CorePipesModule,
         CoreCoursesComponentsModule,
         IonicPageModule.forChild(AddonLandingMyLandingPage),
-        TranslateModule.forChild(),
-        AddonLandingIndexComponentsModule
+        TranslateModule.forChild()
     ],
 })
 export class AddonLandingMyLandingPageModule {}

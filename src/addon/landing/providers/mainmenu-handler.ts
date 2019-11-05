@@ -15,7 +15,6 @@
 import { Injectable } from '@angular/core';
 import { AddonLandingProvider } from './landing';
 import { CoreMainMenuHandler, CoreMainMenuHandlerData } from '@core/mainmenu/providers/delegate';
-import { AddonLandingIndexComponent } from '../components/index';
 
 /**
  * Handler to inject an option into main menu.
@@ -48,8 +47,5 @@ export class AddonLandingMainMenuHandler implements CoreMainMenuHandler {
             page: 'AddonLandingMyLandingPage',
             class: 'addon-landing-handler'
         };
-    }
-    getMainComponent(course: any, module: any): any {
-        return AddonLandingIndexComponent;
     }
 }

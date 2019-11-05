@@ -20,6 +20,7 @@ import { CoreTabsComponent } from '@components/tabs/tabs';
 import { AddonLandingProvider } from '../../providers/landing';
 import { CoreDomUtilsProvider } from '@providers/utils/dom';
 
+
 /**
  * Page this show up about FE School.
  */
@@ -37,9 +38,10 @@ export class AddonLandingMyLandingPage implements OnDestroy {
 
     protected isDestroyed;
 
-    constructor(private sitesProvider: CoreSitesProvider,
+    constructor(private sitesProvider: CoreSitesProvider, private landingProvider: AddonLandingProvider,
                 private navCtrl: NavController, private domUtils: CoreDomUtilsProvider) {
         this.loadSiteName();
+        this.landingProvider.initPopup();
     }
     /**
      * Go to specific page.
@@ -72,7 +74,7 @@ export class AddonLandingMyLandingPage implements OnDestroy {
      * @return {Promise<any>} Promise resolved when done.
      */
     doRefresh(refresher?: any): void {
-        location.reload();
+        this.landingProvider.initPopup();
         refresher.complete();
     }
     /**

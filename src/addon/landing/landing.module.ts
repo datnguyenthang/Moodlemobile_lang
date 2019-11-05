@@ -19,14 +19,12 @@ import { CoreMainMenuDelegate } from '@core/mainmenu/providers/delegate';
 import { CoreInitDelegate } from '@providers/init';
 import { CoreLoginHelperProvider } from '@core/login/providers/helper';
 import { CoreUpdateManagerProvider } from '@providers/update-manager';
-import { AddonLandingIndexComponentsModule } from './components/components.module';
 
 @NgModule({
     declarations: [
         
     ],
     imports: [
-        AddonLandingIndexComponentsModule
     ],
     providers: [
         AddonLandingProvider,

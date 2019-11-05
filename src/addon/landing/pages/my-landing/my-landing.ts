@@ -23,7 +23,7 @@ import { CoreDomUtilsProvider } from '@providers/utils/dom';
 /**
  * Page this show up about FE School.
  */
-@IonicPage({ segment: 'addon-landing-my-landing' })
+@IonicPage({ segment: 'addon-landing-index' })
 @Component({
     selector: 'page-addon-landing-my-landing',
     templateUrl: 'my-landing.html',
@@ -37,15 +37,9 @@ export class AddonLandingMyLandingPage implements OnDestroy {
 
     protected isDestroyed;
 
-    constructor(private landingProvider: AddonLandingProvider, private sitesProvider: CoreSitesProvider,
-                private navCtrl: NavController, appProvider: CoreAppProvider,
-                private domUtils: CoreDomUtilsProvider) {
+    constructor(private sitesProvider: CoreSitesProvider,
+                private navCtrl: NavController, private domUtils: CoreDomUtilsProvider) {
         this.loadSiteName();
-        this.landingProvider.getPopUpData().then((data) => {
-            this.domUtils.showPopup(data['content'], data['title'], data['ok'], data['cancel'], data['option']).then(()=>{
-                // Todo
-            });
-        });
     }
     /**
      * Go to specific page.
@@ -78,11 +72,7 @@ export class AddonLandingMyLandingPage implements OnDestroy {
      * @return {Promise<any>} Promise resolved when done.
      */
     doRefresh(refresher?: any): void {
-        this.landingProvider.getPopUpData().then((data) => {
-            this.domUtils.showPopup(data['content'], data['title'], data['ok'], data['cancel'], data['option']).then(()=>{
-                // Todo
-            });
-        });
+        location.reload();
         refresher.complete();
     }
     /**

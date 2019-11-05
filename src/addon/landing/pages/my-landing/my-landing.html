@@ -10,10 +10,12 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
+    <addon-landing-index></addon-landing-index>
     <ion-refresher [enabled]="landingLoaded" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content pullingText="{{ 'core.pulltorefresh' | translate }}"></ion-refresher-content>
     </ion-refresher>
     <core-loading [hideUntil]="landingLoaded">
+        
         <div class="box" ion-fixed>
             <div class="row">
                     <div class="col" id="s-o-s" (click)="openCataloguePage('AddonSchoolOfSalesMySchoolOfSalesPage')">

@@ -19,6 +19,7 @@ import { CoreSite } from '@classes/site';
 
 @Injectable()
 export class AddonLandingProvider {
+    [x: string]: any;
     protected logger;
 
     constructor(logger: CoreLoggerProvider, private sitesProvider: CoreSitesProvider) {
@@ -48,6 +49,7 @@ export class AddonLandingProvider {
             return this.isLandingDisabledInSite(site);
         });
     }
+
     getPopUpData(siteId?: string): Promise<any[]> {
         return this.sitesProvider.getSite(siteId).then((site) => {
             const data = {};
@@ -60,6 +62,10 @@ export class AddonLandingProvider {
 
             return site.read('custom_popup_get_data', data, preSets);
         });
+    }
+
+    redirectPage(pageAddress: string): void {
+        this.navCtrl.push(pageAddress);
     }
 
 }

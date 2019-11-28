@@ -18,7 +18,7 @@ import { CoreSitesProvider } from '@providers/sites';
 import { CoreEventsProvider } from '@providers/events';
 import { CoreIonTabsComponent } from '@components/ion-tabs/ion-tabs';
 import { CoreMainMenuProvider } from '../../providers/mainmenu';
-import { CoreMainMenuDelegate, CoreMainMenuHandlerToDisplay } from '../../providers/delegate';
+import { CoreMainMenuDelegate, CoreMainMenuHandlerToDisplay, CoreMainMenuHandlerData } from '../../providers/delegate';
 
 /**
  * Page that displays the main menu of the app.
@@ -34,6 +34,8 @@ export class CoreMainMenuPage implements OnDestroy {
     redirectPage: string;
     redirectParams: any;
     showTabs = false;
+    handlers: CoreMainMenuHandlerData[];
+    handlersLoaded: boolean;
 
     protected subscription;
     protected redirectObs: any;
@@ -63,6 +65,7 @@ export class CoreMainMenuPage implements OnDestroy {
 
             return;
         }
+        this.loadCustomHandler();
 
         this.showTabs = true;
 
@@ -153,5 +156,34 @@ export class CoreMainMenuPage implements OnDestroy {
     ngOnDestroy(): void {
         this.subscription && this.subscription.unsubscribe();
         this.redirectObs && this.redirectObs.off();
+    }
+
+    loadCustomHandler(): void {
+        // Load the handlers.
+        this.subscription = this.menuDelegate.getHandlers().subscribe((handlers) => {
+            // Calculate the main handlers to not display them in this view.
+            const mainHandlers = handlers.filter((handler) => {
+                return !handler.onlyInMore;
+            }).slice(0, CoreMainMenuProvider.NUM_MAIN_HANDLERS);
+
+            // Get only the handlers that don't appear in the main view.
+            this.handlers = [];
+
+            handlers.forEach((handler) => {
+                if (mainHandlers.indexOf(handler) == -1) {
+                    this.handlers.push(handler);
+                }
+            });
+
+            this.handlersLoaded = this.menuDelegate.areHandlersLoaded();
+        });
+    }
+    /**
+     * Open a handler.
+     *
+     * @param {CoreMainMenuHandlerData} handler Handler to open.
+     */
+    openHandler(handler: CoreMainMenuHandlerData): void {
+        this.navCtrl.push(handler.page, handler.pageParams);
     }
 }

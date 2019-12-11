@@ -25,6 +25,7 @@ import { CoreUpdateManagerProvider } from '@providers/update-manager';
         
     ],
     imports: [
+
     ],
     providers: [
         AddonLandingProvider,
